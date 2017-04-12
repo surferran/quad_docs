@@ -190,6 +190,23 @@ plotedEdges_GwV = nx.draw_networkx_edges(G_wVirtualEdges,pos_GwV,width=2,alpha=0
 print pos_GwV
 # nx.draw(G)
 # plt.axis('off')
+
+
+realNodes=[]
+realNodes_namesList=[]
+for node in G_wVirtualEdges.nodes(data=True):
+    if len(node[1]) == 0 :
+        realNodes.append(node)      # assuming the 'physics' node was added because it is only ~'sourced'
+        realNodes_namesList.append(node[0])
+        continue
+    if node[1]["node_type"]=="real":
+        realNodes.append(node)
+        realNodes_namesList.append(node[0])
+print realNodes
+# nodes
+nx.draw_networkx_nodes(G_wVirtualEdges,pos_GwV,nodelist=realNodes_namesList,node_size=node_circle_size, node_color="blue",node_shape='o',alpha=0.25) # ##ACCEPTS: [\/|- +xoO.* ]
+
+
 plt.savefig("system_graph_with_VirtEdges.png") # save as png
 # how to PAN on ?
 
