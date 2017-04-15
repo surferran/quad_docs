@@ -14,6 +14,11 @@ import  matplotlib.pyplot as plt
 from networkx.readwrite import json_graph
 import json
 
+import nxviz
+
+print "nx version : " + nx.__version__
+
+
 ###############################################
 import matplotlib
 print matplotlib.rc.func_globals['defaultParams']
@@ -81,6 +86,8 @@ print "Gimgs nodes: "
 listImgs = Gimgs.nodes()
 print listImgs
 
+###############################################
+
 """"""
 ''' deal with the graph printings '''
 """"""
@@ -115,13 +122,18 @@ nodesColrsDict = {'physics':0.0,
                   'quad 1':0.5,
                   'quad 2':0.5,
                   'payload':1.0 }
-colorValues = [nodesColrsDict.get(node, 0.25) for node in listOfNodes]
+colorValues = \
+
+    [nodesColrsDict.get(node, 0.25) for node in listOfNodes]
 # repeat to get axis re-scaled
 plotedNodes = nx.draw_networkx_nodes(G,pos,nodelist=listOfNodes, node_size=node_circle_size, node_shape='o',alpha=0.5, node_color=colorValues)
 
 # search string from text search:
 searchTxt = 'payload'
 nx.draw_networkx_nodes(G,pos,nodelist=[searchTxt], node_size=node_circle_size, node_shape='x',alpha=0.75, node_color=colorValues, linewidths=2.)
+
+
+###############################################
 
 ''''''
 
@@ -157,6 +169,8 @@ cols1=img1.size[1]   #columns
 imgplot = plt.imshow(img0, extent=[pos0[0], pos0[0]+cols1, pos0[1], pos0[1]+rows1])
 imgplot = plt.imshow(img0, extent=[pos1[0], pos1[0]+cols1, pos1[1], pos1[1]+rows1])
 
+###############################################
+
 # nx.draw(G)
 
 ax.set_xlim([0, 1000+node_circle_size/10.])
@@ -166,6 +180,8 @@ plt.axis('off')
 
 plt.savefig("system_graph.png") # save as png
 ''''''
+
+###############################################
 ''''''
 ''''''
 # drawing by : https://networkx.github.io/documentation/networkx-1.10/reference/drawing.html
@@ -186,11 +202,40 @@ nx.draw_networkx_labels(G_wVirtualEdges,pos_GwV,font_size=10,font_family='sans-s
 # edges
 plotedEdges_GwV = nx.draw_networkx_edges(G_wVirtualEdges,pos_GwV,width=2,alpha=0.25, edge_color='r')  # LineCollection type returned #,edgelist=filledEdges
 
+d= nx.coloring.greedy_color(G_wVirtualEdges, strategy=nx.coloring.strategy_largest_first)
 
 print pos_GwV
 # nx.draw(G)
 # plt.axis('off')
 
+###############################################
+
+specificNode = 'quad 1'
+## getNode = nx.get_node_attributes(G,'node_type')
+# nodesAdjList = G.adj
+# nodeNeighbours = nodesAdjList[specificNode] #
+nodeNeighbours = G[specificNode]
+smallG = [specificNode]
+for item in nodeNeighbours.keys():
+    smallG.append(str(item))
+newG = G_wVirtualEdges.subgraph(smallG)
+newG = G.subgraph(smallG)
+
+
+nodeAllNeighbours = nx.all_neighbors(G,specificNode)
+# nodeCommons = nx.common_neighbors(G_wVirtualEdges,specificNode,str(nodeNeighbours.keys()[0]))  # only for UnDirected..
+
+getNode = nx.get_node_attributes(G_wVirtualEdges,'node_type')
+nodesAdjList = G_wVirtualEdges.adj
+
+printNodes = nodesAdjList[specificNode]
+nx.draw_networkx_nodes(G_wVirtualEdges,pos_GwV,nodelist=printNodes, node_size=node_circle_size, node_color="white",node_shape='o',alpha=0.5) # ##ACCEPTS: [\/|- +xoO.* ]
+# labels
+nx.draw_networkx_labels(G_wVirtualEdges,pos_GwV,font_size=10,font_family='sans-serif',font_color='k',font_weight='bold')
+# edges
+plotedEdges_GwV = nx.draw_networkx_edges(G_wVirtualEdges,pos_GwV,width=2,alpha=0.25, edge_color='r')  # LineCollection type returned #,edgelist=filledEdges
+
+###############################################
 
 realNodes=[]
 realNodes_namesList=[]
@@ -215,6 +260,8 @@ plt.savefig("system_graph_with_VirtEdges.png") # save as png
 # nx.draw(Gimgs)
 # plt.show()
 
+###############################################
+
 ''''''
 
 jsonData = json_graph.node_link_data(G)
@@ -227,6 +274,8 @@ with open('jsonGwVout.json','w') as fJS:
 
 ''''''
 
+###############################################
+
 # TODO
 # set axis limits to 0-1000
 # add text function in graph to find node by attributes
@@ -235,6 +284,9 @@ with open('jsonGwVout.json','w') as fJS:
 #   allow the extension and trim of the edges. in graph display or separate window, list
 # check http://matplotlib.org/users/text_intro.html
 
+
+###############################################
+###############################################
 
 # plt.axis("off")
 # plt.colorbar()
@@ -303,6 +355,8 @@ plotedEdges.figure.canvas.mpl_connect('button_press_event', on_press)
 # plotedNodes.figure.canvas.mpl_connect('pick_event', on_pick_Nodes)
 
 
+###############################################
+
 # fig.canvas.mpl_connect('button_press_event', on_press)
 
 # for obj in plotedEdges:
@@ -339,6 +393,9 @@ imgplot = plt.imshow(img, interpolation="nearest")#,origin=[20,50]) #interpolati
 plt.show()
 
 # print(list(nx.bfs_edges(G,0)))
+''' find the way (if possible) from source to all other nodes. with a search path.
+    can see if one's node is reachable from source node. and what is the path.
+'''
 treeEdges = list(nx.bfs_edges(G,'physics'))
 print(treeEdges)
 newG = nx.MultiDiGraph(name="tree graph")
@@ -349,4 +406,3 @@ plt.show()
 nx.draw_random(G)
 plt.show()
 
-print nx.__version__
