@@ -14,8 +14,6 @@ import  matplotlib.pyplot as plt
 from networkx.readwrite import json_graph
 import json
 
-import nxviz
-
 print "nx version : " + nx.__version__
 
 
@@ -122,9 +120,7 @@ nodesColrsDict = {'physics':0.0,
                   'quad 1':0.5,
                   'quad 2':0.5,
                   'payload':1.0 }
-colorValues = \
-
-    [nodesColrsDict.get(node, 0.25) for node in listOfNodes]
+colorValues = [nodesColrsDict.get(node, 0.25) for node in listOfNodes]
 # repeat to get axis re-scaled
 plotedNodes = nx.draw_networkx_nodes(G,pos,nodelist=listOfNodes, node_size=node_circle_size, node_shape='o',alpha=0.5, node_color=colorValues)
 
