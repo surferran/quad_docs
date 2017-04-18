@@ -185,8 +185,10 @@ plt.savefig("system_graph.png") # save as png
 fig = plt.figure()
 ax = fig.add_subplot(1, 1, 1)
 
-pos_GwV=nx.spring_layout(G_wVirtualEdges) # positions for all nodes
-# pos_GwV=nx.spectral_layout(G_wVirtualEdges) # positions for all nodes
+# pos_GwV=nx.spring_layout(G_wVirtualEdges) # positions for all nodes
+pos_GwV=nx.spectral_layout(G_wVirtualEdges) # positions for all nodes
+pos_GwV=nx.circular_layout(G_wVirtualEdges)
+pos_GwV=nx.shell_layout(G_wVirtualEdges)
 
 for node in listOfNodes_GwV:
     pos_GwV[node]=pos_GwV[node]*1000 + node_circle_size/20.
