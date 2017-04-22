@@ -2,6 +2,13 @@
 # and : http://www.pyimagesearch.com/2014/11/03/display-matplotlib-rgb-image/
 # and : https://networkx.github.io/documentation/networkx-1.10/reference/generated/networkx.readwrite.json_graph.node_link_data.html#networkx.readwrite.json_graph.node_link_data
 
+# matplotlib reffs:
+#   http://www.developersite.org/101-55137-python
+# https://python.g-node.org/python-summerschool-2013/_media/wiki/datavis/matplotlib_tutorial.html
+# https://matplotlib.org/api/collections_api.html
+
+
+
 import matplotlib.image as mpimg
 import numpy as np
 from PIL import Image
@@ -92,11 +99,15 @@ print listImgs
 
 # drawing by : https://networkx.github.io/documentation/networkx-1.10/reference/drawing.html
 
-fig = plt.figure()
-ax = fig.add_subplot(1, 1, 1)
+fig = plt.figure(figsize=(10,5))
+ax = fig.add_subplot(1, 2, 1)   # lines, columns, current axes
 
 # pos=nx.spring_layout(G) # positions for all nodes
-pos=nx.spectral_layout(G) # positions for all nodes
+pos = nx.spectral_layout(G) # positions for all nodes
+pos = nx.shell_layout(G)
+pos = nx.circular_layout(G)
+# pos = nx.random_layout(G)
+# pos = nx.fruchterman_reingold_layout(G)
 
 node_circle_size=3700   # unknown units
 for node in listOfNodes:
@@ -122,7 +133,7 @@ nodesColrsDict = {'physics':0.0,
                   'payload':1.0 }
 colorValues = [nodesColrsDict.get(node, 0.25) for node in listOfNodes]
 # repeat to get axis re-scaled
-plotedNodes = nx.draw_networkx_nodes(G,pos,nodelist=listOfNodes, node_size=node_circle_size, node_shape='o',alpha=0.5, node_color=colorValues)
+plotedNodes = nx.draw_networkx_nodes(G,pos,nodelist=listOfNodes, node_size=node_circle_size, node_shape='o',alpha=0.5, node_color=colorValues) # PathCollection type returned
 
 # search string from text search:
 searchTxt = 'payload'
@@ -182,8 +193,9 @@ plt.savefig("system_graph.png") # save as png
 ''''''
 # drawing by : https://networkx.github.io/documentation/networkx-1.10/reference/drawing.html
 
-fig = plt.figure()
-ax = fig.add_subplot(1, 1, 1)
+# fig = plt.figure(figsize=(3, 2))
+ax = fig.add_subplot(1, 2, 2)
+ax.autoscale()
 
 # pos_GwV=nx.spring_layout(G_wVirtualEdges) # positions for all nodes
 pos_GwV=nx.spectral_layout(G_wVirtualEdges) # positions for all nodes
@@ -301,31 +313,93 @@ def on_pick_Nodes(event):
     print event.artist
     print event.canvas.events
 
+def on_Edge_click(items):
+    print "*on_Edge_click*"
+    # todo: show the list of edges in GUI
+    for item in items:
+        print filledEdges[item]  # from the input that is creating the plotedEdges
+
+def on_Node_click(items, nodesColorsArray):
+    print "*on_Node_click*"
+    # todo: highlight the node circle and edges from it
+    # for item in items: print listOfNodes[item]
+    selectedNode  = str(listOfNodes[items])  # the input for creating the plotedNodes
+    nodeColorPrev = nodesColorsArray[items]
+
+    print ax.collections[0].properties()
+    print selectedNode
+
+    print G[selectedNode]               # dict type
+    print G.neighbors(selectedNode)     # list type
+    print G.predecessors(selectedNode)  # list type . includes inputs
+
+    # if isinstance(lastSelectedNode):
+    #     nx.draw_networkx_nodes(G,pos,nodelist=lastSelectedNode,node_size=node_circle_size, node_color="blue",node_shape='o',alpha=0.25) # ##ACCEPTS: [\/|- +xoO.* ]
+
+    # nodesColorsArray[[0,items]] = nodesColorsArray[[items,0]]
+    # nodeColor = nodesColorsArray[items]
+    # plotedNodes.set_facecolors(nodesColorsArray)
+    # nodesList = [str(listOfNodes[0]),str(listOfNodes[items])]
+    #
+    # fig = plt.gcf()
+    # nx.draw_networkx_nodes(G, pos, nodelist=nodesList, node_size=node_circle_size, node_color=nodesColorsArray,
+    #                        node_shape='o', alpha=0.75, linewidths=2.0)  # ##ACCEPTS: [\/|- +xoO.* ]
+
+    # http: // stackoverflow.com / questions / 22716161 / how - can - one - modify - the - outline - color - of - a - node - in -networkx
+    axCur = plt.gca()  # to get the current axis
+    axCur.collections[0].set_edgecolor("#FF0000")
+    axCur.collections[1].set_edgecolor("#FFFf00")
+    axCur.collections[2].set_edgecolor("#FFff00")  #self._edgecolors  is changed
+    axCur.collections[3].set_edgecolor("#FFffff")
+    axCur.collections[4].set_edgecolor("#FFffff")
+    # todo: can change seperatly the collections by the index item??
+
+
+    ##nx.draw(G, pos, node_color=range(len(pos)), node_size=800, cmap=plt.cm.Blues)
+    # cmap=plt.cm.jet
+    # lastSelectedNode = listOfNodes[items]
+
+def on_Node_dblClk(items):
+    print "*on_Node_Dbl_click*"
+    # todo: in separate window show the node circle and edges from it and to it with neighbours
+    for item in items:
+        print listOfNodes[item]  # the input for creating the plotedNodes
+
 def on_press(event):
+
+    print('button=%d, x=%d, y=%d, xdata=%f, ydata=%f' %
+          (event.button, event.x, event.y, event.xdata, event.ydata))
     # print "on press"
+    # if event.dblclick:
+    #     print("DBLCLICK", event) # in actual: includes also a heading 'down' event
+    # else:
+    #     print("DOWN    ", event)
     # print event.inaxes
     # fig.canvas.draw_idle()
     eventContainsEdges = plotedEdges.contains(event)
     print eventContainsEdges
     if (eventContainsEdges[0]):
-        print "pressed on selected edge"
+        # print "pressed on selected edge"
     #     open other window with the selected edges/nodes
         items = eventContainsEdges[1]['ind']
-        # for item in items:
-        #     print plotedEdges[item]
+        if ~event.dblclick:
+           on_Edge_click(items)
     else:
         eventContainsNodes = plotedNodes.contains(event)
         print eventContainsNodes
         if (eventContainsNodes[0]):
-            print "pressed on selected node"
+            # print "pressed on selected node"
             #     open other window with the selected edges/nodes
             items = eventContainsNodes[1]['ind']
-            # for item in items:
-            #     print plotedEdges[item]
+            nodesColors = plotedNodes.get_facecolors()  # result of ndArray type
+            if event.dblclick:
+                on_Node_dblClk(items, nodesColors)
+            else:
+                on_Node_click(items, nodesColors)
         else:
-            print("pressed on general item of the figure")
+            print("*pressed on general item of the figure*")
 
-    print "plot paths len"  , len(plotedEdges._paths)
+    # print "plot paths len"  , len(plotedEdges._paths)
     # print "plot paths len"  , len(plotedNodes._paths)
     pass
 def on_release(event):
@@ -339,24 +413,21 @@ def on_motion(event):
 
 # check plotedEdges._paths
 
-# def makeConnect(obj):
-#     'connect to all the events we need'
-#     obj.figure.canvas.mpl_connect('button_press_event'  , on_press)
-#     obj.figure.canvas.mpl_connect('button_release_event', on_release)
-#     obj.figure.canvas.mpl_connect('motion_notify_event' , on_motion)
-
 plotedEdges._picker=True
 plotedEdges.figure.canvas.mpl_connect('button_press_event', on_press)
-# plotedEdges.figure.canvas.mpl_connect('pick_event', on_pick_Edges)
+# plotedEdges.figure.canvas.mpl_connect('pick_event', on_pick_Edges)  ## button_release_event, motion_notify_event
 plotedNodes._picker=True
 plotedEdges.figure.canvas.mpl_connect('button_press_event', on_press)
 # plotedNodes.figure.canvas.mpl_connect('pick_event', on_pick_Nodes)
 
 
+fig = plt.gcf()
+plt.gca().text(0.5, 0.5, "Click on the canvas to test mouse events.",
+               ha="center", va="center")
+
 ###############################################
 
 # fig.canvas.mpl_connect('button_press_event', on_press)
-
 # for obj in plotedEdges:
 #     makeConnect(obj)
 
@@ -365,6 +436,8 @@ ax.set_ylim([0, 1000+node_circle_size/10.])
 # ax.autoscale(True) #?
 ax.set_xlabel("x axis")
 ax.set_ylabel("y axis")
+
+ax.autoscale()
 
 # plt.savefig("weighted_graph_imgs.png") # save as png
 plt.show()          # stop point. plots all delivered so far to plt.__ or nx.draw(..).
