@@ -34,7 +34,7 @@ print matplotlib.matplotlib_fname()
 matplotlib.rc_params()
 ###############################################
 
-doc = minidom.parse("./ran_files/example.xml")
+doc = minidom.parse("./specific_files/example.xml")
 draw_edges_labels=False#True
 
 ''' generate the graph '''
