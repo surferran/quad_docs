@@ -7,7 +7,8 @@ import sys
 import time 
 
 import specific_files.pyTesting_xml_to_nexX as rNX
-import ZoomBar as zB
+import from_demo_agw.ZoomBar                as zB
+import from_demo_agw.XMLtreeview            as Xtr
 
 from wx.lib.embeddedimage import PyEmbeddedImage
 
@@ -1212,7 +1213,8 @@ class AuiFrame(wx.Frame):
 
         # add a bunch of panes
 
-        self._mgr.AddPane(self.CreateRanCtrl(), aui.AuiPaneInfo().Name("RAN_name").Caption("RAN_caption"))
+        self._mgr.AddPane(self.CreateRan_PanelCtrl(), aui.AuiPaneInfo().Name("RAN_name").Caption("RAN_caption").MaximizeButton(True))
+        self._mgr.AddPane(self.CreateRan_TreeCtrl(), aui.AuiPaneInfo().Name("RAN_name2").Caption("RAN_caption2").MaximizeButton(True))
 
         self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
                           Name("test1").Caption("Pane Caption").Top().MinimizeButton(True))
@@ -2601,7 +2603,7 @@ class AuiFrame(wx.Frame):
         ctrl = SizeReportCtrl(self, -1, wx.DefaultPosition, wx.Size(width, height), self._mgr)
         return ctrl
 
-    def CreateRanCtrl(self):
+    def CreateRan_PanelCtrl(self):
         # frame = wx.Frame(None, wx.ID_ANY, "Hello World")  # A Frame is a top-level window.
         # frame.Show(False)  # Show the frame.
         pnl = wx.Panel(self)
@@ -2611,6 +2613,12 @@ class AuiFrame(wx.Frame):
         zB.TestPanel(pnl, log)   #adding this example to the panel (panel type into panel parent)
 
         return pnl
+
+    def CreateRan_TreeCtrl(self):
+
+        win = Xtr.XMLTree(self,-1)
+        win.LoadTree("./specific_files/example.xml")
+        return  win
 
     def CreateHTMLCtrl(self, parent=None):
 

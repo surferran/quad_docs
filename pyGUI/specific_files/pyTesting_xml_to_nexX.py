@@ -23,6 +23,7 @@ import json
 
 print "nx version : " + nx.__version__
 
+output_rel_path = "./runtime_outputs/"
 
 ###############################################
 import matplotlib
@@ -185,7 +186,7 @@ ax.set_ylim([0, 1000+node_circle_size/10.])
 
 plt.axis('off')
 
-plt.savefig("system_graph.png") # save as png
+plt.savefig(output_rel_path+"system_graph.png") # save as png
 ''''''
 
 ###############################################
@@ -262,7 +263,7 @@ print realNodes
 nx.draw_networkx_nodes(G_wVirtualEdges,pos_GwV,nodelist=realNodes_namesList,node_size=node_circle_size, node_color="blue",node_shape='o',alpha=0.25) # ##ACCEPTS: [\/|- +xoO.* ]
 
 
-plt.savefig("system_graph_with_VirtEdges.png") # save as png
+plt.savefig(output_rel_path+"system_graph_with_VirtEdges.png") # save as png
 # how to PAN on ?
 
 # plt.show()
@@ -275,11 +276,11 @@ plt.savefig("system_graph_with_VirtEdges.png") # save as png
 ''''''
 
 jsonData = json_graph.node_link_data(G)
-with open('jsonGout.json','w') as fJS:
+with open(output_rel_path+'jsonGout.json','w') as fJS:
     json.dump(jsonData, fJS, indent=4)
 
 jsonData = json_graph.node_link_data(G_wVirtualEdges)
-with open('jsonGwVout.json','w') as fJS:
+with open(output_rel_path+'jsonGwVout.json','w') as fJS:
     json.dump(jsonData, fJS, indent=4)
 
 ''''''
