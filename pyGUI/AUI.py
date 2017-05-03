@@ -6,7 +6,7 @@ import os
 import sys
 import time 
 
-import ran_files.pyTesting_xml_to_nexX as rNX
+import specific_files.pyTesting_xml_to_nexX as rNX
 import ZoomBar as zB
 
 from wx.lib.embeddedimage import PyEmbeddedImage
@@ -26,7 +26,7 @@ except ImportError: # if it's not there locally, try the wxPython lib.
     from wx.lib.agw.aui import aui_switcherdialog as ASD
 
 import random
-import images
+import from_demo_agw.images as images
 
 ArtIDs = [ "wx.ART_ADD_BOOKMARK",
            "wx.ART_DEL_BOOKMARK",

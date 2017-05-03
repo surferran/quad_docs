@@ -30,10 +30,9 @@ class NetworkFrame(wx.Frame):
         self.panel.SetSizer(self.vbox)
         self.vbox.Fit(self)
 
-
-#
-plt.savefig("house_with_colors.png") # save as png
-#plt.show() # display
+        #
+        plt.savefig("house_with_colors.png") # save as png
+        #plt.show() # display
 
 if __name__ == '__main__':
   app = wx.PySimpleApp()
