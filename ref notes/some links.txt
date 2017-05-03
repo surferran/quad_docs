@@ -5,3 +5,5 @@ https://hobbyking.com/en_us/propeller.html
 
 https://hobbyking.com/en_us/lipo.html
 
+
+esc: how it works  Electronic Speed Controller
