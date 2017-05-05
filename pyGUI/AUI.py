@@ -1,12 +1,13 @@
-import wx
+''''''
+# import wx # ran note: used directly by CSizeReportCtrl
 import wx.html
 import wx.grid
 
 import os
 import sys
-import time 
+# import time # ran note: used directly by CProgressGauge
 
-import specific_files.pyTesting_xml_to_nexX as rNX
+import specific_files.pyTesting_xml_to_nexX as rNX  #ran - TODO : set the import just as class preparation
 import from_demo_agw.ZoomBar                as zB
 import from_demo_agw.XMLtreeview            as Xtr
 
@@ -24,7 +25,15 @@ except ImportError: # if it's not there locally, try the wxPython lib.
     import wx.lib.agw.aui as aui
     from wx.lib.agw.aui import aui_switcherdialog as ASD
 
-from Custom_pane_buttons import *
+''' seperated files from the original main AUI file '''
+from Custom_pane_buttons    import *
+from Intro_html_text        import *
+from CSizeReportCtrl        import *
+from CProgressGauge         import *
+
+import random
+import from_demo_agw.images as images
+
 #----------------------------------------------------------------------
 
 
@@ -50,8 +59,6 @@ CUSTOM_TAB_BUTTONS = {"Left": [(sort, aui.AUI_BUTTON_CUSTOM1),
                       }
 #----------------------------------------------------------------------
 
-import random
-import from_demo_agw.images as images
 
 ArtIDs = [ "wx.ART_ADD_BOOKMARK",
            "wx.ART_DEL_BOOKMARK",
@@ -207,77 +214,17 @@ ID_VetoTree = ID_PaneBorderSize + 16
 ID_VetoText = ID_PaneBorderSize + 17
 ID_NotebookMultiLine = ID_PaneBorderSize + 18
 
-# -- SizeReportCtrl --
-# (a utility control that always reports it's client size)
-# TODO: set this class in external seperated file.
 #  TODO: create AUI directory for all files that will be resulted from this AUI.py big file
 #         -AUI
 #           -imports
 #           -images
 #           -classes
 #           -mainAUI
-class SizeReportCtrl(wx.PyControl):
+#
 
-    def __init__(self, parent, id=wx.ID_ANY, pos=wx.DefaultPosition,
-                size=wx.DefaultSize, mgr=None):
-
-        wx.PyControl.__init__(self, parent, id, pos, size, style=wx.NO_BORDER)
-        self._mgr = mgr
-
-        self.Bind(wx.EVT_PAINT              , self.OnPaint)
-        self.Bind(wx.EVT_ERASE_BACKGROUND   , self.OnEraseBackground)
-        self.Bind(wx.EVT_SIZE               , self.OnSize)
-
-
-    def OnPaint(self, event):
-
-        dc = wx.PaintDC(self)
-        size = self.GetClientSize()
-
-        s = "Size: %d x %d"%(size.x, size.y)
-
-        dc.SetFont(wx.NORMAL_FONT)
-        w, height = dc.GetTextExtent(s)
-        height += 3
-        dc.SetBrush(wx.WHITE_BRUSH)
-        dc.SetPen(wx.WHITE_PEN)
-        dc.DrawRectangle(0, 0, size.x, size.y)
-        dc.SetPen(wx.LIGHT_GREY_PEN)
-        dc.DrawLine(0, 0, size.x, size.y)
-        dc.DrawLine(0, size.y, size.x, 0)
-        dc.DrawText(s, (size.x-w)/2, (size.y-height*5)/2)
-
-        if self._mgr:
-
-            pi = self._mgr.GetPane(self)
-
-            s = "Layer: %d"%pi.dock_layer
-            w, h = dc.GetTextExtent(s)
-            dc.DrawText(s, (size.x-w)/2, ((size.y-(height*5))/2)+(height*1))
-
-            s = "Dock: %d Row: %d"%(pi.dock_direction, pi.dock_row)
-            w, h = dc.GetTextExtent(s)
-            dc.DrawText(s, (size.x-w)/2, ((size.y-(height*5))/2)+(height*2))
-
-            s = "Position: %d"%pi.dock_pos
-            w, h = dc.GetTextExtent(s)
-            dc.DrawText(s, (size.x-w)/2, ((size.y-(height*5))/2)+(height*3))
-
-            s = "Proportion: %d"%pi.dock_proportion
-            w, h = dc.GetTextExtent(s)
-            dc.DrawText(s, (size.x-w)/2, ((size.y-(height*5))/2)+(height*4))
-
-
-    def OnEraseBackground(self, event):
-
-        pass
-
-
-    def OnSize(self, event):
-
-        self.Refresh()
-
-
+########################################################################
+########################################################################
+#todo: consider seperating this class. it depends on the controls IDs.
 class SettingsPanel(wx.Panel):
 
     def __init__(self, parent, frame):
@@ -575,157 +522,8 @@ class SettingsPanel(wx.Panel):
         self._frame.DoUpdate()
         self.UpdateColours()
 
-
-# ---------------------------------------------------------------------------- #
-# Class ProgressGauge
-# ---------------------------------------------------------------------------- #
-
-class ProgressGauge(wx.PyWindow):
-    """ This class provides a visual alternative for wx.Gauge."""
-
-    def __init__(self, parent, id=wx.ID_ANY, pos=wx.DefaultPosition, size=(-1,30)):
-        """ Default class constructor. """
-
-        wx.PyWindow.__init__(self, parent, id, pos, size, style=wx.BORDER_NONE)
-
-        self._value = 0
-        self._steps = 16
-        self._pos = 0
-        self._current = 0
-        self._gaugeproportion = 0.4
-        self._startTime = time.time()
-
-        self._bottomStartColour = wx.GREEN
-        rgba = self._bottomStartColour.Red(), self._bottomStartColour.Green(), \
-               self._bottomStartColour.Blue(), self._bottomStartColour.Alpha()
-        self._bottomEndColour = self.LightColour(self._bottomStartColour, 30)
-        self._topStartColour = self.LightColour(self._bottomStartColour, 80)
-        self._topEndColour = self.LightColour(self._bottomStartColour, 40)
-
-        self._background = wx.Brush(wx.WHITE, wx.SOLID)
-
-        self.Bind(wx.EVT_PAINT, self.OnPaint)
-        self.Bind(wx.EVT_ERASE_BACKGROUND, self.OnEraseBackground)
-
-
-    def OnEraseBackground(self, event):
-        """ Handles the wx.EVT_ERASE_BACKGROUND event for ProgressGauge. """
-
-        pass
-
-
-    def OnPaint(self, event):
-        """ Handles the wx.EVT_PAINT event for ProgressGauge. """
-
-        dc = wx.BufferedPaintDC(self)
-        dc.SetBackground(self._background)
-        dc.SetBackground(wx.WHITE_BRUSH)
-        dc.Clear()
-
-        xsize, ysize = self.GetClientSize()
-        interval = xsize/float(self._steps)
-
-        self._pos = interval*self._value
-
-        status = self._current/(self._steps - int((self._gaugeproportion*xsize/interval)))
-
-        if status%2 == 0:
-            increment = 1
-        else:
-            increment = -1
-
-        self._value = self._value + increment
-        self._current = self._current + 1
-
-        self.DrawProgress(dc, xsize, ysize, increment)
-
-        dc.SetBrush(wx.TRANSPARENT_BRUSH)
-        dc.SetPen(wx.Pen(wx.SystemSettings_GetColour(wx.SYS_COLOUR_GRADIENTINACTIVECAPTION)))
-        dc.DrawRectangleRect(self.GetClientRect())
-
-
-    def LightColour(self, colour, percent):
-        """
-        Return light contrast of colour. The colour returned is from the scale of
-        colour -> white. The percent determines how light the colour will be.
-        Percent = 100 return white, percent = 0 returns colour.
-        """
-
-        end_colour = wx.WHITE
-        rd = end_colour.Red() - colour.Red()
-        gd = end_colour.Green() - colour.Green()
-        bd = end_colour.Blue() - colour.Blue()
-        high = 100
-
-        # We take the percent way of the colour from colour -> white
-        i = percent
-        r = colour.Red() + ((i*rd*100)/high)/100
-        g = colour.Green() + ((i*gd*100)/high)/100
-        b = colour.Blue() + ((i*bd*100)/high)/100
-
-        return wx.Colour(r, g, b)
-
-
-    def DrawProgress(self, dc, xsize, ysize, increment):
-        """ Actually draws the sliding bar. """
-
-        interval = self._gaugeproportion*xsize
-        gc = wx.GraphicsContext.Create(dc)
-
-        clientRect = self.GetClientRect()
-        gradientRect = wx.Rect(*clientRect)
-
-        x, y, width, height = clientRect
-        x, width = self._pos, interval
-
-        gradientRect.SetHeight(gradientRect.GetHeight()/2)
-        topStart, topEnd = self._topStartColour, self._topEndColour
-
-        rc1 = wx.Rect(x, y, width, height/2)
-        path1 = self.GetPath(gc, rc1, 8)
-        br1 = gc.CreateLinearGradientBrush(x, y, x, y+height/2, topStart, topEnd)
-        gc.SetBrush(br1)
-        gc.FillPath(path1) #draw main
-
-        path4 = gc.CreatePath()
-        path4.AddRectangle(x, y+height/2-8, width, 8)
-        path4.CloseSubpath()
-        gc.SetBrush(br1)
-        gc.FillPath(path4)
-
-        gradientRect.Offset((0, gradientRect.GetHeight()))
-
-        bottomStart, bottomEnd = self._bottomStartColour, self._bottomEndColour
-
-        rc3 = wx.Rect(x, y+height/2, width, height/2)
-        path3 = self.GetPath(gc, rc3, 8)
-        br3 = gc.CreateLinearGradientBrush(x, y+height/2, x, y+height, bottomStart, bottomEnd)
-        gc.SetBrush(br3)
-        gc.FillPath(path3) #draw main
-
-        path4 = gc.CreatePath()
-        path4.AddRectangle(x, y+height/2, width, 8)
-        path4.CloseSubpath()
-        gc.SetBrush(br3)
-        gc.FillPath(path4)
-
-
-    def GetPath(self, gc, rc, r):
-        """ Returns a rounded GraphicsPath. """
-
-        x, y, w, h = rc
-        path = gc.CreatePath()
-        path.AddRoundedRectangle(x, y, w, h, r)
-        path.CloseSubpath()
-        return path
-
-
-
-    def Pulse(self):
-        """ Updates the gauge with a new value. """
-
-        self.Refresh()
-
+########################################################################
+########################################################################
 
 class AuiFrame(wx.Frame):
 
@@ -2631,10 +2429,6 @@ class AuiFrame(wx.Frame):
                 if isinstance(nb, aui.AuiNotebook):
                     nb.SetSelection(item.GetId())
                     win.SetFocus()
-
-#############################
-from intro_html_text import *
-#############################
 
 #----------------------------------------------------------------------
 
