@@ -7,9 +7,10 @@ import os
 import sys
 # import time # ran note: used directly by CProgressGauge
 
-import specific_files.pyTesting_xml_to_nexX as rNX  #ran - TODO : set the import just as class preparation
+# import specific_files.pyTesting_xml_to_nexX as rNX  #ran - TODO : set the import just as class preparation
 import from_demo_agw.ZoomBar                as zB
 import from_demo_agw.XMLtreeview            as Xtr
+import from_demo_agw.DragAndDrop            as DD
 
 try:
     dirName = os.path.dirname(os.path.abspath(__file__))
@@ -190,6 +191,8 @@ ID_PreviewMinimized = ID_CreateTree + 82
 
 ID_SmoothDocking = ID_CreateTree + 83
 ID_NativeMiniframes = ID_CreateTree + 84
+
+ID_RanDDContent = ID_CreateTree + 85    #ran
 
 ID_FirstPerspective = ID_CreatePerspective + 1000
 ID_FirstNBPerspective = ID_CreateNBPerspective + 10000
@@ -583,6 +586,9 @@ class AuiFrame(wx.Frame):
         view_menu.Append(ID_HTMLContent, "Use an HTML Control for the Content Pane")
         view_menu.Append(ID_TreeContent, "Use a Tree Control for the Content Pane")
         view_menu.Append(ID_NotebookContent, "Use a AuiNotebook control for the Content Pane")
+
+        view_menu.Append(ID_RanDDContent, "Use a ID_RanDDContent control for the Content Pane")  #todo: replace with min layout commnad
+
         view_menu.Append(ID_SizeReportContent, "Use a Size Reporter for the Content Pane")
         view_menu.AppendSeparator()
 
@@ -690,6 +696,7 @@ class AuiFrame(wx.Frame):
         self._perspectives_menu.AppendSeparator()
         self._perspectives_menu.Append(ID_FirstPerspective+0, "Default Startup")
         self._perspectives_menu.Append(ID_FirstPerspective+1, "All Panes")
+        self._perspectives_menu.Append(ID_FirstPerspective + 2, "Minimum for DragAndDrop") #ran
 
         self._nb_perspectives_menu = wx.Menu()
         self._nb_perspectives_menu.Append(ID_CreateNBPerspective, "Create Perspective")
@@ -867,55 +874,61 @@ class AuiFrame(wx.Frame):
         self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
                           Name("test1").Caption("Pane Caption").Top().MinimizeButton(True))
 
-        self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
-                          Name("test2").Caption("Client Size Reporter").
-                          Bottom().Position(1).CloseButton(True).MaximizeButton(True).
-                          MinimizeButton(True).CaptionVisible(True, left=True))
+        if 1==2:    # extra 6+3 SizeReportCtrl
+            self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
+                              Name("test2").Caption("Client Size Reporter").
+                              Bottom().Position(1).CloseButton(True).MaximizeButton(True).
+                              MinimizeButton(True).CaptionVisible(True, left=True))
 
-        self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
-                          Name("test3").Caption("Client Size Reporter").
-                          Bottom().CloseButton(True).MaximizeButton(True).MinimizeButton(True).
-                          CaptionVisible(True, left=True))
+            self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
+                              Name("test3").Caption("Client Size Reporter").
+                              Bottom().CloseButton(True).MaximizeButton(True).MinimizeButton(True).
+                              CaptionVisible(True, left=True))
 
-        self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
-                          Name("test4").Caption("Pane Caption").Left())
+            self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
+                              Name("test4").Caption("Pane Caption").Left())
 
-        self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
-                          Name("test5").Caption("No Close Button").Right().CloseButton(False))
+            self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
+                              Name("test5").Caption("No Close Button").Right().CloseButton(False))
 
-        self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
-                          Name("test6").Caption("Client Size Reporter").Right().Row(1).
-                          CloseButton(True).MaximizeButton(True).MinimizeButton(True))
+            self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
+                              Name("test6").Caption("Client Size Reporter").Right().Row(1).
+                              CloseButton(True).MaximizeButton(True).MinimizeButton(True))
 
-        self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
-                          Name("test7").Caption("Client Size Reporter").Left().Layer(1).
-                          CloseButton(True).MaximizeButton(True).MinimizeButton(True))
+            self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
+                              Name("test7").Caption("Client Size Reporter").Left().Layer(1).
+                              CloseButton(True).MaximizeButton(True).MinimizeButton(True))
+
+            self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
+                              Name("test9").Caption("Min Size 200x100").
+                              BestSize(wx.Size(200, 100)).MinSize(wx.Size(200, 100)).Bottom().Layer(1).
+                              CloseButton(True).MaximizeButton(True).MinimizeButton(True))
+
+            self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
+                              Name("test11").Caption("Fixed Pane").
+                              Bottom().Layer(1).Position(2).Fixed().MinimizeButton(True))
+
+            self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().Name("sizereport_content").
+                              CenterPane().Hide().MinimizeButton(True))
 
         self._mgr.AddPane(self.CreateTreeCtrl(), aui.AuiPaneInfo().Name("test8").Caption("Tree Pane").
                           Left().Layer(1).Position(1).CloseButton(True).MaximizeButton(True).
                           MinimizeButton(True))
 
-        self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
-                          Name("test9").Caption("Min Size 200x100").
-                          BestSize(wx.Size(200,100)).MinSize(wx.Size(200,100)).Bottom().Layer(1).
-                          CloseButton(True).MaximizeButton(True).MinimizeButton(True))
 
         self._mgr.AddPane(self.CreateTreeCtrl(), aui.AuiPaneInfo().
                           Name("autonotebook").Caption("Auto NB").
                           Bottom().Layer(1).Position(1).MinimizeButton(True))
+
+        self._mgr.AddPane(self.CreateTreeCtrl(), aui.AuiPaneInfo().
+                          Name("thirdauto").Caption("A Third Auto-NB Pane").
+                          Bottom().MinimizeButton(True), target=self._mgr.GetPane("autonotebook"))  # ran note: using target creates tabs collection
 
         wnd10 = self.CreateTextCtrl("This pane will prompt the user before hiding.")
         self._mgr.AddPane(wnd10, aui.AuiPaneInfo().
                           Name("test10").Caption("Text Pane with Hide Prompt").
                           Bottom().MinimizeButton(True), target=self._mgr.GetPane("autonotebook"))
 
-        self._mgr.AddPane(self.CreateTreeCtrl(), aui.AuiPaneInfo().
-                          Name("thirdauto").Caption("A Third Auto-NB Pane").
-                          Bottom().MinimizeButton(True), target=self._mgr.GetPane("autonotebook"))
-
-        self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().
-                          Name("test11").Caption("Fixed Pane").
-                          Bottom().Layer(1).Position(2).Fixed().MinimizeButton(True))
 
         self._mgr.AddPane(SettingsPanel(self,self), aui.AuiPaneInfo().
                           Name("settings").Caption("Dock Manager Settings").
@@ -923,46 +936,50 @@ class AuiFrame(wx.Frame):
 
         # create some center panes
 
-        self._mgr.AddPane(self.CreateGrid(), aui.AuiPaneInfo().Name("grid_content").
-                          CenterPane().Hide().MinimizeButton(True))
+        if 1==2:    # hiden by default, shown later by replacing the NoteBook
+            self._mgr.AddPane(self.CreateGrid(), aui.AuiPaneInfo().Name("grid_content").
+                              CenterPane().Hide().MinimizeButton(True))
 
-        self._mgr.AddPane(self.CreateTreeCtrl(), aui.AuiPaneInfo().Name("tree_content").
-                          CenterPane().Hide().MinimizeButton(True))
+            self._mgr.AddPane(self.CreateTreeCtrl(), aui.AuiPaneInfo().Name("tree_content").
+                              CenterPane().Hide().MinimizeButton(True))
 
-        self._mgr.AddPane(self.CreateSizeReportCtrl(), aui.AuiPaneInfo().Name("sizereport_content").
-                          CenterPane().Hide().MinimizeButton(True))
+            self._mgr.AddPane(self.CreateTextCtrl(), aui.AuiPaneInfo().Name("text_content").
+                              CenterPane().Hide().MinimizeButton(True))
 
-        self._mgr.AddPane(self.CreateTextCtrl(), aui.AuiPaneInfo().Name("text_content").
-                          CenterPane().Hide().MinimizeButton(True))
+            self._mgr.AddPane(self.CreateHTMLCtrl(), aui.AuiPaneInfo().Name("html_content").
+                              CenterPane().Hide().MinimizeButton(True))
 
-        self._mgr.AddPane(self.CreateHTMLCtrl(), aui.AuiPaneInfo().Name("html_content").
+        self._mgr.AddPane(self.CreateRan_DandDCtrl(), aui.AuiPaneInfo().Name("DandD_content").
                           CenterPane().Hide().MinimizeButton(True))
 
         self._mgr.AddPane(self.CreateNotebook(), aui.AuiPaneInfo().Name("notebook_content").
                           CenterPane().PaneBorder(False))
 
         # add the toolbars to the manager
-        self._mgr.AddPane(tb1, aui.AuiPaneInfo().Name("tb1").Caption("Big Toolbar").
-                          ToolbarPane().Top())
-
-        self._mgr.AddPane(tb2, aui.AuiPaneInfo().Name("tb2").Caption("Toolbar 2").
-                          ToolbarPane().Top().Row(1))
-
-        self._mgr.AddPane(tb3, aui.AuiPaneInfo().Name("tb3").Caption("Toolbar 3").
-                          ToolbarPane().Top().Row(1).Position(1))
-
         self._mgr.AddPane(tb4, aui.AuiPaneInfo().Name("tb4").Caption("Sample Bookmark Toolbar").
-                          ToolbarPane().Top().Row(2))
+                          # ToolbarPane().Top().Row(2))
+                          ToolbarPane().Top().Row(1))
+        if 1==1:    #choosing toolbars to add
+            # pass
+            self._mgr.AddPane(tb1, aui.AuiPaneInfo().Name("tb1").Caption("Big Toolbar").
+                              ToolbarPane().Top())
 
-        self._mgr.AddPane(tb5, aui.AuiPaneInfo().Name("tb5").Caption("Sample Vertical Toolbar").
-                          ToolbarPane().Left().GripperTop())
+            self._mgr.AddPane(tb2, aui.AuiPaneInfo().Name("tb2").Caption("Toolbar 2").
+                              ToolbarPane().Top().Row(1))
 
-        self._mgr.AddPane(tb6, aui.AuiPaneInfo().
-                          Name("tb6").Caption("Sample Vertical Clockwise Rotated Toolbar").
-                          ToolbarPane().Right().GripperTop().TopDockable(False).BottomDockable(False));
+            self._mgr.AddPane(tb3, aui.AuiPaneInfo().Name("tb3").Caption("Toolbar 3").
+                              ToolbarPane().Top().Row(1).Position(1))
 
-        self._mgr.AddPane(wx.Button(self, -1, "Test Button"),
-                          aui.AuiPaneInfo().Name("tb7").ToolbarPane().Top().Row(2).Position(1))
+
+            self._mgr.AddPane(tb5, aui.AuiPaneInfo().Name("tb5").Caption("Sample Vertical Toolbar").
+                              ToolbarPane().Left().GripperTop())
+
+            self._mgr.AddPane(tb6, aui.AuiPaneInfo().
+                              Name("tb6").Caption("Sample Vertical Clockwise Rotated Toolbar").
+                              ToolbarPane().Right().GripperTop().TopDockable(False).BottomDockable(False));
+
+            self._mgr.AddPane(wx.Button(self, -1, "Test Button"),
+                              aui.AuiPaneInfo().Name("tb7").ToolbarPane().Top().Row(2).Position(1))
 
         # Show how to add a control inside a tab
         notebook = self._mgr.GetPane("notebook_content").window
@@ -971,6 +988,7 @@ class AuiFrame(wx.Frame):
 
         self._main_notebook = notebook
 
+        ''' perspective keeping '''
         # make some default perspectives
         perspective_all = self._mgr.SavePerspective()
 
@@ -978,9 +996,23 @@ class AuiFrame(wx.Frame):
         for pane in all_panes:
             if not pane.IsToolbar():
                 pane.Hide()
+            else:   #ran added
+                print pane.Hide()
+                print " is toolbar "
 
-        self._mgr.GetPane("tb1").Hide()
-        self._mgr.GetPane("tb7").Hide()
+        #ran:
+        self._mgr.GetPane("DandD_content").Show()
+        #:todo: set win size to min. set as external win.
+        perspective_min = self._mgr.SavePerspective()  # ran note: consider using 'Config' class and 'LoadPerspective' method
+        self._mgr.GetPane("DandD_content").Hide()
+        # self._perspectives_menu.Append(ID_FirstPerspective + len(self._perspectives), "Minimum layout")
+        # self._perspectives.append(perspective_min)
+
+        # manual display configurations:
+        if 1==2:
+            self._mgr.GetPane("tb1").Hide()
+            self._mgr.GetPane("tb7").Hide()
+        self._mgr.GetPane("tb4").Show() #ran
 
         self._mgr.GetPane("test8").Show().Left().Layer(0).Row(0).Position(0)
         self._mgr.GetPane("__notebook_%d"%self._mgr.GetPane("test10").notebook_id).Show().Bottom().Layer(0).Row(0).Position(0)
@@ -989,23 +1021,26 @@ class AuiFrame(wx.Frame):
         self._mgr.GetPane("test10").Show()
         self._mgr.GetPane("notebook_content").Show()
 
-        perspective_default = self._mgr.SavePerspective()
+        perspective_default = self._mgr.SavePerspective()   # ran note: consider using 'Config' class and 'LoadPerspective' method
 
         self._perspectives = []
         self._perspectives.append(perspective_default)
         self._perspectives.append(perspective_all)
+        self._perspectives.append(perspective_min)  #ran
 
         self._nb_perspectives = []
         auibook = self._mgr.GetPane("notebook_content").window
         nb_perspective_default = auibook.SavePerspective()
         self._nb_perspectives.append(nb_perspective_default)
 
-        self._mgr.LoadPerspective(perspective_default)
+        self._mgr.LoadPerspective(perspective_default)  ##
+        ''''''''''''''''''''''''
 
         # Show how to get a custom minimizing behaviour, i.e., to minimize a pane
         # inside an existing AuiToolBar
         tree = self._mgr.GetPane("test8")
         tree.MinimizeMode(aui.AUI_MINIMIZE_POS_TOOLBAR)
+
         toolbarPane = self._mgr.GetPane(tb4)
         tree.MinimizeTarget(toolbarPane)
 
@@ -1102,6 +1137,9 @@ class AuiFrame(wx.Frame):
         self.Bind(wx.EVT_MENU, self.OnChangeContentPane, id=ID_SizeReportContent)
         self.Bind(wx.EVT_MENU, self.OnChangeContentPane, id=ID_HTMLContent)
         self.Bind(wx.EVT_MENU, self.OnChangeContentPane, id=ID_NotebookContent)
+
+        self.Bind(wx.EVT_MENU, self.OnChangeContentPane, id=ID_RanDDContent) #ran
+
         self.Bind(wx.EVT_MENU, self.OnVetoTree, id=ID_VetoTree)
         self.Bind(wx.EVT_MENU, self.OnVetoText, id=ID_VetoText)
 
@@ -1962,6 +2000,7 @@ class AuiFrame(wx.Frame):
         self._mgr.GetPane("sizereport_content").Show(event.GetId() == ID_SizeReportContent)
         self._mgr.GetPane("html_content").Show(event.GetId() == ID_HTMLContent)
         self._mgr.GetPane("notebook_content").Show(event.GetId() == ID_NotebookContent)
+        self._mgr.GetPane("DandD_content").Show(event.GetId() == ID_RanDDContent)   #ran
         self._mgr.Update()
 
 
@@ -2255,15 +2294,29 @@ class AuiFrame(wx.Frame):
         ctrl = SizeReportCtrl(self, -1, wx.DefaultPosition, wx.Size(width, height), self._mgr)
         return ctrl
 
+    def CreateRan_DandDCtrl(self):
+        # pnl = wx.Panel(self)
+        # DD.TestPanel(pnl,log)
+        # pnl.Show()
+        # item1 = wx.DropTarget
+
+        obj = DD.FileDropPanel(self, log)
+        #todo: add button for 'back to previous or default layout'
+                 #remove the text menu
+                 # resize the window for small rectangle
+        return obj
+
     def CreateRan_PanelCtrl(self):
         # frame = wx.Frame(None, wx.ID_ANY, "Hello World")  # A Frame is a top-level window.
         # frame.Show(False)  # Show the frame.
         pnl = wx.Panel(self)
 
-        ctrl = rNX.getMeFig()   #TODO: how to add fig to the panel
+        ## ctrl = rNX.getMeFig()   #TODO: how to add fig to the panel
         # pnl.fig =
+
         zB.TestPanel(pnl, log)   #adding this example to the panel (panel type into panel parent)
 
+        # DD.FileDropPanel(pnl,log)
         return pnl
 
     def CreateRan_TreeCtrl(self):
@@ -2271,6 +2324,8 @@ class AuiFrame(wx.Frame):
         win = Xtr.XMLTree(self,-1)
         win.LoadTree("./specific_files/example.xml")
         return  win
+
+#######################
 
     def CreateHTMLCtrl(self, parent=None):
 
