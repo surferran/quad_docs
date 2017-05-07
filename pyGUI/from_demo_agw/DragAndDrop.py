@@ -104,11 +104,13 @@ class OtherDropTarget(wx.PyDropTarget):
         self.filedo = wx.FileDataObject()
         self.textdo = wx.TextDataObject()
         self.bmpdo  = wx.BitmapDataObject()
+        self.urldo  = wx.URLDataObject()
         # self.thunderbirdDropData = wx.CustomDataObject('text/x-moz-message')
         # self.doComposite.Add(self.thunderbirdDropData)
         self.doComposite.Add(self.filedo)
-        self.doComposite.Add(self.bmpdo)
         self.doComposite.Add(self.textdo)
+        self.doComposite.Add(self.bmpdo)
+        # self.doComposite.Add(self.urldo)
         self.SetDataObject(self.doComposite)
 
     def OnEnter(self, x, y, d):
@@ -146,6 +148,8 @@ class OtherDropTarget(wx.PyDropTarget):
                 return self.OnFileDrop()
             elif formatType == wx.DF_BITMAP:
                 return self.OnBMPDrop()
+            else:
+                return self.OnUrlDrop()
 
         return result  # you must return this
 
@@ -164,6 +168,11 @@ class OtherDropTarget(wx.PyDropTarget):
         # self.textCtrl.AppendText(self.thunderbirdDropData.GetData().decode('utf-16'))
         # self.textCtrl.AppendText('\n')
         return wx.DragCopy
+
+    def OnUrlDrop(self):
+        url = self.data.GetURL()
+        self.window.AppendText(url + "\n")
+        return wx.DragLink
 
     def OnTextDrop(self):
         print "OnTextDrop:"
