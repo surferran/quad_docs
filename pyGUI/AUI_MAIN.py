@@ -26,7 +26,7 @@ except ImportError: # if it's not there locally, try the wxPython lib.
     import wx.lib.agw.aui as aui
     from wx.lib.agw.aui import aui_switcherdialog as ASD
 
-''' seperated files from the original main AUI file '''
+''' separated files from the original main AUI file '''
 from Custom_pane_buttons    import *
 from Intro_html_text        import *
 from CSizeReportCtrl        import *
@@ -539,9 +539,9 @@ class AuiFrame(wx.Frame):
 
         # tell AuiManager to manage this frame
         self._mgr.SetManagedWindow(self)
-
+        
         # set frame icon
-        self.SetIcon(images.Mondrian.GetIcon())
+        self.SetIcon(images.Mondrian.GetIcon()) #TODO: set to relevant icon file
 
         # set up default notebook style
         self._notebook_style = aui.AUI_NB_DEFAULT_STYLE | aui.AUI_NB_TAB_EXTERNAL_MOVE | wx.NO_BORDER
@@ -983,8 +983,8 @@ class AuiFrame(wx.Frame):
 
         # Show how to add a control inside a tab
         notebook = self._mgr.GetPane("notebook_content").window
-        self.gauge = ProgressGauge(notebook, size=(55, 15))
-        notebook.AddControlToPage(4, self.gauge)
+        # self.gauge = ProgressGauge(notebook, size=(55, 15))   #ran
+        # notebook.AddControlToPage(4, self.gauge) #ran : it is annoying..
 
         self._main_notebook = notebook
 
@@ -1003,11 +1003,15 @@ class AuiFrame(wx.Frame):
         #ran:
         self._mgr.GetPane("DandD_content").Show()
         #:todo: set win size to min. set as external win.
+#        previousSize = self.GetSize()
+#        self.SetSize(50,50)
         perspective_min = self._mgr.SavePerspective()  # ran note: consider using 'Config' class and 'LoadPerspective' method
+
         self._mgr.GetPane("DandD_content").Hide()
         # self._perspectives_menu.Append(ID_FirstPerspective + len(self._perspectives), "Minimum layout")
         # self._perspectives.append(perspective_min)
-
+#        self.SetSize(previousSize)
+    
         # manual display configurations:
         if 1==2:
             self._mgr.GetPane("tb1").Hide()
@@ -1235,6 +1239,10 @@ class AuiFrame(wx.Frame):
         try:
             self.gauge.Pulse()
         except wx.PyDeadObjectError:
+            print "TimerHandler event : wx.PyDeadObjectError exception "
+            self.timer.Stop()
+        except:
+            print "TimerHandler event : no gauge.Pulse() object - stopping the timer"
             self.timer.Stop()
 
 
