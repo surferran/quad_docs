@@ -1003,8 +1003,24 @@ class AuiFrame(wx.Frame):
         #ran:
         self._mgr.GetPane("DandD_content").Show()
         #:todo: set win size to min. set as external win.
-#        previousSize = self.GetSize()
-#        self.SetSize(50,50)
+        # get screen resolution
+        previousSize = self.GetParent().GetParent().GetPosition()
+        self.GetParent().GetParent().SetPosition(wx.Point(700,100))
+        self.pos = (700,900)
+        # self.CenterOnScreen()
+        #set size  , previousSize =
+        # self.GetStartPosition()
+        # self.GetParent().GetParent().SetSize(wx.Size(750, 150))
+        w = wx.SystemSettings.GetMetric(wx.SYS_SCREEN_X)
+        h = wx.SystemSettings.GetMetric(wx.SYS_SCREEN_Y)
+        centerPos = (w / 2, h / 2)
+        print "screen centerPos : " + str(centerPos[0]) + str(centerPos[1])
+
+
+
+
+        # "commit" all changes made to AuiManager
+        self._mgr.Update()
         perspective_min = self._mgr.SavePerspective()  # ran note: consider using 'Config' class and 'LoadPerspective' method
 
         self._mgr.GetPane("DandD_content").Hide()
@@ -1038,6 +1054,7 @@ class AuiFrame(wx.Frame):
         self._nb_perspectives.append(nb_perspective_default)
 
         self._mgr.LoadPerspective(perspective_default)  ##
+        self._mgr.LoadPerspective(perspective_min)  ## ran
         ''''''''''''''''''''''''
 
         # Show how to get a custom minimizing behaviour, i.e., to minimize a pane
@@ -1210,10 +1227,11 @@ class AuiFrame(wx.Frame):
         self.Bind(aui.EVT_AUINOTEBOOK_ALLOW_DND, self.OnAllowNotebookDnD)
         self.Bind(aui.EVT_AUINOTEBOOK_PAGE_CLOSE, self.OnNotebookPageClose)
 
-        self.Bind(aui.EVT_AUI_PANE_FLOATING, self.OnFloatDock)
-        self.Bind(aui.EVT_AUI_PANE_FLOATED, self.OnFloatDock)
-        self.Bind(aui.EVT_AUI_PANE_DOCKING, self.OnFloatDock)
-        self.Bind(aui.EVT_AUI_PANE_DOCKED, self.OnFloatDock)
+# ran removed those Alarm bindings
+        # self.Bind(aui.EVT_AUI_PANE_FLOATING, self.OnFloatDock)
+        # self.Bind(aui.EVT_AUI_PANE_FLOATED, self.OnFloatDock)
+        # self.Bind(aui.EVT_AUI_PANE_DOCKING, self.OnFloatDock)
+        # self.Bind(aui.EVT_AUI_PANE_DOCKED, self.OnFloatDock)
 
         self.Bind(wx.EVT_CLOSE, self.OnClose)
 
@@ -2495,67 +2513,67 @@ class AuiFrame(wx.Frame):
 
 #----------------------------------------------------------------------
 
-class ParentFrame(aui.AuiMDIParentFrame):
-
-    def __init__(self, parent):
-
-        aui.AuiMDIParentFrame.__init__(self, parent, -1, title="AGW AuiMDIParentFrame",
-                                       size=(640,480), style=wx.DEFAULT_FRAME_STYLE)
-        self.count = 0
-
-        # set frame icon
-        self.SetIcon(images.Mondrian.GetIcon())
-
-        mb = self.MakeMenuBar()
-        self.SetMenuBar(mb)
-        self.CreateStatusBar()
-
-
-    def MakeMenuBar(self):
-
-        mb = wx.MenuBar()
-        menu = wx.Menu()
-        item = menu.Append(-1, "New child window\tCtrl-N")
-        self.Bind(wx.EVT_MENU, self.OnNewChild, item)
-        item = menu.Append(-1, "Close parent")
-        self.Bind(wx.EVT_MENU, self.OnDoClose, item)
-        mb.Append(menu, "&File")
-        return mb
-
-
-    def OnNewChild(self, evt):
-
-        self.count += 1
-        child = ChildFrame(self, self.count)
-        child.Show()
-
-
-    def OnDoClose(self, evt):
-        self.Close()
+# class ParentFrame(aui.AuiMDIParentFrame):
+#
+#     def __init__(self, parent):
+#
+#         aui.AuiMDIParentFrame.__init__(self, parent, -1, title="AGW AuiMDIParentFrame",
+#                                        size=(640,480), style=wx.DEFAULT_FRAME_STYLE)
+#         self.count = 0
+#
+#         # set frame icon
+#         self.SetIcon(images.Mondrian.GetIcon())
+#
+#         mb = self.MakeMenuBar()
+#         self.SetMenuBar(mb)
+#         self.CreateStatusBar()
+#
+#
+#     def MakeMenuBar(self):
+#
+#         mb = wx.MenuBar()
+#         menu = wx.Menu()
+#         item = menu.Append(-1, "New child window\tCtrl-N")
+#         self.Bind(wx.EVT_MENU, self.OnNewChild, item)
+#         item = menu.Append(-1, "Close parent")
+#         self.Bind(wx.EVT_MENU, self.OnDoClose, item)
+#         mb.Append(menu, "&File")
+#         return mb
+#
+#
+#     def OnNewChild(self, evt):
+#
+#         self.count += 1
+#         child = ChildFrame(self, self.count)
+#         child.Show()
+#
+#
+#     def OnDoClose(self, evt):
+#         self.Close()
 
 
 #----------------------------------------------------------------------
 
-class ChildFrame(aui.AuiMDIChildFrame):
-
-    def __init__(self, parent, count):
-
-        aui.AuiMDIChildFrame.__init__(self, parent, -1, title="Child: %d" % count)
-        mb = parent.MakeMenuBar()
-        menu = wx.Menu()
-        item = menu.Append(-1, "This is child %d's menu" % count)
-        mb.Append(menu, "&Child")
-        self.SetMenuBar(mb)
-
-        p = wx.Panel(self)
-        wx.StaticText(p, -1, "This is child %d" % count, (10,10))
-        p.SetBackgroundColour('light blue')
-
-        sizer = wx.BoxSizer()
-        sizer.Add(p, 1, wx.EXPAND)
-        self.SetSizer(sizer)
-
-        wx.CallAfter(self.Layout)
+# class ChildFrame(aui.AuiMDIChildFrame):
+#
+#     def __init__(self, parent, count):
+#
+#         aui.AuiMDIChildFrame.__init__(self, parent, -1, title="Child: %d" % count)
+#         mb = parent.MakeMenuBar()
+#         menu = wx.Menu()
+#         item = menu.Append(-1, "This is child %d's menu" % count)
+#         mb.Append(menu, "&Child")
+#         self.SetMenuBar(mb)
+#
+#         p = wx.Panel(self)
+#         wx.StaticText(p, -1, "This is child %d" % count, (10,10))
+#         p.SetBackgroundColour('light blue')
+#
+#         sizer = wx.BoxSizer()
+#         sizer.Add(p, 1, wx.EXPAND)
+#         self.SetSizer(sizer)
+#
+#         wx.CallAfter(self.Layout)
 
 
 #---------------------------------------------------------------------------
@@ -2569,40 +2587,40 @@ def MainAUI(parent, log):
 
 #---------------------------------------------------------------------------
 
-def MDIAUI(parent, log):
-
-    frame = ParentFrame(parent)
-    frame.CenterOnScreen()
-    frame.Show()
+# def MDIAUI(parent, log):
+#
+#     frame = ParentFrame(parent)
+#     frame.CenterOnScreen()
+#     frame.Show()
 
 #---------------------------------------------------------------------------
 
 
-class TestPanel(wx.Panel):
-    def __init__(self, parent, log):
-        self.log = log
-        wx.Panel.__init__(self, parent, -1)
-
-        b1 = wx.Button(self, -1, " AGW AUI Docking Library ", (50,50))
-        self.Bind(wx.EVT_BUTTON, self.OnButton1, b1)
-
-##        b2 = wx.Button(self, -1, " AGW AuiMDIs ", (50, 80))
-##        self.Bind(wx.EVT_BUTTON, self.OnButton2, b2)
-
-
-    def OnButton1(self, event):
-        self.win = MainAUI(self, self.log)
-
-
-    def OnButton2(self, event):
-        self.win = MDIAUI(self, self.log)
+# class TestPanel(wx.Panel):
+#     def __init__(self, parent, log):
+#         self.log = log
+#         wx.Panel.__init__(self, parent, -1)
+#
+#         b1 = wx.Button(self, -1, " AGW AUI Docking Library ", (50,50))
+#         self.Bind(wx.EVT_BUTTON, self.OnButton1, b1)
+#
+# ##        b2 = wx.Button(self, -1, " AGW AuiMDIs ", (50, 80))
+# ##        self.Bind(wx.EVT_BUTTON, self.OnButton2, b2)
+#
+#
+#     def OnButton1(self, event):
+#         self.win = MainAUI(self, self.log)
+#
+#
+#     def OnButton2(self, event):
+#         self.win = MDIAUI(self, self.log)
 
 #----------------------------------------------------------------------
 
-def runTest(frame, nb, log):
-
-    win = TestPanel(nb, log)
-    return win
+# def runTest(frame, nb, log):
+#
+#     win = TestPanel(nb, log)
+#     return win
 
 #----------------------------------------------------------------------
 

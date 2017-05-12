@@ -114,7 +114,8 @@ class OtherDropTarget(wx.PyDropTarget):
         self.SetDataObject(self.doComposite)
 
     def OnEnter(self, x, y, d):
-        self.log.WriteText("OnEnter: %d, %d, %d\n" % (x, y, d))
+        # self.log.WriteText\
+        # print ("OnEnter: %d, %d, %d\n" % (x, y, d))
         return wx.DragCopy
 
     # def OnDragOver(self, x, y, d):
@@ -122,24 +123,26 @@ class OtherDropTarget(wx.PyDropTarget):
     #    return wx.DragCopy
 
     def OnLeave(self):
-        self.log.WriteText("OnLeave\n")
+        # self.log.WriteText("OnLeave\n")
+        pass
 
     def OnDrop(self, x, y):
-        self.log.WriteText("OnDrop: %d %d\n" % (x, y))
+        # self.log.WriteText("OnDrop: %d %d\n" % (x, y))
         return True
 
     def OnData(self, x, y, result):
         """
         Handles drag/dropping files/text or a bitmap
         """
-        self.log.WriteText("OnData: %d, %d, %d\n" % (x, y, result))
+        # self.log.WriteText("OnData: %d, %d, %d\n" % (x, y, result)) #log from outside is MessaageBox like
 
         self.window.SetInsertionPointEnd()
-        self.window.WriteText("OnData: %d, %d, %d\n" % (x, y, result))
+        self.window.WriteText("\nOnData: %d, %d, %d\n" % (x, y, result))
 
         if self.GetData():
             # formatType, formatId = self.GetReceivedFormatAndId()
             formatType = self.GetReceivedFormatAndId()
+            self.window.WriteText("formatType is : %s\n" % (formatType))
             # if formatId == 'text/x-moz-message':
             #     return self.OnThunderbirdDrop()
             if formatType in (wx.DF_TEXT, wx.DF_UNICODETEXT):
@@ -180,13 +183,16 @@ class OtherDropTarget(wx.PyDropTarget):
         # self.textCtrl.AppendText(self.textDropData.GetText() + '\n')
         print text
         self.window.WriteText(text)
+        #TODO : show popup menu to categorize the text and relate action to it.
+         # either store data in lists, or links book-keeping, or issues to track (as part of my notes)
+        #  zoomBar like circle action icons ?
         return wx.DragCopy
 
     def OnFileDrop(self):
         print "OnFileDrop:"
         for name in self.filedo.GetFilenames():
             print name
-            self.log.WriteText("%s\n" % name)
+            # self.log.WriteText("%s\n" % name)
             self.window.WriteText("%s\n" % name)
 
         # for filename in self.fileDropData.GetFilenames():
