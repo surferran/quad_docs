@@ -752,7 +752,8 @@ class AuiFrame(wx.Frame):
         # min size for the frame itself isn't completely done.
         # see the end up AuiManager.Update() for the test
         # code. For now, just hard code a frame minimum size
-        self.SetMinSize(wx.Size(400, 300))
+        # self.SetMinSize(wx.Size(400, 300))
+        self.SetMinSize(wx.Size(300, 150)) #ran
 
         # prepare a few custom overflow elements for the toolbars' overflow buttons
 
@@ -1004,9 +1005,38 @@ class AuiFrame(wx.Frame):
         self._mgr.GetPane("DandD_content").Show()
         #:todo: set win size to min. set as external win.
         # get screen resolution
+
+        print self
+        print self.GetSize()
+        print self.GetParent()
+        print self.GetParent().GetSize()
+        print self.GetParent().GetParent()
+        print self.GetParent().GetParent().GetSize()
+
+        print self
+        print self.GetPosition()
+        print self.GetParent()
+        print self.GetParent().GetPosition()
+        print self.GetParent().GetParent()
+        print self.GetParent().GetParent().GetPosition()
+
+        desiredFramePos = wx.Point(1200,100)
+        desiredFramePos = wx.Point(683,384)
         previousSize = self.GetParent().GetParent().GetPosition()
-        self.GetParent().GetParent().SetPosition(wx.Point(700,100))
-        self.pos = (700,900)
+        self.GetParent().GetParent().SetPosition(desiredFramePos)
+        # self.pos = (700,900)
+
+        desiredFrameSize = wx.Size(300  ,200)
+        print self.GetParent().GetParent().SetSize(desiredFrameSize)
+        print self.SetSize(desiredFrameSize)
+
+        print self
+        print self.GetPosition()
+        print self.GetParent()
+        print self.GetParent().GetPosition()
+        print self.GetParent().GetParent()
+        print self.GetParent().GetParent().GetPosition()
+
         # self.CenterOnScreen()
         #set size  , previousSize =
         # self.GetStartPosition()
@@ -1014,7 +1044,7 @@ class AuiFrame(wx.Frame):
         w = wx.SystemSettings.GetMetric(wx.SYS_SCREEN_X)
         h = wx.SystemSettings.GetMetric(wx.SYS_SCREEN_Y)
         centerPos = (w / 2, h / 2)
-        print "screen centerPos : " + str(centerPos[0]) + str(centerPos[1])
+        print "screen centerPos : " + str(centerPos[0]) + "," + str(centerPos[1])
 
 
 
@@ -2581,7 +2611,13 @@ class AuiFrame(wx.Frame):
 def MainAUI(parent, log):
 
     frame = AuiFrame(parent, -1, "AUI Test Frame", size=(800, 600), log=log)
-    frame.CenterOnScreen()
+    # frame.CenterOnScreen()
+
+    desiredFramePos = wx.Point(683, 384)
+    desiredFramePos = wx.Point(2, 2)
+    previousSize = frame.GetPosition()
+    frame.SetPosition(desiredFramePos)
+    # self.pos = (7
     frame.Show()
 
 
