@@ -1026,7 +1026,7 @@ class AuiFrame(wx.Frame):
         self.GetParent().GetParent().SetPosition(desiredFramePos)
         # self.pos = (700,900)
 
-        desiredFrameSize = wx.Size(300  ,200)
+        desiredFrameSize = wx.Size(400  ,200)
         print self.GetParent().GetParent().SetSize(desiredFrameSize)
         print self.SetSize(desiredFrameSize)
 
