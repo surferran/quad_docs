@@ -1,6 +1,9 @@
 # intro to subject : https://wiki.wxpython.org/DragAndDrop
 import  wx
 
+import glob # similar or instead of 'os'  http://stackoverflow.com/questions/3207219/how-to-list-all-files-of-a-directory
+import os
+
 #----------------------------------------------------------------------
 
 ID_CopyBtn      = wx.NewId()
@@ -190,13 +193,23 @@ class OtherDropTarget(wx.PyDropTarget):
 
     def OnFileDrop(self):
         print "OnFileDrop:"
-        for name in self.filedo.GetFilenames():
+        filesNames = self.filedo.GetFilenames()
+        for name in filesNames:
             print name
             # self.log.WriteText("%s\n" % name)
             self.window.WriteText("%s\n" % name)
 
-        # for filename in self.fileDropData.GetFilenames():
-        #     self.textCtrl.AppendText(filename + '\n')
+        full_path = os.path.dirname(filesNames[0])
+        fullFileName, file_extension = os.path.splitext(filesNames[0])
+        allSimilarFiles = glob.glob(full_path+ "/*"+file_extension)
+        dragedFileIndexInList = allSimilarFiles.index(filesNames[0])
+        startViewIndex = dragedFileIndexInList
+        print fullFileName
+        print full_path
+        print file_extension
+        print allSimilarFiles
+        print startViewIndex
+
         return wx.DragCopy
 
     def OnBMPFDrop(self):
