@@ -1,0 +1,81 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2218,         72]
+NotebookOptionsPosition[      1869,         56]
+NotebookOutlinePosition[      2213,         71]
+CellTagsIndexPosition[      2170,         68]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["quad test driven development and testing", "Text",
+ CellChangeTimes->{{3.7062727600175734`*^9, 3.706272770777322*^9}}],
+
+Cell[BoxData[{
+ RowBox[{"required", ":", " ", 
+  RowBox[{
+  "system", " ", "of", " ", "2", " ", "quads", " ", "and", " ", "1", " ", 
+   "payload"}]}], "\[IndentingNewLine]", 
+ RowBox[{"constraigns", " ", ":", " ", 
+  RowBox[{
+   RowBox[{"not", " ", "given", " ", 
+    RowBox[{"expicitly", ".", " ", "can"}], " ", "make", " ", "ones"}], 
+   ".."}], " "}]}], "Input",
+ CellChangeTimes->{{3.70627286365823*^9, 3.706272898517696*^9}}],
+
+Cell[BoxData[{"test1", "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "motion", " ", "equations", " ", "by", " ", "Newton", " ", "method"}], " ", 
+  "\[Equal]", " ", 
+  RowBox[{
+  "motion", " ", "equations", " ", "by", " ", "Lagrangian", " ", 
+   "method"}]}]}], "Input",
+ CellChangeTimes->{{3.7062727730188937`*^9, 3.7062728258927474`*^9}}],
+
+Cell[TextData[{
+ "quastions TODO :\nhow to paint vector for direction of forces  ,and \
+coordinate systems.\n how to do it in ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ ", in Python (blender,matplotlib)\nhow to paint moment arrow. same \
+applications in question.\n"
+}], "Text",
+ CellChangeTimes->{{3.706272781673526*^9, 3.7062727889079*^9}, {
+  3.706272913877437*^9, 3.7062730232398977`*^9}}]
+},
+WindowSize->{775, 561},
+WindowMargins->{{287, Automatic}, {Automatic, 54}},
+FrontEndVersion->"10.1 for Microsoft Windows (64-bit) (March 23, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 124, 1, 30, "Text"],
+Cell[685, 23, 430, 10, 52, "Input"],
+Cell[1118, 35, 341, 8, 52, "Input"],
+Cell[1462, 45, 403, 9, 106, "Text"]
+}
+]
+*)
+
+(* End of internal cache information *)
