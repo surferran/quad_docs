@@ -1,4 +1,0 @@
-todo:
-check with 'collection' to change 1 item color.
-need to change selected node color without adding new node on top of it.
-check : how nx_draw does inside. check the relation to matplolib collection commands
