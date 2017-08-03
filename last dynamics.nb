@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    216515,       6332]
-NotebookOptionsPosition[    211645,       6182]
-NotebookOutlinePosition[    212139,       6202]
-CellTagsIndexPosition[    212096,       6199]
+NotebookDataLength[    224461,       6569]
+NotebookOptionsPosition[    219116,       6408]
+NotebookOutlinePosition[    219610,       6428]
+CellTagsIndexPosition[    219567,       6425]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -4197,6 +4197,95 @@ Cell[BoxData[{
      {"0"},
      {
       RowBox[{
+       SubscriptBox["Thrust", "j1"], "+", 
+       SubscriptBox["Thrust", "j2"], "+", 
+       SubscriptBox["Thrust", "j3"], "+", 
+       SubscriptBox["Thrust", "j4"]}]}
+    }], ")"}]}], "\[IndentingNewLine]", 
+ RowBox[{"(", 
+  RowBox[{
+   SubscriptBox["Q", "1"], "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        OverscriptBox[
+         SubscriptBox["R", "B"], "I"], ".", "Fthrust"}], ")"}], " ", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "1"}], "]"}], "]"}], 
+     RowBox[{"(*", 
+      SubscriptBox["X", "I"], "*)"}], "//", "Flatten"}], "//", 
+    "MatrixForm"}]}], ")"}], "\[IndentingNewLine]", 
+ RowBox[{"(", 
+  RowBox[{
+   SubscriptBox["Q", "2"], "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        OverscriptBox[
+         SubscriptBox["R", "B"], "I"], ".", "Fthrust"}], ")"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ",", "1"}], "]"}], "]"}], 
+     RowBox[{"(*", 
+      SubscriptBox["Y", "I"], "*)"}], "//", "Flatten"}], "//", 
+    "MatrixForm"}]}], ")"}], "\[IndentingNewLine]", 
+ RowBox[{"(", 
+  RowBox[{
+   SubscriptBox["Q", "3"], "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        OverscriptBox[
+         SubscriptBox["R", "B"], "I"], ".", "Fthrust"}], ")"}], "[", 
+      RowBox[{"[", 
+       RowBox[{"3", ",", "1"}], "]"}], "]"}], 
+     RowBox[{"(*", 
+      SubscriptBox["Z", "I"], "*)"}], "//", "Flatten"}], "//", 
+    "MatrixForm"}]}], ")"}], "\[IndentingNewLine]", 
+ RowBox[{"(", 
+  RowBox[{
+   SubscriptBox["Q", "4"], "=", 
+   RowBox[{
+    RowBox[{
+     SubscriptBox["l", "1"], 
+     RowBox[{"(", 
+      RowBox[{
+       SubscriptBox["Thrust", "4"], "-", 
+       SubscriptBox["Thrust", "2"]}], ")"}]}], "//", "MatrixForm"}]}], 
+  ")"}], "\[IndentingNewLine]", 
+ RowBox[{"(", 
+  RowBox[{
+   SubscriptBox["Q", "5"], "=", 
+   RowBox[{
+    RowBox[{
+     SubscriptBox["l", "1"], 
+     RowBox[{"(", 
+      RowBox[{
+       SubscriptBox["Thrust", "3"], "-", 
+       SubscriptBox["Thrust", "1"]}], ")"}]}], "//", "MatrixForm"}]}], 
+  ")"}], "\[IndentingNewLine]", 
+ RowBox[{"(", 
+  RowBox[{
+   SubscriptBox["Q", "6"], "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      SubscriptBox["MotorMoment", "1"], "-", 
+      SubscriptBox["MotorMoment", "2"], "+", 
+      SubscriptBox["MotorMoment", "3"], "-", 
+      SubscriptBox["MotorMoment", "4"]}], ")"}], "//", "MatrixForm"}]}], 
+  ")"}], "\[IndentingNewLine]", 
+ RowBox[{"Fthrust", "=", 
+  RowBox[{"(", GridBox[{
+     {"0"},
+     {"0"},
+     {
+      RowBox[{
        SubscriptBox["Thrust", "1"], "+", 
        SubscriptBox["Thrust", "2"], "+", 
        SubscriptBox["Thrust", "3"], "+", 
@@ -4279,8 +4368,9 @@ Cell[BoxData[{
       SubscriptBox["MotorMoment", "2"], "+", 
       SubscriptBox["MotorMoment", "3"], "-", 
       SubscriptBox["MotorMoment", "4"]}], ")"}], "//", "MatrixForm"}]}], 
-  ")"}], "\[IndentingNewLine]"}], "Input",
- CellChangeTimes->{{3.710429542735423*^9, 3.7104295436634464`*^9}}],
+  ")"}]}], "Input",
+ CellChangeTimes->{{3.710429542735423*^9, 3.7104295436634464`*^9}, {
+  3.71072859137641*^9, 3.71072861481738*^9}}],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -4289,83 +4379,90 @@ Cell[BoxData[
    RowBox[{"{", "0", "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
-     SubscriptBox["Thrust", "1"], "+", 
-     SubscriptBox["Thrust", "2"], "+", 
-     SubscriptBox["Thrust", "3"], "+", 
-     SubscriptBox["Thrust", "4"]}], "}"}]}], "}"}]], "Output",
- CellChangeTimes->{3.710543249727992*^9}],
+     SubscriptBox["Thrust", "j1"], "+", 
+     SubscriptBox["Thrust", "j2"], "+", 
+     SubscriptBox["Thrust", "j3"], "+", 
+     SubscriptBox["Thrust", "j4"]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.710543249727992*^9, 3.7107286172774353`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  SubscriptBox["R", "B"],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.710543249727992*^9, 3.7107286172774353`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", 
+   TagBox[GridBox[{
+      {"0"}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+        "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    Column], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.710543249727992*^9, 3.710728617281433*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part \[NoBreak]\\!\\(3\\)\[NoBreak] of \
+\[NoBreak]\\!\\(\\(R\\_B\\)\\&\[ImaginaryI] . \\(\\({\\(\\({0}\\)\\), \
+\\(\\({0}\\)\\), \\(\\({Thrust\\_j1 + Thrust\\_j2 + Thrust\\_j3 + \
+Thrust\\_j4}\\)\\)}\\)\\)\\)\[NoBreak] does not exist. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/partw\\\", \
+ButtonNote -> \\\"Part::partw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.710728617457438*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part \[NoBreak]\\!\\(3\\)\[NoBreak] of \
+\[NoBreak]\\!\\(\\(R\\_B\\)\\&\[ImaginaryI] . \\(\\({\\(\\({0}\\)\\), \
+\\(\\({0}\\)\\), \\(\\({Thrust\\_j1 + Thrust\\_j2 + Thrust\\_j3 + \
+Thrust\\_j4}\\)\\)}\\)\\)\\)\[NoBreak] does not exist. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/partw\\\", \
+ButtonNote -> \\\"Part::partw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.71072861747344*^9}],
 
 Cell[BoxData[
  TagBox[
   RowBox[{
    RowBox[{"(", 
     RowBox[{
-     RowBox[{
-      RowBox[{"Cos", "[", 
-       RowBox[{"\[Phi]", "[", "t", "]"}], "]"}], " ", 
-      RowBox[{"Cos", "[", 
-       RowBox[{"\[Psi]", "[", "t", "]"}], "]"}], " ", 
-      RowBox[{"Sin", "[", 
-       RowBox[{"\[Theta]", "[", "t", "]"}], "]"}]}], "+", 
-     RowBox[{
-      RowBox[{"Sin", "[", 
-       RowBox[{"\[Phi]", "[", "t", "]"}], "]"}], " ", 
-      RowBox[{"Sin", "[", 
-       RowBox[{"\[Psi]", "[", "t", "]"}], "]"}]}]}], ")"}], " ", 
-   RowBox[{"(", 
-    RowBox[{
-     SubscriptBox["Thrust", "1"], "+", 
-     SubscriptBox["Thrust", "2"], "+", 
-     SubscriptBox["Thrust", "3"], "+", 
-     SubscriptBox["Thrust", "4"]}], ")"}]}],
+     OverscriptBox[
+      SubscriptBox["R", "B"], "\[ImaginaryI]"], ".", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", "0", "}"}], ",", 
+       RowBox[{"{", "0", "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         SubscriptBox["Thrust", "j1"], "+", 
+         SubscriptBox["Thrust", "j2"], "+", 
+         SubscriptBox["Thrust", "j3"], "+", 
+         SubscriptBox["Thrust", "j4"]}], "}"}]}], "}"}]}], ")"}], 
+   "\[LeftDoubleBracket]", 
+   RowBox[{"3", ",", "1"}], "\[RightDoubleBracket]"}],
   Function[BoxForm`e$, 
    MatrixForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{3.7105432497319937`*^9}],
-
-Cell[BoxData[
- TagBox[
-  RowBox[{
-   RowBox[{"(", 
-    RowBox[{
-     RowBox[{
-      RowBox[{"-", 
-       RowBox[{"Cos", "[", 
-        RowBox[{"\[Psi]", "[", "t", "]"}], "]"}]}], " ", 
-      RowBox[{"Sin", "[", 
-       RowBox[{"\[Phi]", "[", "t", "]"}], "]"}]}], "+", 
-     RowBox[{
-      RowBox[{"Cos", "[", 
-       RowBox[{"\[Phi]", "[", "t", "]"}], "]"}], " ", 
-      RowBox[{"Sin", "[", 
-       RowBox[{"\[Theta]", "[", "t", "]"}], "]"}], " ", 
-      RowBox[{"Sin", "[", 
-       RowBox[{"\[Psi]", "[", "t", "]"}], "]"}]}]}], ")"}], " ", 
-   RowBox[{"(", 
-    RowBox[{
-     SubscriptBox["Thrust", "1"], "+", 
-     SubscriptBox["Thrust", "2"], "+", 
-     SubscriptBox["Thrust", "3"], "+", 
-     SubscriptBox["Thrust", "4"]}], ")"}]}],
-  Function[BoxForm`e$, 
-   MatrixForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{3.7105432497359924`*^9}],
-
-Cell[BoxData[
- TagBox[
-  RowBox[{
-   RowBox[{"Cos", "[", 
-    RowBox[{"\[Theta]", "[", "t", "]"}], "]"}], " ", 
-   RowBox[{"Cos", "[", 
-    RowBox[{"\[Phi]", "[", "t", "]"}], "]"}], " ", 
-   RowBox[{"(", 
-    RowBox[{
-     SubscriptBox["Thrust", "1"], "+", 
-     SubscriptBox["Thrust", "2"], "+", 
-     SubscriptBox["Thrust", "3"], "+", 
-     SubscriptBox["Thrust", "4"]}], ")"}]}],
-  Function[BoxForm`e$, 
-   MatrixForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{3.710543249739993*^9}],
+ CellChangeTimes->{3.710543249727992*^9, 3.710728617477439*^9}],
 
 Cell[BoxData[
  TagBox[
@@ -4378,7 +4475,7 @@ Cell[BoxData[
      SubscriptBox["Thrust", "4"]}], ")"}]}],
   Function[BoxForm`e$, 
    MatrixForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{3.710543249739993*^9}],
+ CellChangeTimes->{3.710543249727992*^9, 3.7107286174814377`*^9}],
 
 Cell[BoxData[
  TagBox[
@@ -4391,7 +4488,7 @@ Cell[BoxData[
      SubscriptBox["Thrust", "3"]}], ")"}]}],
   Function[BoxForm`e$, 
    MatrixForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{3.710543249743993*^9}],
+ CellChangeTimes->{3.710543249727992*^9, 3.7107286174854383`*^9}],
 
 Cell[BoxData[
  TagBox[
@@ -4402,7 +4499,136 @@ Cell[BoxData[
    SubscriptBox["MotorMoment", "4"]}],
   Function[BoxForm`e$, 
    MatrixForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{3.710543249743993*^9}]
+ CellChangeTimes->{3.710543249727992*^9, 3.7107286174854383`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", "0", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox["Thrust", "1"], "+", 
+     SubscriptBox["Thrust", "2"], "+", 
+     SubscriptBox["Thrust", "3"], "+", 
+     SubscriptBox["Thrust", "4"]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.710543249727992*^9, 3.710728617489439*^9}],
+
+Cell[BoxData[
+ TagBox[
+  SubscriptBox["R", "B"],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.710543249727992*^9, 3.710728617489439*^9}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", 
+   TagBox[GridBox[{
+      {"0"}
+     },
+     GridBoxAlignment->{
+      "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+        "RowsIndexed" -> {}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[0.5599999999999999]}, 
+         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}, "RowsIndexed" -> {}}],
+    Column], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.710543249727992*^9, 3.7107286174934387`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part \[NoBreak]\\!\\(3\\)\[NoBreak] of \
+\[NoBreak]\\!\\(\\(R\\_B\\)\\&\[ImaginaryI] . \\(\\({\\(\\({0}\\)\\), \
+\\(\\({0}\\)\\), \\(\\({Thrust\\_1 + Thrust\\_2 + Thrust\\_3 + Thrust\\_4}\\)\
+\\)}\\)\\)\\)\[NoBreak] does not exist. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/partw\\\", ButtonNote -> \
+\\\"Part::partw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.7107286175214376`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part \[NoBreak]\\!\\(3\\)\[NoBreak] of \
+\[NoBreak]\\!\\(\\(R\\_B\\)\\&\[ImaginaryI] . \\(\\({\\(\\({0}\\)\\), \
+\\(\\({0}\\)\\), \\(\\({Thrust\\_1 + Thrust\\_2 + Thrust\\_3 + Thrust\\_4}\\)\
+\\)}\\)\\)\\)\[NoBreak] does not exist. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/partw\\\", ButtonNote -> \
+\\\"Part::partw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.7107286175614386`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     OverscriptBox[
+      SubscriptBox["R", "B"], "\[ImaginaryI]"], ".", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", "0", "}"}], ",", 
+       RowBox[{"{", "0", "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         SubscriptBox["Thrust", "1"], "+", 
+         SubscriptBox["Thrust", "2"], "+", 
+         SubscriptBox["Thrust", "3"], "+", 
+         SubscriptBox["Thrust", "4"]}], "}"}]}], "}"}]}], ")"}], 
+   "\[LeftDoubleBracket]", 
+   RowBox[{"3", ",", "1"}], "\[RightDoubleBracket]"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.710543249727992*^9, 3.710728617565441*^9}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{
+   SubscriptBox["l", "1"], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", 
+      SubscriptBox["Thrust", "2"]}], "+", 
+     SubscriptBox["Thrust", "4"]}], ")"}]}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.710543249727992*^9, 3.710728617569439*^9}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{
+   SubscriptBox["l", "1"], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", 
+      SubscriptBox["Thrust", "1"]}], "+", 
+     SubscriptBox["Thrust", "3"]}], ")"}]}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.710543249727992*^9, 3.710728617569439*^9}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{
+   SubscriptBox["MotorMoment", "1"], "-", 
+   SubscriptBox["MotorMoment", "2"], "+", 
+   SubscriptBox["MotorMoment", "3"], "-", 
+   SubscriptBox["MotorMoment", "4"]}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.710543249727992*^9, 3.710728617569439*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -6210,11 +6436,11 @@ Cell[2046, 64, 273, 9, 5, "Text"],
 Cell[2322, 75, 96, 1, 30, "Text"],
 Cell[CellGroupData[{
 Cell[2443, 80, 2074, 75, 252, "Input"],
-Cell[4520, 157, 955, 27, 77, "Output"],
-Cell[5478, 186, 924, 24, 77, "Output"],
+Cell[4520, 157, 955, 27, 63, "Output"],
+Cell[5478, 186, 924, 24, 63, "Output"],
 Cell[6405, 212, 293, 7, 31, "Output"],
-Cell[6701, 221, 957, 27, 77, "Output"],
-Cell[7661, 250, 924, 24, 77, "Output"],
+Cell[6701, 221, 957, 27, 63, "Output"],
+Cell[7661, 250, 924, 24, 63, "Output"],
 Cell[8588, 276, 293, 7, 31, "Output"]
 }, Open  ]],
 Cell[8896, 286, 121, 2, 30, "Text"],
@@ -6223,26 +6449,26 @@ Cell[9042, 292, 6021, 184, 444, "Input"],
 Cell[15066, 478, 200, 4, 31, "Output"],
 Cell[15269, 484, 200, 4, 31, "Output"],
 Cell[15472, 490, 200, 4, 31, "Output"],
-Cell[15675, 496, 1046, 29, 71, "Output"],
-Cell[16724, 527, 1054, 29, 71, "Output"],
-Cell[17781, 558, 1046, 29, 71, "Output"],
-Cell[18830, 589, 3406, 96, 71, "Output"],
+Cell[15675, 496, 1046, 29, 57, "Output"],
+Cell[16724, 527, 1054, 29, 57, "Output"],
+Cell[17781, 558, 1046, 29, 57, "Output"],
+Cell[18830, 589, 3406, 96, 57, "Output"],
 Cell[22239, 687, 604, 17, 31, "Output"],
 Cell[22846, 706, 328, 8, 31, "Output"],
 Cell[23177, 716, 198, 4, 31, "Output"],
-Cell[23378, 722, 1331, 37, 71, "Output"],
-Cell[24712, 761, 1636, 46, 71, "Output"],
-Cell[26351, 809, 2247, 62, 71, "Output"],
-Cell[28601, 873, 2651, 75, 71, "Output"],
-Cell[31255, 950, 2651, 75, 71, "Output"],
-Cell[33909, 1027, 1149, 33, 77, "Output"],
-Cell[35061, 1062, 1149, 33, 77, "Output"]
+Cell[23378, 722, 1331, 37, 57, "Output"],
+Cell[24712, 761, 1636, 46, 57, "Output"],
+Cell[26351, 809, 2247, 62, 57, "Output"],
+Cell[28601, 873, 2651, 75, 57, "Output"],
+Cell[31255, 950, 2651, 75, 57, "Output"],
+Cell[33909, 1027, 1149, 33, 63, "Output"],
+Cell[35061, 1062, 1149, 33, 63, "Output"]
 }, Open  ]],
 Cell[36225, 1098, 271, 9, 8, "Text"],
 Cell[36499, 1109, 2689, 80, 151, "Input"],
 Cell[CellGroupData[{
 Cell[39213, 1193, 2133, 58, 80, "Input"],
-Cell[41349, 1253, 1689, 47, 77, "Output"]
+Cell[41349, 1253, 1689, 47, 63, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[43075, 1305, 477, 13, 31, "Input"],
@@ -6254,7 +6480,7 @@ Cell[47289, 1426, 2517, 71, 48, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[49843, 1502, 621, 19, 47, "Input"],
-Cell[50467, 1523, 3414, 97, 65, "Output"]
+Cell[50467, 1523, 3414, 97, 51, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[53918, 1625, 379, 10, 33, "Input"],
@@ -6287,52 +6513,63 @@ Cell[92137, 2787, 10211, 298, 190, "Output"]
 Cell[102363, 3088, 84, 1, 31, "Input"],
 Cell[CellGroupData[{
 Cell[102472, 3093, 1835, 47, 52, "Input"],
-Cell[104310, 3142, 40293, 1034, 352, "Output"]
+Cell[104310, 3142, 40293, 1034, 338, "Output"]
 }, Open  ]],
 Cell[144618, 4179, 273, 9, 5, "Text"],
 Cell[CellGroupData[{
-Cell[144916, 4192, 2630, 90, 246, "Input"],
-Cell[147549, 4284, 362, 11, 31, "Output"],
-Cell[147914, 4297, 819, 25, 45, "Output"],
-Cell[148736, 4324, 843, 26, 45, "Output"],
-Cell[149582, 4352, 488, 15, 45, "Output"],
-Cell[150073, 4369, 309, 11, 45, "Output"],
-Cell[150385, 4382, 309, 11, 45, "Output"],
-Cell[150697, 4395, 307, 9, 45, "Output"]
+Cell[144916, 4192, 5196, 180, 445, "Input"],
+Cell[150115, 4374, 390, 11, 33, "Output"],
+Cell[150508, 4387, 178, 5, 45, "Output"],
+Cell[150689, 4394, 678, 19, 45, "Output"],
+Cell[151370, 4415, 612, 12, 33, "Message"],
+Cell[151985, 4429, 611, 12, 33, "Message"],
+Cell[152599, 4443, 698, 21, 56, "Output"],
+Cell[153300, 4466, 333, 11, 45, "Output"],
+Cell[153636, 4479, 333, 11, 45, "Output"],
+Cell[153972, 4492, 331, 9, 45, "Output"],
+Cell[154306, 4503, 384, 11, 31, "Output"],
+Cell[154693, 4516, 176, 5, 45, "Output"],
+Cell[154872, 4523, 680, 19, 45, "Output"],
+Cell[155555, 4544, 610, 12, 31, "Message"],
+Cell[156168, 4558, 610, 12, 31, "Message"],
+Cell[156781, 4572, 694, 21, 56, "Output"],
+Cell[157478, 4595, 331, 11, 45, "Output"],
+Cell[157812, 4608, 331, 11, 45, "Output"],
+Cell[158146, 4621, 329, 9, 45, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[151041, 4409, 185, 5, 31, "Input"],
-Cell[151229, 4416, 72, 1, 31, "Output"]
+Cell[158512, 4635, 185, 5, 31, "Input"],
+Cell[158700, 4642, 72, 1, 31, "Output"]
 }, Open  ]],
-Cell[151316, 4420, 105, 1, 30, "Text"],
-Cell[151424, 4423, 374, 11, 52, "Input"],
-Cell[151801, 4436, 271, 9, 10, "Text"],
+Cell[158787, 4646, 105, 1, 30, "Text"],
+Cell[158895, 4649, 374, 11, 52, "Input"],
+Cell[159272, 4662, 271, 9, 10, "Text"],
 Cell[CellGroupData[{
-Cell[152097, 4449, 109, 1, 31, "Input"],
-Cell[152209, 4452, 34443, 981, 503, "Output"]
+Cell[159568, 4675, 109, 1, 31, "Input"],
+Cell[159680, 4678, 34443, 981, 503, "Output"]
 }, Open  ]],
-Cell[186667, 5436, 407, 14, 201, "Text"],
+Cell[194138, 5662, 407, 14, 201, "Text"],
 Cell[CellGroupData[{
-Cell[187099, 5454, 4647, 142, 232, "Input"],
-Cell[191749, 5598, 475, 10, 31, "Output"],
-Cell[192227, 5610, 597, 14, 31, "Output"],
-Cell[192827, 5626, 3280, 95, 52, "Output"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[196144, 5726, 140, 2, 31, "Input"],
-Cell[196287, 5730, 4294, 128, 55, "Output"]
+Cell[194570, 5680, 4647, 142, 232, "Input"],
+Cell[199220, 5824, 475, 10, 31, "Output"],
+Cell[199698, 5836, 597, 14, 31, "Output"],
+Cell[200298, 5852, 3280, 95, 52, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[200618, 5863, 215, 5, 31, "Input"],
-Cell[200836, 5870, 5567, 156, 276, "Output"]
+Cell[203615, 5952, 140, 2, 31, "Input"],
+Cell[203758, 5956, 4294, 128, 55, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[206440, 6031, 334, 8, 37, "Input"],
-Cell[206777, 6041, 1108, 30, 77, "Output"]
+Cell[208089, 6089, 215, 5, 31, "Input"],
+Cell[208307, 6096, 5567, 156, 262, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[207922, 6076, 218, 6, 37, "Input"],
-Cell[208143, 6084, 3486, 95, 77, "Output"]
+Cell[213911, 6257, 334, 8, 37, "Input"],
+Cell[214248, 6267, 1108, 30, 63, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[215393, 6302, 218, 6, 37, "Input"],
+Cell[215614, 6310, 3486, 95, 63, "Output"]
 }, Open  ]]
 }
 ]
