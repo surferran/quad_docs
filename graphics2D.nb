@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     28252,        723]
-NotebookOptionsPosition[     27320,        688]
-NotebookOutlinePosition[     27815,        708]
-CellTagsIndexPosition[     27772,        705]
+NotebookDataLength[     30376,        784]
+NotebookOptionsPosition[     29402,        748]
+NotebookOutlinePosition[     29897,        768]
+CellTagsIndexPosition[     29854,        765]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -553,34 +553,35 @@ Cell[BoxData[
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"Manipulate", "[", 
-  RowBox[{
+ RowBox[{"man", " ", "=", " ", 
+  RowBox[{"Manipulate", "[", 
    RowBox[{
-    RowBox[{"DrawSystem", "[", "\[Theta]", "]"}], "[", 
-    RowBox[{"[", "3", "]"}], "]"}], ",", 
-   RowBox[{"{", 
     RowBox[{
-     RowBox[{"{", 
-      RowBox[{"\[Theta]", ",", "0"}], "}"}], ",", 
-     RowBox[{"-", "90"}], ",", "90"}], "}"}]}], "]"}]], "Input",
+     RowBox[{"DrawSystem", "[", "\[Theta]", "]"}], "[", 
+     RowBox[{"[", "3", "]"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"\[Theta]", ",", "0"}], "}"}], ",", 
+      RowBox[{"-", "90"}], ",", "90"}], "}"}]}], "]"}]}]], "Input",
  CellChangeTimes->{{3.7122835963873177`*^9, 3.7122835976513467`*^9}, {
   3.712283988164075*^9, 3.712284031090217*^9}, {3.7122840654575925`*^9, 
-  3.7122840704217243`*^9}}],
+  3.7122840704217243`*^9}, {3.712535196751369*^9, 3.712535197923143*^9}}],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`\[Theta]$$ = 51.80000000000001, 
-    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
-    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
-    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+   DynamicModuleBox[{$CellContext`\[Theta]$$ = 0, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
        Hold[$CellContext`\[Theta]$$], 0}, -90, 90}}, Typeset`size$$ = {
     360., {168., 173.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`\[Theta]$19269$$ = 0}, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Theta]$33541$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, "Variables" :> {$CellContext`\[Theta]$$ = 0}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`\[Theta]$$, $CellContext`\[Theta]$19269$$, 0]}, 
+        Hold[$CellContext`\[Theta]$$, $CellContext`\[Theta]$33541$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -602,8 +603,67 @@ Cell[BoxData[
   Manipulate`InterpretManipulate[1]]], "Output",
  CellChangeTimes->{
   3.712283598215371*^9, {3.7122839994643188`*^9, 3.712284031658228*^9}, 
-   3.7122840709537096`*^9, 3.712284369027264*^9, 3.7122845297073455`*^9}]
+   3.7122840709537096`*^9, 3.712284369027264*^9, 3.7122845297073455`*^9, 
+   3.7125351395053625`*^9, 3.712535198614602*^9}]
 }, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ManToGif", "[", 
+     RowBox[{"man_", ",", "name_String", ",", "step_Integer"}], "]"}], ":=", 
+    RowBox[{"Export", "[", 
+     RowBox[{
+      RowBox[{"name", "<>", "\"\<.gif\>\""}], ",", 
+      RowBox[{
+       RowBox[{"Import", "[", 
+        RowBox[{
+         RowBox[{"Export", "[", 
+          RowBox[{
+           RowBox[{"FileNameJoin", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+              "\"\<test.avi\>\""}], "}"}], "]"}], ",", "man"}], "]"}], ",", 
+         "\"\<ImageList\>\""}], "]"}], "[", 
+       RowBox[{"[", 
+        RowBox[{"1", ";;", 
+         RowBox[{"-", "1"}], ";;", "step"}], "]"}], "]"}]}], "]"}]}], ";"}], 
+  "\n", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"man2", "=", 
+     RowBox[{"Manipulate", "[", 
+      RowBox[{
+       RowBox[{"Plot", "[", 
+        RowBox[{
+         RowBox[{"Sin", "[", "x", "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "0", ",", "end"}], "}"}], ",", 
+         RowBox[{"PlotRange", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", 
+              RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}]}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"end", ",", "0", ",", 
+         RowBox[{"2", " ", "Pi"}], ",", "0.1"}], "}"}]}], "]"}]}], ";"}], 
+   "*)"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ManToGif", "[", 
+   RowBox[{"man", ",", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<test\>\""}], "}"}], 
+     "]"}], ",", "1"}], "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.712535157242189*^9, 3.7125351572521973`*^9}, {
+  3.712535211837364*^9, 3.7125352158660307`*^9}}],
 
 Cell[" ", "Text",
  Editable->False,
@@ -715,15 +775,16 @@ Cell[17720, 458, 131, 2, 31, "Input"],
 Cell[17854, 462, 4258, 87, 178, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[22149, 554, 500, 13, 31, "Input"],
-Cell[22652, 569, 1800, 35, 452, "Output"]
+Cell[22149, 554, 590, 14, 31, "Input"],
+Cell[22742, 570, 1834, 36, 452, "Output"]
 }, Open  ]],
-Cell[24467, 607, 271, 9, 10, "Text"],
+Cell[24591, 609, 1955, 56, 132, "Input"],
+Cell[26549, 667, 271, 9, 10, "Text"],
 Cell[CellGroupData[{
-Cell[24763, 620, 1115, 34, 105, "Input"],
-Cell[25881, 656, 381, 6, 31, "Output"],
-Cell[26265, 664, 379, 6, 31, "Output"],
-Cell[26647, 672, 657, 13, 127, "Output"]
+Cell[26845, 680, 1115, 34, 105, "Input"],
+Cell[27963, 716, 381, 6, 31, "Output"],
+Cell[28347, 724, 379, 6, 31, "Output"],
+Cell[28729, 732, 657, 13, 127, "Output"]
 }, Open  ]]
 }
 ]
