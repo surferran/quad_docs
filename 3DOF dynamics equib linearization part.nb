@@ -1,0 +1,2475 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     98615,       2466]
+NotebookOptionsPosition[     97062,       2410]
+NotebookOutlinePosition[     97404,       2425]
+CellTagsIndexPosition[     97361,       2422]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"EOM", "=", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"D", "[", 
+      RowBox[{"\[ScriptCapitalX]", ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "2"}], "}"}]}], "]"}], "\[Equal]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", GridBox[{
+            {"1", "0", "0"},
+            {"0", "1", "0"},
+            {"0", "0", 
+             RowBox[{"-", "\[Alpha]"}]}
+           }], ")"}], 
+         RowBox[{"(", 
+          RowBox[{"1", "-", 
+           FractionBox["1", "A"]}], ")"}]}], ")"}], ".", 
+       SubscriptBox["\[ScriptCapitalV]", "1"]}], "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"\[Kappa]", 
+         RowBox[{"(", GridBox[{
+            {"1", "0", "0"},
+            {"0", "1", "0"},
+            {"0", "0", 
+             RowBox[{"-", "\[Alpha]"}]}
+           }], ")"}], 
+         RowBox[{"(", 
+          RowBox[{"1", "-", 
+           RowBox[{
+            FractionBox["1", "B"], "\[ScriptCapitalL]"}]}], ")"}]}], ")"}], 
+       ".", 
+       SubscriptBox["\[ScriptCapitalV]", "2"]}], "-", 
+      RowBox[{"(", GridBox[{
+         {"0"},
+         {"\[Gamma]"},
+         {"0"}
+        }], ")"}]}]}], "//", "Flatten"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], ":", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox["x", "p"], "[", "t", "]"}], "\[Rule]", 
+     SubscriptBox["w", "p"]}], ",", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["y", "p"], "[", "t", "]"}], "\[Rule]", 
+     RowBox[{
+      FractionBox["1", "2"], " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "2"}], "-", "\[Gamma]", "-", 
+        RowBox[{"2", " ", 
+         SubscriptBox["h", "p"]}]}], ")"}]}]}]}], "}"}]}]}], "Input",
+ CellChangeTimes->{
+  3.7145781338943605`*^9, {3.7145782029439893`*^9, 3.714578229113097*^9}}],
+
+Cell[BoxData[
+ RowBox[{"perturbations", ":"}]], "Input",
+ CellChangeTimes->{{3.71457830658746*^9, 3.7145783156875105`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"EquilibiumPoinit", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     SubscriptBox[
+      SubscriptBox["\[Theta]", "p"], "0"], "\[Rule]", "0"}], ",", " ", 
+    RowBox[{
+     SubscriptBox[
+      SubscriptBox["x", "p"], "0"], "\[Rule]", 
+     SubscriptBox["w", "p"]}], ",", 
+    RowBox[{
+     SubscriptBox[
+      SubscriptBox["y", "p"], "0"], "\[Rule]", 
+     RowBox[{"-", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         FractionBox["1", "2"], "\[Gamma]"}], "+", 
+        SubscriptBox["h", "p"], "+", "1"}], ")"}]}]}]}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"perturb", "=", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "\[Rule]", 
+     RowBox[{
+      SubscriptBox[
+       SubscriptBox["\[Theta]", "p"], "0"], "+", 
+      RowBox[{"\[Delta]\[Theta]", "[", "t", "]"}]}]}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["x", "p"], "[", "t", "]"}], "\[Rule]", 
+     RowBox[{
+      SubscriptBox[
+       SubscriptBox["x", "p"], "0"], "+", 
+      RowBox[{"\[Delta]x", "[", "t", "]"}]}]}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["y", "p"], "[", "t", "]"}], "\[Rule]", 
+     RowBox[{
+      SubscriptBox[
+       SubscriptBox["y", "p"], "0"], "+", 
+      RowBox[{"\[Delta]y", "[", "t", "]"}]}]}]}], "\[IndentingNewLine]", 
+   "}"}]}]}], "Input",
+ CellChangeTimes->{{3.714578267062023*^9, 3.7145783592429175`*^9}, {
+  3.7145784889986734`*^9, 3.7145784892398367`*^9}, {3.7145825587262216`*^9, 
+  3.714582573677164*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    SubscriptBox[
+     SubscriptBox["\[Theta]", "p"], "0"], "\[Rule]", "0"}], ",", 
+   RowBox[{
+    SubscriptBox[
+     SubscriptBox["x", "p"], "0"], "\[Rule]", 
+    SubscriptBox["w", "p"]}], ",", 
+   RowBox[{
+    SubscriptBox[
+     SubscriptBox["y", "p"], "0"], "\[Rule]", 
+    RowBox[{
+     RowBox[{"-", "1"}], "-", 
+     FractionBox["\[Gamma]", "2"], "-", 
+     SubscriptBox["h", "p"]}]}]}], "}"}]], "Output",
+ CellChangeTimes->{3.7145783472622733`*^9, 3.71457967230264*^9, 
+  3.7145825741895046`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "\[Rule]", 
+    RowBox[{
+     SubscriptBox[
+      SubscriptBox["\[Theta]", "p"], "0"], "+", 
+     RowBox[{"\[Delta]\[Theta]", "[", "t", "]"}]}]}], ",", 
+   RowBox[{
+    RowBox[{
+     SubscriptBox["x", "p"], "[", "t", "]"}], "\[Rule]", 
+    RowBox[{
+     SubscriptBox[
+      SubscriptBox["x", "p"], "0"], "+", 
+     RowBox[{"\[Delta]x", "[", "t", "]"}]}]}], ",", 
+   RowBox[{
+    RowBox[{
+     SubscriptBox["y", "p"], "[", "t", "]"}], "\[Rule]", 
+    RowBox[{
+     SubscriptBox[
+      SubscriptBox["y", "p"], "0"], "+", 
+     RowBox[{"\[Delta]y", "[", "t", "]"}]}]}]}], "}"}]], "Output",
+ CellChangeTimes->{3.7145783472622733`*^9, 3.71457967230264*^9, 
+  3.7145825741945114`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Aw", "=", 
+  RowBox[{"A", "/.", "nameChange"}]}]], "Input",
+ CellChangeTimes->{
+  3.7145787944937835`*^9, {3.7145791864454484`*^9, 3.7145791882886724`*^9}, {
+   3.714580590727783*^9, 3.7145805914312515`*^9}}],
+
+Cell[BoxData[
+ SqrtBox[
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sin", "[", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}], " ", 
+       SubscriptBox["h", "p"]}], "+", 
+      RowBox[{
+       RowBox[{"Cos", "[", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}], " ", 
+       SubscriptBox["w", "p"]}], "+", 
+      RowBox[{
+       SubscriptBox["x", "1"], "[", "t", "]"}], "-", 
+      RowBox[{
+       SubscriptBox["x", "p"], "[", "t", "]"}]}], ")"}], "2"], "+", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", 
+        RowBox[{"Cos", "[", 
+         RowBox[{
+          SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}]}], " ", 
+       SubscriptBox["h", "p"]}], "+", 
+      RowBox[{
+       RowBox[{"Sin", "[", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}], " ", 
+       SubscriptBox["w", "p"]}], "+", 
+      RowBox[{
+       SubscriptBox["y", "1"], "[", "t", "]"}], "-", 
+      RowBox[{
+       SubscriptBox["y", "p"], "[", "t", "]"}]}], ")"}], "2"]}]]], "Output",
+ CellChangeTimes->{3.7145787953233337`*^9, 3.7145791888610587`*^9, 
+  3.714580592183751*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Bw", "=", 
+  RowBox[{"B", "/.", "nameChange"}]}]], "Input",
+ CellChangeTimes->{
+  3.7145787944937835`*^9, {3.7145791864454484`*^9, 3.7145791882886724`*^9}, {
+   3.714580590727783*^9, 3.7145805914312515`*^9}, {3.714581244149687*^9, 
+   3.7145812478271313`*^9}}],
+
+Cell[BoxData[
+ SqrtBox[
+  RowBox[{
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Sin", "[", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}], " ", 
+       SubscriptBox["h", "p"]}], "-", 
+      RowBox[{
+       RowBox[{"Cos", "[", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}], " ", 
+       SubscriptBox["w", "p"]}], "+", 
+      RowBox[{
+       SubscriptBox["x", "2"], "[", "t", "]"}], "-", 
+      RowBox[{
+       SubscriptBox["x", "p"], "[", "t", "]"}]}], ")"}], "2"], "+", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", 
+        RowBox[{"Cos", "[", 
+         RowBox[{
+          SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}]}], " ", 
+       SubscriptBox["h", "p"]}], "-", 
+      RowBox[{
+       RowBox[{"Sin", "[", 
+        RowBox[{
+         SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}], " ", 
+       SubscriptBox["w", "p"]}], "+", 
+      RowBox[{
+       SubscriptBox["y", "2"], "[", "t", "]"}], "-", 
+      RowBox[{
+       SubscriptBox["y", "p"], "[", "t", "]"}]}], ")"}], "2"]}]]], "Output",
+ CellChangeTimes->{3.7145812485686235`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"smallAngleRule", "=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Cos", "[", 
+      RowBox[{"\[Delta]\[Theta]", "[", "t", "]"}], "]"}], "\[Rule]", "1"}], 
+    ",", 
+    RowBox[{
+     RowBox[{"Sin", "[", 
+      RowBox[{"\[Delta]\[Theta]", "[", "t", "]"}], "]"}], "->", 
+     RowBox[{"\[Delta]\[Theta]", "[", "t", "]"}]}]}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.7145826479407682`*^9, 3.7145826962068663`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Cos", "[", 
+     RowBox[{"\[Delta]\[Theta]", "[", "t", "]"}], "]"}], "\[Rule]", "1"}], 
+   ",", 
+   RowBox[{
+    RowBox[{"Sin", "[", 
+     RowBox[{"\[Delta]\[Theta]", "[", "t", "]"}], "]"}], "\[Rule]", 
+    RowBox[{"\[Delta]\[Theta]", "[", "t", "]"}]}]}], "}"}]], "Output",
+ CellChangeTimes->{3.714582715086894*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     SubscriptBox["\[ScriptCapitalV]", "1"], "/.", "perturb"}], "/.", 
+    "EquilibiumPoinit"}], "/.", "smallAngleRule"}], "//", 
+  "TraditionalForm"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     SubscriptBox["\[ScriptCapitalV]", "2"], "/.", "perturb"}], "/.", 
+    "EquilibiumPoinit"}], "/.", "smallAngleRule"}], "//", 
+  "TraditionalForm"}]}], "Input",
+ CellChangeTimes->{{3.7145824861412086`*^9, 3.7145825289234033`*^9}, {
+   3.714582586422641*^9, 3.714582606373908*^9}, {3.7145827215931826`*^9, 
+   3.7145827611972265`*^9}, 3.714582796877957*^9}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      RowBox[{
+       SubscriptBox["l", "p"], "-", 
+       SubscriptBox["w", "p"], "-", 
+       RowBox[{"\[Delta]x", "(", "t", ")"}], "+", 
+       RowBox[{
+        SubscriptBox["h", "p"], " ", 
+        RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}]}], "+", 
+       RowBox[{
+        SubscriptBox["x", "1"], "(", "t", ")"}]}]},
+     {
+      RowBox[{
+       FractionBox["\[Gamma]", "2"], "-", 
+       RowBox[{"\[Delta]y", "(", "t", ")"}], "+", 
+       RowBox[{
+        SubscriptBox["l", "p"], " ", 
+        RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}]}], "+", 
+       RowBox[{
+        SubscriptBox["y", "1"], "(", "t", ")"}], "+", "1"}]},
+     {
+      RowBox[{
+       RowBox[{
+        SubscriptBox["l", "p"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox["\[Gamma]", "2"], "+", 
+          SubscriptBox["h", "p"], "-", 
+          RowBox[{"\[Delta]y", "(", "t", ")"}], "-", 
+          RowBox[{
+           RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}], " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", 
+              SubscriptBox["w", "p"]}], "-", 
+             RowBox[{"\[Delta]x", "(", "t", ")"}], "+", 
+             RowBox[{
+              SubscriptBox["x", "1"], "(", "t", ")"}]}], ")"}]}], "+", 
+          RowBox[{
+           SubscriptBox["y", "1"], "(", "t", ")"}], "+", "1"}], ")"}]}], "+", 
+       RowBox[{
+        SubscriptBox["h", "p"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", 
+           SubscriptBox["w", "p"]}], "-", 
+          RowBox[{"\[Delta]x", "(", "t", ")"}], "+", 
+          RowBox[{
+           SubscriptBox["x", "1"], "(", "t", ")"}], "+", 
+          RowBox[{
+           RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}], " ", 
+           RowBox[{"(", 
+            RowBox[{
+             FractionBox["\[Gamma]", "2"], "+", 
+             SubscriptBox["h", "p"], "-", 
+             RowBox[{"\[Delta]y", "(", "t", ")"}], "+", 
+             RowBox[{
+              SubscriptBox["y", "1"], "(", "t", ")"}], "+", "1"}], ")"}]}]}], 
+         ")"}]}]}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}], 
+  TraditionalForm]], "Output",
+ CellChangeTimes->{{3.714582481735278*^9, 3.714582529518797*^9}, {
+   3.714582588089751*^9, 3.714582617754476*^9}, {3.7145827232973156`*^9, 
+   3.7145827617195883`*^9}, 3.7145827973612795`*^9}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      RowBox[{
+       RowBox[{"-", 
+        SubscriptBox["l", "p"]}], "-", 
+       SubscriptBox["w", "p"], "-", 
+       RowBox[{"\[Delta]x", "(", "t", ")"}], "+", 
+       RowBox[{
+        SubscriptBox["h", "p"], " ", 
+        RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}]}], "+", 
+       RowBox[{
+        SubscriptBox["x", "2"], "(", "t", ")"}]}]},
+     {
+      RowBox[{
+       FractionBox["\[Gamma]", "2"], "-", 
+       RowBox[{"\[Delta]y", "(", "t", ")"}], "-", 
+       RowBox[{
+        SubscriptBox["l", "p"], " ", 
+        RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}]}], "+", 
+       RowBox[{
+        SubscriptBox["y", "2"], "(", "t", ")"}], "+", "1"}]},
+     {
+      RowBox[{
+       RowBox[{
+        SubscriptBox["l", "p"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox["\[Gamma]", "2"]}], "-", 
+          SubscriptBox["h", "p"], "+", 
+          RowBox[{"\[Delta]y", "(", "t", ")"}], "+", 
+          RowBox[{
+           RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}], " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", 
+              SubscriptBox["w", "p"]}], "-", 
+             RowBox[{"\[Delta]x", "(", "t", ")"}], "+", 
+             RowBox[{
+              SubscriptBox["x", "2"], "(", "t", ")"}]}], ")"}]}], "-", 
+          RowBox[{
+           SubscriptBox["y", "2"], "(", "t", ")"}], "-", "1"}], ")"}]}], "+", 
+       RowBox[{
+        SubscriptBox["h", "p"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", 
+           SubscriptBox["w", "p"]}], "-", 
+          RowBox[{"\[Delta]x", "(", "t", ")"}], "+", 
+          RowBox[{
+           SubscriptBox["x", "2"], "(", "t", ")"}], "+", 
+          RowBox[{
+           RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}], " ", 
+           RowBox[{"(", 
+            RowBox[{
+             FractionBox["\[Gamma]", "2"], "+", 
+             SubscriptBox["h", "p"], "-", 
+             RowBox[{"\[Delta]y", "(", "t", ")"}], "+", 
+             RowBox[{
+              SubscriptBox["y", "2"], "(", "t", ")"}], "+", "1"}], ")"}]}]}], 
+         ")"}]}]}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}], 
+  TraditionalForm]], "Output",
+ CellChangeTimes->{{3.714582481735278*^9, 3.714582529518797*^9}, {
+   3.714582588089751*^9, 3.714582617754476*^9}, {3.7145827232973156`*^9, 
+   3.7145827617195883`*^9}, 3.7145827973682833`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"%", "//", "Expand"}], "//", "Simplify"}], "//", 
+  "TraditionalForm"}]], "Input",
+ CellChangeTimes->{{3.714582742483783*^9, 3.714582750744276*^9}, {
+  3.714582811014357*^9, 3.7145828124343023`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      RowBox[{
+       RowBox[{"-", 
+        SubscriptBox["l", "p"]}], "-", 
+       SubscriptBox["w", "p"], "-", 
+       RowBox[{"\[Delta]x", "(", "t", ")"}], "+", 
+       RowBox[{
+        SubscriptBox["h", "p"], " ", 
+        RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}]}], "+", 
+       RowBox[{
+        SubscriptBox["x", "2"], "(", "t", ")"}]}]},
+     {
+      RowBox[{
+       FractionBox["\[Gamma]", "2"], "-", 
+       RowBox[{"\[Delta]y", "(", "t", ")"}], "-", 
+       RowBox[{
+        SubscriptBox["l", "p"], " ", 
+        RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}]}], "+", 
+       RowBox[{
+        SubscriptBox["y", "2"], "(", "t", ")"}], "+", "1"}]},
+     {
+      RowBox[{
+       FractionBox["1", "2"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          SubscriptBox["h", "p"], " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "2"}], " ", 
+             SubscriptBox["w", "p"]}], "-", 
+            RowBox[{"2", " ", 
+             RowBox[{"\[Delta]x", "(", "t", ")"}]}], "+", 
+            RowBox[{"\[Gamma]", " ", 
+             RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}]}], "+", 
+            RowBox[{"2", " ", 
+             SubscriptBox["h", "p"], " ", 
+             RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}]}], "-", 
+            RowBox[{"2", " ", 
+             RowBox[{"\[Delta]y", "(", "t", ")"}], " ", 
+             RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}]}], "+", 
+            RowBox[{"2", " ", 
+             RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}]}], "+", 
+            RowBox[{"2", " ", 
+             RowBox[{
+              SubscriptBox["x", "2"], "(", "t", ")"}]}], "+", 
+            RowBox[{"2", " ", 
+             RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}], " ", 
+             RowBox[{
+              SubscriptBox["y", "2"], "(", "t", ")"}]}]}], ")"}]}], "-", 
+         RowBox[{
+          SubscriptBox["l", "p"], " ", 
+          RowBox[{"(", 
+           RowBox[{"\[Gamma]", "+", 
+            RowBox[{"2", " ", 
+             SubscriptBox["h", "p"]}], "-", 
+            RowBox[{"2", " ", 
+             RowBox[{"\[Delta]y", "(", "t", ")"}]}], "+", 
+            RowBox[{"2", " ", 
+             SubscriptBox["w", "p"], " ", 
+             RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}]}], "+", 
+            RowBox[{"2", " ", 
+             RowBox[{"\[Delta]x", "(", "t", ")"}], " ", 
+             RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}]}], "-", 
+            RowBox[{"2", " ", 
+             RowBox[{"\[Delta]\[Theta]", "(", "t", ")"}], " ", 
+             RowBox[{
+              SubscriptBox["x", "2"], "(", "t", ")"}]}], "+", 
+            RowBox[{"2", " ", 
+             RowBox[{
+              SubscriptBox["y", "2"], "(", "t", ")"}]}], "+", "2"}], 
+           ")"}]}]}], ")"}]}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}], 
+  TraditionalForm]], "Output",
+ CellChangeTimes->{{3.7145827447032633`*^9, 3.714582766320636*^9}, 
+   3.714582813511017*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{"Aw", ",", 
+      RowBox[{
+       SubscriptBox["x", "p"], "[", "t", "]"}]}], "]"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"D", "[", 
+     RowBox[{"Aw", ",", 
+      RowBox[{
+       SubscriptBox["y", "p"], "[", "t", "]"}]}], "]"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"D", "[", 
+     RowBox[{"Aw", ",", 
+      RowBox[{
+       SubscriptBox["\[Theta]", "p"], "[", "t", "]"}]}], "]"}]}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"temp", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         SubscriptBox["x", "p"], "[", "t", "]"}], "->", 
+        SubscriptBox[
+         SubscriptBox["x", "p"], "0"]}], ",", 
+       RowBox[{
+        RowBox[{
+         SubscriptBox["y", "p"], "[", "t", "]"}], "\[Rule]", 
+        SubscriptBox[
+         SubscriptBox["y", "p"], "0"]}], ",", 
+       RowBox[{
+        RowBox[{
+         SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "\[Rule]", 
+        SubscriptBox[
+         SubscriptBox["\[Theta]", "p"], "0"]}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", "\"\<derivatives of 'A' in the 0 point:\>\"", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"D", "[", 
+      RowBox[{
+       SuperscriptBox["Aw", "2"], ",", 
+       RowBox[{
+        SubscriptBox["x", "p"], "[", "t", "]"}]}], "]"}], "/.", "temp"}], "/.",
+     "EquilibiumPoinit"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"D", "[", 
+      RowBox[{
+       SuperscriptBox["Aw", "2"], ",", 
+       RowBox[{
+        SubscriptBox["y", "p"], "[", "t", "]"}]}], "]"}], "/.", "temp"}], "/.",
+     "EquilibiumPoinit"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"D", "[", 
+      RowBox[{
+       SuperscriptBox["Aw", "2"], ",", 
+       RowBox[{
+        SubscriptBox["\[Theta]", "p"], "[", "t", "]"}]}], "]"}], "/.", 
+     "temp"}], "/.", "EquilibiumPoinit"}]}]}]], "Input",
+ CellChangeTimes->{{3.7145805955409827`*^9, 3.714580626089015*^9}, {
+  3.714580686631949*^9, 3.7145807475276403`*^9}, {3.714580784874211*^9, 
+  3.7145808664070406`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{"\"\<derivatives of 'B' in the 0 point:\>\"", "\
+\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{
+     SuperscriptBox["Bw", "2"], ",", 
+     RowBox[{
+      SubscriptBox["x", "p"], "[", "t", "]"}]}], "]"}], "/.", "temp"}], "/.", 
+  "EquilibiumPoinit"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{
+     SuperscriptBox["Bw", "2"], ",", 
+     RowBox[{
+      SubscriptBox["y", "p"], "[", "t", "]"}]}], "]"}], "/.", "temp"}], "/.", 
+  "EquilibiumPoinit"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"D", "[", 
+    RowBox[{
+     SuperscriptBox["Bw", "2"], ",", 
+     RowBox[{
+      SubscriptBox["\[Theta]", "p"], "[", "t", "]"}]}], "]"}], "/.", "temp"}],
+   "/.", "EquilibiumPoinit"}]}], "Input",
+ CellChangeTimes->{{3.7145812705907664`*^9, 3.7145812808245726`*^9}}],
+
+Cell[BoxData["\<\"derivatives of 'B' in the 0 point:\"\>"], "Output",
+ CellChangeTimes->{
+  3.7145806263111634`*^9, {3.714580693270363*^9, 3.7145807170713854`*^9}, 
+   3.7145807485963497`*^9, {3.714580827747838*^9, 3.714580867747941*^9}, 
+   3.7145812836164293`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "2"}], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "2"}], " ", 
+     SubscriptBox["w", "p"]}], "+", 
+    RowBox[{
+     SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}]}]], "Output",
+ CellChangeTimes->{
+  3.7145806263111634`*^9, {3.714580693270363*^9, 3.7145807170713854`*^9}, 
+   3.7145807485963497`*^9, {3.714580827747838*^9, 3.714580867747941*^9}, 
+   3.7145812836194315`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "2"}], " ", 
+  RowBox[{"(", 
+   RowBox[{"1", "+", 
+    FractionBox["\[Gamma]", "2"], "+", 
+    RowBox[{
+     SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}]}]], "Output",
+ CellChangeTimes->{
+  3.7145806263111634`*^9, {3.714580693270363*^9, 3.7145807170713854`*^9}, 
+   3.7145807485963497`*^9, {3.714580827747838*^9, 3.714580867747941*^9}, 
+   3.7145812836214323`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"2", " ", 
+   SubscriptBox["h", "p"], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "2"}], " ", 
+      SubscriptBox["w", "p"]}], "+", 
+     RowBox[{
+      SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}]}], "-", 
+  RowBox[{"2", " ", 
+   SubscriptBox["w", "p"], " ", 
+   RowBox[{"(", 
+    RowBox[{"1", "+", 
+     FractionBox["\[Gamma]", "2"], "+", 
+     RowBox[{
+      SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}]}]}]], "Output",
+ CellChangeTimes->{
+  3.7145806263111634`*^9, {3.714580693270363*^9, 3.7145807170713854`*^9}, 
+   3.7145807485963497`*^9, {3.714580827747838*^9, 3.714580867747941*^9}, 
+   3.714581283624437*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"n", "=", "1"}], ";", 
+  RowBox[{
+   RowBox[{"Series", "[", 
+    RowBox[{"Aw", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["x", "p"], "[", "t", "]"}], ",", 
+       SubscriptBox[
+        SubscriptBox["x", "p"], "0"], ",", "n"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["y", "p"], "[", "t", "]"}], ",", 
+       SubscriptBox[
+        SubscriptBox["y", "p"], "0"], ",", "n"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], ",", 
+       SubscriptBox[
+        SubscriptBox["\[Theta]", "p"], "0"], ",", "n"}], "}"}]}], "]"}], "/.",
+    "EquilibiumPoinit"}]}]], "Input",
+ CellChangeTimes->{{3.714578821427903*^9, 3.7145788599351215`*^9}, {
+  3.714578951237014*^9, 3.7145789575171895`*^9}, {3.7145791360084476`*^9, 
+  3.7145791392886305`*^9}, {3.7145796538667326`*^9, 3.714579679126179*^9}, {
+  3.714580175080189*^9, 3.7145802044837465`*^9}, {3.7145814360524907`*^9, 
+  3.714581436394718*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   RowBox[{"(", 
+    InterpretationBox[
+     RowBox[{
+      RowBox[{"(", 
+       InterpretationBox[
+        RowBox[{
+         SqrtBox[
+          RowBox[{
+           SuperscriptBox[
+            RowBox[{
+             SubscriptBox["x", "1"], "[", "t", "]"}], "2"], "+", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"1", "+", 
+              FractionBox["\[Gamma]", "2"], "+", 
+              RowBox[{
+               SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}], "2"]}]], "+", 
+         FractionBox[
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"2", " ", 
+              SubscriptBox["h", "p"], " ", 
+              RowBox[{
+               SubscriptBox["x", "1"], "[", "t", "]"}]}], "+", 
+             RowBox[{"2", " ", 
+              SubscriptBox["w", "p"], " ", 
+              RowBox[{"(", 
+               RowBox[{"1", "+", 
+                FractionBox["\[Gamma]", "2"], "+", 
+                RowBox[{
+                 SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}]}]}], ")"}], 
+           " ", 
+           RowBox[{
+            SubscriptBox["\[Theta]", "p"], "[", "t", "]"}]}], 
+          RowBox[{"2", " ", 
+           SqrtBox[
+            RowBox[{
+             SuperscriptBox[
+              RowBox[{
+               SubscriptBox["x", "1"], "[", "t", "]"}], "2"], "+", 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{"1", "+", 
+                FractionBox["\[Gamma]", "2"], "+", 
+                RowBox[{
+                 SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}], "2"]}]]}]],
+          "+", 
+         InterpretationBox[
+          SuperscriptBox[
+           RowBox[{"O", "[", 
+            RowBox[{
+             SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}], "2"],
+          SeriesData[
+           Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+           0, {}, 0, 2, 1],
+          Editable->False]}],
+        SeriesData[
+         Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+         0, {(Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 1][$CellContext`t])^2)^Rational[1, 2], 
+          Rational[1, 2] (
+           2 Subscript[$CellContext`h, $CellContext`p] 
+            Subscript[$CellContext`x, 1][$CellContext`t] + 
+           2 Subscript[$CellContext`w, $CellContext`p] (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 1][$CellContext`t])) (
+            Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+           Rational[-1, 2]}, 0, 2, 1],
+        Editable->False], ")"}], "+", 
+      RowBox[{
+       RowBox[{"(", 
+        InterpretationBox[
+         RowBox[{
+          FractionBox[
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            FractionBox["\[Gamma]", "2"], "-", 
+            RowBox[{
+             SubscriptBox["y", "1"], "[", "t", "]"}]}], 
+           SqrtBox[
+            RowBox[{
+             SuperscriptBox[
+              RowBox[{
+               SubscriptBox["x", "1"], "[", "t", "]"}], "2"], "+", 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{"1", "+", 
+                FractionBox["\[Gamma]", "2"], "+", 
+                RowBox[{
+                 SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}], "2"]}]]], 
+          "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", 
+              FractionBox[
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"-", "1"}], "-", 
+                  FractionBox["\[Gamma]", "2"], "-", 
+                  RowBox[{
+                   SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}], " ", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"2", " ", 
+                   SubscriptBox["h", "p"], " ", 
+                   RowBox[{
+                    SubscriptBox["x", "1"], "[", "t", "]"}]}], "+", 
+                  RowBox[{"2", " ", 
+                   SubscriptBox["w", "p"], " ", 
+                   RowBox[{"(", 
+                    RowBox[{"1", "+", 
+                    FractionBox["\[Gamma]", "2"], "+", 
+                    RowBox[{
+                    SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}]}]}], 
+                 ")"}]}], 
+               RowBox[{"2", " ", 
+                SuperscriptBox[
+                 RowBox[{"(", 
+                  RowBox[{
+                   SuperscriptBox[
+                    RowBox[{
+                    SubscriptBox["x", "1"], "[", "t", "]"}], "2"], "+", 
+                   SuperscriptBox[
+                    RowBox[{"(", 
+                    RowBox[{"1", "+", 
+                    FractionBox["\[Gamma]", "2"], "+", 
+                    RowBox[{
+                    SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}], "2"]}], 
+                  ")"}], 
+                 RowBox[{"3", "/", "2"}]]}]]}], "-", 
+             FractionBox[
+              SubscriptBox["w", "p"], 
+              SqrtBox[
+               RowBox[{
+                SuperscriptBox[
+                 RowBox[{
+                  SubscriptBox["x", "1"], "[", "t", "]"}], "2"], "+", 
+                SuperscriptBox[
+                 RowBox[{"(", 
+                  RowBox[{"1", "+", 
+                   FractionBox["\[Gamma]", "2"], "+", 
+                   RowBox[{
+                    SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}], 
+                 "2"]}]]]}], ")"}], " ", 
+           RowBox[{
+            SubscriptBox["\[Theta]", "p"], "[", "t", "]"}]}], "+", 
+          InterpretationBox[
+           SuperscriptBox[
+            RowBox[{"O", "[", 
+             RowBox[{
+              SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}], "2"],
+           SeriesData[
+            Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+            0, {}, 0, 2, 1],
+           Editable->False]}],
+         SeriesData[
+          Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+          0, {(-1 + Rational[-1, 2] $CellContext`\[Gamma] - 
+            Subscript[$CellContext`y, 1][$CellContext`t]) (
+             Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+            Rational[-1, 2], 
+           Rational[-1, 2] (-1 + Rational[-1, 2] $CellContext`\[Gamma] - 
+             Subscript[$CellContext`y, 1][$CellContext`t]) (
+             2 Subscript[$CellContext`h, $CellContext`p] 
+              Subscript[$CellContext`x, 1][$CellContext`t] + 
+             2 Subscript[$CellContext`w, $CellContext`p] (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 1][$CellContext`t])) (
+              Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+                Rational[1, 2] $CellContext`\[Gamma] + 
+                Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+             Rational[-3, 2] - 
+           Subscript[$CellContext`w, $CellContext`p] (
+             Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+            Rational[-1, 2]}, 0, 2, 1],
+         Editable->False], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          SubscriptBox["y", "p"], "[", "t", "]"}], "+", "1", "+", 
+         FractionBox["\[Gamma]", "2"], "+", 
+         SubscriptBox["h", "p"]}], ")"}]}], "+", 
+      InterpretationBox[
+       SuperscriptBox[
+        RowBox[{"O", "[", 
+         RowBox[{
+          RowBox[{
+           SubscriptBox["y", "p"], "[", "t", "]"}], "+", "1", "+", 
+          FractionBox["\[Gamma]", "2"], "+", 
+          SubscriptBox["h", "p"]}], "]"}], "2"],
+       SeriesData[
+        Subscript[$CellContext`y, $CellContext`p][$CellContext`t], -1 + 
+        Rational[-1, 2] $CellContext`\[Gamma] - 
+        Subscript[$CellContext`h, $CellContext`p], {}, 0, 2, 1],
+       Editable->False]}],
+     SeriesData[
+      Subscript[$CellContext`y, $CellContext`p][$CellContext`t], -1 + 
+      Rational[-1, 2] $CellContext`\[Gamma] - 
+      Subscript[$CellContext`h, $CellContext`p], {
+       SeriesData[
+        Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+        0, {(Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 1][$CellContext`t])^2)^Rational[1, 2], 
+         Rational[1, 2] (
+          2 Subscript[$CellContext`h, $CellContext`p] 
+           Subscript[$CellContext`x, 1][$CellContext`t] + 
+          2 Subscript[$CellContext`w, $CellContext`p] (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 1][$CellContext`t])) (
+           Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+          Rational[-1, 2]}, 0, 2, 1], 
+       SeriesData[
+        Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+        0, {(-1 + Rational[-1, 2] $CellContext`\[Gamma] - 
+          Subscript[$CellContext`y, 1][$CellContext`t]) (
+           Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 1][$CellContext`t])^2)^Rational[-1, 2],
+          Rational[-1, 2] (-1 + Rational[-1, 2] $CellContext`\[Gamma] - 
+           Subscript[$CellContext`y, 1][$CellContext`t]) (
+           2 Subscript[$CellContext`h, $CellContext`p] 
+            Subscript[$CellContext`x, 1][$CellContext`t] + 
+           2 Subscript[$CellContext`w, $CellContext`p] (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 1][$CellContext`t])) (
+            Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+           Rational[-3, 2] - 
+         Subscript[$CellContext`w, $CellContext`p] (
+           Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+          Rational[-1, 2]}, 0, 2, 1]}, 0, 2, 1],
+     Editable->False], ")"}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     InterpretationBox[
+      RowBox[{
+       RowBox[{"(", 
+        InterpretationBox[
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox[
+            RowBox[{
+             SubscriptBox["x", "1"], "[", "t", "]"}], 
+            SqrtBox[
+             RowBox[{
+              SuperscriptBox[
+               RowBox[{
+                SubscriptBox["x", "1"], "[", "t", "]"}], "2"], "+", 
+              SuperscriptBox[
+               RowBox[{"(", 
+                RowBox[{"1", "+", 
+                 FractionBox["\[Gamma]", "2"], "+", 
+                 RowBox[{
+                  SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}], 
+               "2"]}]]]}], "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             FractionBox[
+              RowBox[{
+               RowBox[{
+                SubscriptBox["x", "1"], "[", "t", "]"}], " ", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"2", " ", 
+                  SubscriptBox["h", "p"], " ", 
+                  RowBox[{
+                   SubscriptBox["x", "1"], "[", "t", "]"}]}], "+", 
+                 RowBox[{"2", " ", 
+                  SubscriptBox["w", "p"], " ", 
+                  RowBox[{"(", 
+                   RowBox[{"1", "+", 
+                    FractionBox["\[Gamma]", "2"], "+", 
+                    RowBox[{
+                    SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}]}]}], 
+                ")"}]}], 
+              RowBox[{"2", " ", 
+               SuperscriptBox[
+                RowBox[{"(", 
+                 RowBox[{
+                  SuperscriptBox[
+                   RowBox[{
+                    SubscriptBox["x", "1"], "[", "t", "]"}], "2"], "+", 
+                  SuperscriptBox[
+                   RowBox[{"(", 
+                    RowBox[{"1", "+", 
+                    FractionBox["\[Gamma]", "2"], "+", 
+                    RowBox[{
+                    SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}], "2"]}], 
+                 ")"}], 
+                RowBox[{"3", "/", "2"}]]}]], "-", 
+             FractionBox[
+              SubscriptBox["h", "p"], 
+              SqrtBox[
+               RowBox[{
+                SuperscriptBox[
+                 RowBox[{
+                  SubscriptBox["x", "1"], "[", "t", "]"}], "2"], "+", 
+                SuperscriptBox[
+                 RowBox[{"(", 
+                  RowBox[{"1", "+", 
+                   FractionBox["\[Gamma]", "2"], "+", 
+                   RowBox[{
+                    SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}], 
+                 "2"]}]]]}], ")"}], " ", 
+           RowBox[{
+            SubscriptBox["\[Theta]", "p"], "[", "t", "]"}]}], "+", 
+          InterpretationBox[
+           SuperscriptBox[
+            RowBox[{"O", "[", 
+             RowBox[{
+              SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}], "2"],
+           SeriesData[
+            Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+            0, {}, 0, 2, 1],
+           Editable->False]}],
+         SeriesData[
+          Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+          0, {-Subscript[$CellContext`x, 1][$CellContext`t] (
+             Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+            Rational[-1, 2], 
+           Rational[1, 2] 
+            Subscript[$CellContext`x, 1][$CellContext`t] (
+             2 Subscript[$CellContext`h, $CellContext`p] 
+              Subscript[$CellContext`x, 1][$CellContext`t] + 
+             2 Subscript[$CellContext`w, $CellContext`p] (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 1][$CellContext`t])) (
+              Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+                Rational[1, 2] $CellContext`\[Gamma] + 
+                Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+             Rational[-3, 2] - 
+           Subscript[$CellContext`h, $CellContext`p] (
+             Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+            Rational[-1, 2]}, 0, 2, 1],
+         Editable->False], ")"}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         InterpretationBox[
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox[
+             RowBox[{
+              RowBox[{
+               SubscriptBox["x", "1"], "[", "t", "]"}], " ", 
+              RowBox[{"(", 
+               RowBox[{"1", "+", 
+                FractionBox["\[Gamma]", "2"], "+", 
+                RowBox[{
+                 SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}]}], 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{
+                SuperscriptBox[
+                 RowBox[{
+                  SubscriptBox["x", "1"], "[", "t", "]"}], "2"], "+", 
+                SuperscriptBox[
+                 RowBox[{"(", 
+                  RowBox[{"1", "+", 
+                   FractionBox["\[Gamma]", "2"], "+", 
+                   RowBox[{
+                    SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}], "2"]}], 
+               ")"}], 
+              RowBox[{"3", "/", "2"}]]]}], "+", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              FractionBox[
+               RowBox[{"3", " ", 
+                RowBox[{
+                 SubscriptBox["x", "1"], "[", "t", "]"}], " ", 
+                RowBox[{"(", 
+                 RowBox[{"1", "+", 
+                  FractionBox["\[Gamma]", "2"], "+", 
+                  RowBox[{
+                   SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}], " ", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"2", " ", 
+                   SubscriptBox["h", "p"], " ", 
+                   RowBox[{
+                    SubscriptBox["x", "1"], "[", "t", "]"}]}], "+", 
+                  RowBox[{"2", " ", 
+                   SubscriptBox["w", "p"], " ", 
+                   RowBox[{"(", 
+                    RowBox[{"1", "+", 
+                    FractionBox["\[Gamma]", "2"], "+", 
+                    RowBox[{
+                    SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}]}]}], 
+                 ")"}]}], 
+               RowBox[{"2", " ", 
+                SuperscriptBox[
+                 RowBox[{"(", 
+                  RowBox[{
+                   SuperscriptBox[
+                    RowBox[{
+                    SubscriptBox["x", "1"], "[", "t", "]"}], "2"], "+", 
+                   SuperscriptBox[
+                    RowBox[{"(", 
+                    RowBox[{"1", "+", 
+                    FractionBox["\[Gamma]", "2"], "+", 
+                    RowBox[{
+                    SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}], "2"]}], 
+                  ")"}], 
+                 RowBox[{"5", "/", "2"}]]}]], "-", 
+              FractionBox[
+               RowBox[{
+                RowBox[{
+                 SubscriptBox["w", "p"], " ", 
+                 RowBox[{
+                  SubscriptBox["x", "1"], "[", "t", "]"}]}], "+", 
+                RowBox[{
+                 SubscriptBox["h", "p"], " ", 
+                 RowBox[{"(", 
+                  RowBox[{"1", "+", 
+                   FractionBox["\[Gamma]", "2"], "+", 
+                   RowBox[{
+                    SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}]}]}], 
+               SuperscriptBox[
+                RowBox[{"(", 
+                 RowBox[{
+                  SuperscriptBox[
+                   RowBox[{
+                    SubscriptBox["x", "1"], "[", "t", "]"}], "2"], "+", 
+                  SuperscriptBox[
+                   RowBox[{"(", 
+                    RowBox[{"1", "+", 
+                    FractionBox["\[Gamma]", "2"], "+", 
+                    RowBox[{
+                    SubscriptBox["y", "1"], "[", "t", "]"}]}], ")"}], "2"]}], 
+                 ")"}], 
+                RowBox[{"3", "/", "2"}]]]}], ")"}], " ", 
+            RowBox[{
+             SubscriptBox["\[Theta]", "p"], "[", "t", "]"}]}], "+", 
+           InterpretationBox[
+            SuperscriptBox[
+             RowBox[{"O", "[", 
+              RowBox[{
+               SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}], "2"],
+            SeriesData[
+             Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t],
+              0, {}, 0, 2, 1],
+            Editable->False]}],
+          SeriesData[
+           Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+           0, {-Subscript[$CellContext`x, 1][$CellContext`t] (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 1][$CellContext`t]) (
+              Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+                Rational[1, 2] $CellContext`\[Gamma] + 
+                Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+             Rational[-3, 2], 
+            Rational[3, 2] 
+             Subscript[$CellContext`x, 1][$CellContext`t] (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 1][$CellContext`t]) (
+              2 Subscript[$CellContext`h, $CellContext`p] 
+               Subscript[$CellContext`x, 1][$CellContext`t] + 
+              2 Subscript[$CellContext`w, $CellContext`p] (1 + 
+                Rational[1, 2] $CellContext`\[Gamma] + 
+                Subscript[$CellContext`y, 1][$CellContext`t])) (
+               Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+                 Rational[1, 2] $CellContext`\[Gamma] + 
+                 Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+              Rational[-5, 2] - (
+             Subscript[$CellContext`w, $CellContext`p] 
+              Subscript[$CellContext`x, 1][$CellContext`t] + 
+             Subscript[$CellContext`h, $CellContext`p] (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 1][$CellContext`t])) (
+              Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+                Rational[1, 2] $CellContext`\[Gamma] + 
+                Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+             Rational[-3, 2]}, 0, 2, 1],
+          Editable->False], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           SubscriptBox["y", "p"], "[", "t", "]"}], "+", "1", "+", 
+          FractionBox["\[Gamma]", "2"], "+", 
+          SubscriptBox["h", "p"]}], ")"}]}], "+", 
+       InterpretationBox[
+        SuperscriptBox[
+         RowBox[{"O", "[", 
+          RowBox[{
+           RowBox[{
+            SubscriptBox["y", "p"], "[", "t", "]"}], "+", "1", "+", 
+           FractionBox["\[Gamma]", "2"], "+", 
+           SubscriptBox["h", "p"]}], "]"}], "2"],
+        SeriesData[
+         Subscript[$CellContext`y, $CellContext`p][$CellContext`t], -1 + 
+         Rational[-1, 2] $CellContext`\[Gamma] - 
+         Subscript[$CellContext`h, $CellContext`p], {}, 0, 2, 1],
+        Editable->False]}],
+      SeriesData[
+       Subscript[$CellContext`y, $CellContext`p][$CellContext`t], -1 + 
+       Rational[-1, 2] $CellContext`\[Gamma] - 
+       Subscript[$CellContext`h, $CellContext`p], {
+        SeriesData[
+         Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+         0, {-Subscript[$CellContext`x, 1][$CellContext`t] (
+            Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+           Rational[-1, 2], 
+          Rational[1, 2] 
+           Subscript[$CellContext`x, 1][$CellContext`t] (
+            2 Subscript[$CellContext`h, $CellContext`p] 
+             Subscript[$CellContext`x, 1][$CellContext`t] + 
+            2 Subscript[$CellContext`w, $CellContext`p] (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 1][$CellContext`t])) (
+             Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+            Rational[-3, 2] - 
+          Subscript[$CellContext`h, $CellContext`p] (
+            Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+           Rational[-1, 2]}, 0, 2, 1], 
+        SeriesData[
+         Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+         0, {-Subscript[$CellContext`x, 1][$CellContext`t] (1 + 
+           Rational[1, 2] $CellContext`\[Gamma] + 
+           Subscript[$CellContext`y, 1][$CellContext`t]) (
+            Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+           Rational[-3, 2], 
+          Rational[3, 2] 
+           Subscript[$CellContext`x, 1][$CellContext`t] (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 1][$CellContext`t]) (
+            2 Subscript[$CellContext`h, $CellContext`p] 
+             Subscript[$CellContext`x, 1][$CellContext`t] + 
+            2 Subscript[$CellContext`w, $CellContext`p] (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 1][$CellContext`t])) (
+             Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+            Rational[-5, 2] - (
+           Subscript[$CellContext`w, $CellContext`p] 
+            Subscript[$CellContext`x, 1][$CellContext`t] + 
+           Subscript[$CellContext`h, $CellContext`p] (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 1][$CellContext`t])) (
+            Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+           Rational[-3, 2]}, 0, 2, 1]}, 0, 2, 1],
+      Editable->False], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["x", "p"], "[", "t", "]"}], "-", 
+      SubscriptBox["w", "p"]}], ")"}]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["x", "p"], "[", "t", "]"}], "-", 
+       SubscriptBox["w", "p"]}], "]"}], "2"],
+    SeriesData[
+     Subscript[$CellContext`x, $CellContext`p][$CellContext`t], 
+     Subscript[$CellContext`w, $CellContext`p], {}, 0, 2, 1],
+    Editable->False]}],
+  SeriesData[
+   Subscript[$CellContext`x, $CellContext`p][$CellContext`t], 
+   Subscript[$CellContext`w, $CellContext`p], {
+    SeriesData[
+     Subscript[$CellContext`y, $CellContext`p][$CellContext`t], -1 + 
+     Rational[-1, 2] $CellContext`\[Gamma] - 
+     Subscript[$CellContext`h, $CellContext`p], {
+      SeriesData[
+       Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+       0, {(Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+           Rational[1, 2] $CellContext`\[Gamma] + 
+           Subscript[$CellContext`y, 1][$CellContext`t])^2)^Rational[1, 2], 
+        Rational[1, 2] (
+         2 Subscript[$CellContext`h, $CellContext`p] 
+          Subscript[$CellContext`x, 1][$CellContext`t] + 
+         2 Subscript[$CellContext`w, $CellContext`p] (1 + 
+           Rational[1, 2] $CellContext`\[Gamma] + 
+           Subscript[$CellContext`y, 1][$CellContext`t])) (
+          Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 1][$CellContext`t])^2)^Rational[-1, 2]},
+        0, 2, 1], 
+      SeriesData[
+       Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+       0, {(-1 + Rational[-1, 2] $CellContext`\[Gamma] - 
+         Subscript[$CellContext`y, 1][$CellContext`t]) (
+          Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 1][$CellContext`t])^2)^Rational[-1, 2], 
+        Rational[-1, 2] (-1 + Rational[-1, 2] $CellContext`\[Gamma] - 
+          Subscript[$CellContext`y, 1][$CellContext`t]) (
+          2 Subscript[$CellContext`h, $CellContext`p] 
+           Subscript[$CellContext`x, 1][$CellContext`t] + 
+          2 Subscript[$CellContext`w, $CellContext`p] (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 1][$CellContext`t])) (
+           Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 1][$CellContext`t])^2)^Rational[-3, 2] - 
+        Subscript[$CellContext`w, $CellContext`p] (
+          Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 1][$CellContext`t])^2)^Rational[-1, 2]},
+        0, 2, 1]}, 0, 2, 1], 
+    SeriesData[
+     Subscript[$CellContext`y, $CellContext`p][$CellContext`t], -1 + 
+     Rational[-1, 2] $CellContext`\[Gamma] - 
+     Subscript[$CellContext`h, $CellContext`p], {
+      SeriesData[
+       Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+       0, {-Subscript[$CellContext`x, 1][$CellContext`t] (
+          Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 1][$CellContext`t])^2)^Rational[-1, 2], 
+        Rational[1, 2] 
+         Subscript[$CellContext`x, 1][$CellContext`t] (
+          2 Subscript[$CellContext`h, $CellContext`p] 
+           Subscript[$CellContext`x, 1][$CellContext`t] + 
+          2 Subscript[$CellContext`w, $CellContext`p] (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 1][$CellContext`t])) (
+           Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 1][$CellContext`t])^2)^Rational[-3, 2] - 
+        Subscript[$CellContext`h, $CellContext`p] (
+          Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 1][$CellContext`t])^2)^Rational[-1, 2]},
+        0, 2, 1], 
+      SeriesData[
+       Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+       0, {-Subscript[$CellContext`x, 1][$CellContext`t] (1 + 
+         Rational[1, 2] $CellContext`\[Gamma] + 
+         Subscript[$CellContext`y, 1][$CellContext`t]) (
+          Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 1][$CellContext`t])^2)^Rational[-3, 2], 
+        Rational[3, 2] 
+         Subscript[$CellContext`x, 1][$CellContext`t] (1 + 
+          Rational[1, 2] $CellContext`\[Gamma] + 
+          Subscript[$CellContext`y, 1][$CellContext`t]) (
+          2 Subscript[$CellContext`h, $CellContext`p] 
+           Subscript[$CellContext`x, 1][$CellContext`t] + 
+          2 Subscript[$CellContext`w, $CellContext`p] (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 1][$CellContext`t])) (
+           Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 1][$CellContext`t])^2)^
+          Rational[-5, 2] - (
+         Subscript[$CellContext`w, $CellContext`p] 
+          Subscript[$CellContext`x, 1][$CellContext`t] + 
+         Subscript[$CellContext`h, $CellContext`p] (1 + 
+           Rational[1, 2] $CellContext`\[Gamma] + 
+           Subscript[$CellContext`y, 1][$CellContext`t])) (
+          Subscript[$CellContext`x, 1][$CellContext`t]^2 + (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 1][$CellContext`t])^2)^Rational[-3, 2]},
+        0, 2, 1]}, 0, 2, 1]}, 0, 2, 1],
+  Editable->False]], "Output",
+ CellChangeTimes->{3.714581441135872*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"n", "=", "1"}], ";", 
+  RowBox[{
+   RowBox[{"Series", "[", 
+    RowBox[{"Bw", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["x", "p"], "[", "t", "]"}], ",", 
+       SubscriptBox[
+        SubscriptBox["x", "p"], "0"], ",", "n"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["y", "p"], "[", "t", "]"}], ",", 
+       SubscriptBox[
+        SubscriptBox["y", "p"], "0"], ",", "n"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], ",", 
+       SubscriptBox[
+        SubscriptBox["\[Theta]", "p"], "0"], ",", "n"}], "}"}]}], "]"}], "/.",
+    "EquilibiumPoinit"}]}]], "Input",
+ CellChangeTimes->{{3.714578821427903*^9, 3.7145788599351215`*^9}, {
+  3.714578951237014*^9, 3.7145789575171895`*^9}, {3.7145791360084476`*^9, 
+  3.7145791392886305`*^9}, {3.7145796538667326`*^9, 3.714579679126179*^9}, {
+  3.714580175080189*^9, 3.7145802044837465`*^9}, {3.714581407428455*^9, 
+  3.7145814306809187`*^9}}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   RowBox[{"(", 
+    InterpretationBox[
+     RowBox[{
+      RowBox[{"(", 
+       InterpretationBox[
+        RowBox[{
+         SqrtBox[
+          RowBox[{
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"-", "2"}], " ", 
+               SubscriptBox["w", "p"]}], "+", 
+              RowBox[{
+               SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}], "2"], "+", 
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"1", "+", 
+              FractionBox["\[Gamma]", "2"], "+", 
+              RowBox[{
+               SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}], "2"]}]], "+", 
+         FractionBox[
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"2", " ", 
+              SubscriptBox["h", "p"], " ", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "2"}], " ", 
+                 SubscriptBox["w", "p"]}], "+", 
+                RowBox[{
+                 SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}]}], "+", 
+             RowBox[{"2", " ", 
+              SubscriptBox["w", "p"], " ", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"-", "1"}], "-", 
+                FractionBox["\[Gamma]", "2"], "-", 
+                RowBox[{
+                 SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}]}]}], ")"}], 
+           " ", 
+           RowBox[{
+            SubscriptBox["\[Theta]", "p"], "[", "t", "]"}]}], 
+          RowBox[{"2", " ", 
+           SqrtBox[
+            RowBox[{
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "2"}], " ", 
+                 SubscriptBox["w", "p"]}], "+", 
+                RowBox[{
+                 SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}], "2"], "+", 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{"1", "+", 
+                FractionBox["\[Gamma]", "2"], "+", 
+                RowBox[{
+                 SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}], "2"]}]]}]],
+          "+", 
+         InterpretationBox[
+          SuperscriptBox[
+           RowBox[{"O", "[", 
+            RowBox[{
+             SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}], "2"],
+          SeriesData[
+           Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+           0, {}, 0, 2, 1],
+          Editable->False]}],
+        SeriesData[
+         Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+         0, {(((-2) Subscript[$CellContext`w, $CellContext`p] + 
+             Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 2][$CellContext`t])^2)^Rational[1, 2], 
+          Rational[1, 2] (
+           2 Subscript[$CellContext`h, $CellContext`p] ((-2) 
+              Subscript[$CellContext`w, $CellContext`p] + 
+             Subscript[$CellContext`x, 2][$CellContext`t]) + 
+           2 Subscript[$CellContext`w, $CellContext`p] (-1 + 
+             Rational[-1, 2] $CellContext`\[Gamma] - 
+             Subscript[$CellContext`y, 
+              2][$CellContext`t])) (((-2) 
+               Subscript[$CellContext`w, $CellContext`p] + 
+              Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+           Rational[-1, 2]}, 0, 2, 1],
+        Editable->False], ")"}], "+", 
+      RowBox[{
+       RowBox[{"(", 
+        InterpretationBox[
+         RowBox[{
+          FractionBox[
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            FractionBox["\[Gamma]", "2"], "-", 
+            RowBox[{
+             SubscriptBox["y", "2"], "[", "t", "]"}]}], 
+           SqrtBox[
+            RowBox[{
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "2"}], " ", 
+                 SubscriptBox["w", "p"]}], "+", 
+                RowBox[{
+                 SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}], "2"], "+", 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{"1", "+", 
+                FractionBox["\[Gamma]", "2"], "+", 
+                RowBox[{
+                 SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}], "2"]}]]], 
+          "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", 
+              FractionBox[
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"2", " ", 
+                   SubscriptBox["h", "p"], " ", 
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    SubscriptBox["w", "p"]}], "+", 
+                    RowBox[{
+                    SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}]}], "+", 
+                  RowBox[{"2", " ", 
+                   SubscriptBox["w", "p"], " ", 
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "-", 
+                    FractionBox["\[Gamma]", "2"], "-", 
+                    RowBox[{
+                    SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}]}]}], 
+                 ")"}], " ", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"-", "1"}], "-", 
+                  FractionBox["\[Gamma]", "2"], "-", 
+                  RowBox[{
+                   SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}]}], 
+               RowBox[{"2", " ", 
+                SuperscriptBox[
+                 RowBox[{"(", 
+                  RowBox[{
+                   SuperscriptBox[
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    SubscriptBox["w", "p"]}], "+", 
+                    RowBox[{
+                    SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}], "2"], 
+                   "+", 
+                   SuperscriptBox[
+                    RowBox[{"(", 
+                    RowBox[{"1", "+", 
+                    FractionBox["\[Gamma]", "2"], "+", 
+                    RowBox[{
+                    SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}], "2"]}], 
+                  ")"}], 
+                 RowBox[{"3", "/", "2"}]]}]]}], "+", 
+             FractionBox[
+              SubscriptBox["w", "p"], 
+              SqrtBox[
+               RowBox[{
+                SuperscriptBox[
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    SubscriptBox["w", "p"]}], "+", 
+                   RowBox[{
+                    SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}], "2"], 
+                "+", 
+                SuperscriptBox[
+                 RowBox[{"(", 
+                  RowBox[{"1", "+", 
+                   FractionBox["\[Gamma]", "2"], "+", 
+                   RowBox[{
+                    SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}], 
+                 "2"]}]]]}], ")"}], " ", 
+           RowBox[{
+            SubscriptBox["\[Theta]", "p"], "[", "t", "]"}]}], "+", 
+          InterpretationBox[
+           SuperscriptBox[
+            RowBox[{"O", "[", 
+             RowBox[{
+              SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}], "2"],
+           SeriesData[
+            Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+            0, {}, 0, 2, 1],
+           Editable->False]}],
+         SeriesData[
+          Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+          0, {(-1 + Rational[-1, 2] $CellContext`\[Gamma] - 
+            Subscript[$CellContext`y, 
+             2][$CellContext`t]) (((-2) 
+                Subscript[$CellContext`w, $CellContext`p] + 
+               Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+            Rational[-1, 2], 
+           Rational[-1, 2] (
+             2 Subscript[$CellContext`h, $CellContext`p] ((-2) 
+                Subscript[$CellContext`w, $CellContext`p] + 
+               Subscript[$CellContext`x, 2][$CellContext`t]) + 
+             2 Subscript[$CellContext`w, $CellContext`p] (-1 + 
+               Rational[-1, 2] $CellContext`\[Gamma] - 
+               Subscript[$CellContext`y, 2][$CellContext`t])) (-1 + 
+             Rational[-1, 2] $CellContext`\[Gamma] - 
+             Subscript[$CellContext`y, 
+              2][$CellContext`t]) (((-2) 
+                 Subscript[$CellContext`w, $CellContext`p] + 
+                Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+                Rational[1, 2] $CellContext`\[Gamma] + 
+                Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+             Rational[-3, 2] + 
+           Subscript[$CellContext`w, $CellContext`p] (((-2) 
+                 Subscript[$CellContext`w, $CellContext`p] + 
+                Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+                Rational[1, 2] $CellContext`\[Gamma] + 
+                Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+             Rational[-1, 2]}, 0, 2, 1],
+         Editable->False], ")"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          SubscriptBox["y", "p"], "[", "t", "]"}], "+", "1", "+", 
+         FractionBox["\[Gamma]", "2"], "+", 
+         SubscriptBox["h", "p"]}], ")"}]}], "+", 
+      InterpretationBox[
+       SuperscriptBox[
+        RowBox[{"O", "[", 
+         RowBox[{
+          RowBox[{
+           SubscriptBox["y", "p"], "[", "t", "]"}], "+", "1", "+", 
+          FractionBox["\[Gamma]", "2"], "+", 
+          SubscriptBox["h", "p"]}], "]"}], "2"],
+       SeriesData[
+        Subscript[$CellContext`y, $CellContext`p][$CellContext`t], -1 + 
+        Rational[-1, 2] $CellContext`\[Gamma] - 
+        Subscript[$CellContext`h, $CellContext`p], {}, 0, 2, 1],
+       Editable->False]}],
+     SeriesData[
+      Subscript[$CellContext`y, $CellContext`p][$CellContext`t], -1 + 
+      Rational[-1, 2] $CellContext`\[Gamma] - 
+      Subscript[$CellContext`h, $CellContext`p], {
+       SeriesData[
+        Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+        0, {(((-2) Subscript[$CellContext`w, $CellContext`p] + 
+            Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 2][$CellContext`t])^2)^Rational[1, 2], 
+         Rational[1, 2] (
+          2 Subscript[$CellContext`h, $CellContext`p] ((-2) 
+             Subscript[$CellContext`w, $CellContext`p] + 
+            Subscript[$CellContext`x, 2][$CellContext`t]) + 
+          2 Subscript[$CellContext`w, $CellContext`p] (-1 + 
+            Rational[-1, 2] $CellContext`\[Gamma] - 
+            Subscript[$CellContext`y, 
+             2][$CellContext`t])) (((-2) 
+              Subscript[$CellContext`w, $CellContext`p] + 
+             Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+          Rational[-1, 2]}, 0, 2, 1], 
+       SeriesData[
+        Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+        0, {(-1 + Rational[-1, 2] $CellContext`\[Gamma] - 
+          Subscript[$CellContext`y, 
+           2][$CellContext`t]) (((-2) 
+              Subscript[$CellContext`w, $CellContext`p] + 
+             Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 2][$CellContext`t])^2)^Rational[-1, 2],
+          Rational[-1, 2] (
+           2 Subscript[$CellContext`h, $CellContext`p] ((-2) 
+              Subscript[$CellContext`w, $CellContext`p] + 
+             Subscript[$CellContext`x, 2][$CellContext`t]) + 
+           2 Subscript[$CellContext`w, $CellContext`p] (-1 + 
+             Rational[-1, 2] $CellContext`\[Gamma] - 
+             Subscript[$CellContext`y, 2][$CellContext`t])) (-1 + 
+           Rational[-1, 2] $CellContext`\[Gamma] - 
+           Subscript[$CellContext`y, 
+            2][$CellContext`t]) (((-2) 
+               Subscript[$CellContext`w, $CellContext`p] + 
+              Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+           Rational[-3, 2] + 
+         Subscript[$CellContext`w, $CellContext`p] (((-2) 
+               Subscript[$CellContext`w, $CellContext`p] + 
+              Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+           Rational[-1, 2]}, 0, 2, 1]}, 0, 2, 1],
+     Editable->False], ")"}], "+", 
+   RowBox[{
+    RowBox[{"(", 
+     InterpretationBox[
+      RowBox[{
+       RowBox[{"(", 
+        InterpretationBox[
+         RowBox[{
+          FractionBox[
+           RowBox[{
+            RowBox[{"2", " ", 
+             SubscriptBox["w", "p"]}], "-", 
+            RowBox[{
+             SubscriptBox["x", "2"], "[", "t", "]"}]}], 
+           SqrtBox[
+            RowBox[{
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"-", "2"}], " ", 
+                 SubscriptBox["w", "p"]}], "+", 
+                RowBox[{
+                 SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}], "2"], "+", 
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{"1", "+", 
+                FractionBox["\[Gamma]", "2"], "+", 
+                RowBox[{
+                 SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}], "2"]}]]], 
+          "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", 
+              FractionBox[
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"2", " ", 
+                   SubscriptBox["w", "p"]}], "-", 
+                  RowBox[{
+                   SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}], " ", 
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"2", " ", 
+                   SubscriptBox["h", "p"], " ", 
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    SubscriptBox["w", "p"]}], "+", 
+                    RowBox[{
+                    SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}]}], "+", 
+                  RowBox[{"2", " ", 
+                   SubscriptBox["w", "p"], " ", 
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "-", 
+                    FractionBox["\[Gamma]", "2"], "-", 
+                    RowBox[{
+                    SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}]}]}], 
+                 ")"}]}], 
+               RowBox[{"2", " ", 
+                SuperscriptBox[
+                 RowBox[{"(", 
+                  RowBox[{
+                   SuperscriptBox[
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    SubscriptBox["w", "p"]}], "+", 
+                    RowBox[{
+                    SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}], "2"], 
+                   "+", 
+                   SuperscriptBox[
+                    RowBox[{"(", 
+                    RowBox[{"1", "+", 
+                    FractionBox["\[Gamma]", "2"], "+", 
+                    RowBox[{
+                    SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}], "2"]}], 
+                  ")"}], 
+                 RowBox[{"3", "/", "2"}]]}]]}], "-", 
+             FractionBox[
+              SubscriptBox["h", "p"], 
+              SqrtBox[
+               RowBox[{
+                SuperscriptBox[
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    SubscriptBox["w", "p"]}], "+", 
+                   RowBox[{
+                    SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}], "2"], 
+                "+", 
+                SuperscriptBox[
+                 RowBox[{"(", 
+                  RowBox[{"1", "+", 
+                   FractionBox["\[Gamma]", "2"], "+", 
+                   RowBox[{
+                    SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}], 
+                 "2"]}]]]}], ")"}], " ", 
+           RowBox[{
+            SubscriptBox["\[Theta]", "p"], "[", "t", "]"}]}], "+", 
+          InterpretationBox[
+           SuperscriptBox[
+            RowBox[{"O", "[", 
+             RowBox[{
+              SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}], "2"],
+           SeriesData[
+            Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+            0, {}, 0, 2, 1],
+           Editable->False]}],
+         SeriesData[
+          Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+          0, {(2 Subscript[$CellContext`w, $CellContext`p] - 
+            Subscript[$CellContext`x, 
+             2][$CellContext`t]) (((-2) 
+                Subscript[$CellContext`w, $CellContext`p] + 
+               Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+            Rational[-1, 2], 
+           Rational[-1, 2] (2 Subscript[$CellContext`w, $CellContext`p] - 
+             Subscript[$CellContext`x, 2][$CellContext`t]) (
+             2 Subscript[$CellContext`h, $CellContext`p] ((-2) 
+                Subscript[$CellContext`w, $CellContext`p] + 
+               Subscript[$CellContext`x, 2][$CellContext`t]) + 
+             2 Subscript[$CellContext`w, $CellContext`p] (-1 + 
+               Rational[-1, 2] $CellContext`\[Gamma] - 
+               Subscript[$CellContext`y, 
+                2][$CellContext`t])) (((-2) 
+                 Subscript[$CellContext`w, $CellContext`p] + 
+                Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+                Rational[1, 2] $CellContext`\[Gamma] + 
+                Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+             Rational[-3, 2] - 
+           Subscript[$CellContext`h, $CellContext`p] (((-2) 
+                Subscript[$CellContext`w, $CellContext`p] + 
+               Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+            Rational[-1, 2]}, 0, 2, 1],
+         Editable->False], ")"}], "+", 
+       RowBox[{
+        RowBox[{"(", 
+         InterpretationBox[
+          RowBox[{
+           FractionBox[
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", "2"}], " ", 
+                SubscriptBox["w", "p"]}], "+", 
+               RowBox[{
+                SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}], " ", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "1"}], "-", 
+               FractionBox["\[Gamma]", "2"], "-", 
+               RowBox[{
+                SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}]}], 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{
+               SuperscriptBox[
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"-", "2"}], " ", 
+                   SubscriptBox["w", "p"]}], "+", 
+                  RowBox[{
+                   SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}], "2"], 
+               "+", 
+               SuperscriptBox[
+                RowBox[{"(", 
+                 RowBox[{"1", "+", 
+                  FractionBox["\[Gamma]", "2"], "+", 
+                  RowBox[{
+                   SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}], "2"]}], 
+              ")"}], 
+             RowBox[{"3", "/", "2"}]]], "+", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", 
+               FractionBox[
+                RowBox[{"3", " ", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    SubscriptBox["w", "p"]}], "+", 
+                   RowBox[{
+                    SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}], " ", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"2", " ", 
+                    SubscriptBox["h", "p"], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    SubscriptBox["w", "p"]}], "+", 
+                    RowBox[{
+                    SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}]}], "+", 
+                   RowBox[{"2", " ", 
+                    SubscriptBox["w", "p"], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"-", "1"}], "-", 
+                    FractionBox["\[Gamma]", "2"], "-", 
+                    RowBox[{
+                    SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}]}]}], 
+                  ")"}], " ", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"-", "1"}], "-", 
+                   FractionBox["\[Gamma]", "2"], "-", 
+                   RowBox[{
+                    SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}]}], 
+                RowBox[{"2", " ", 
+                 SuperscriptBox[
+                  RowBox[{"(", 
+                   RowBox[{
+                    SuperscriptBox[
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    SubscriptBox["w", "p"]}], "+", 
+                    RowBox[{
+                    SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}], "2"], 
+                    "+", 
+                    SuperscriptBox[
+                    RowBox[{"(", 
+                    RowBox[{"1", "+", 
+                    FractionBox["\[Gamma]", "2"], "+", 
+                    RowBox[{
+                    SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}], "2"]}], 
+                   ")"}], 
+                  RowBox[{"5", "/", "2"}]]}]]}], "+", 
+              FractionBox[
+               RowBox[{
+                RowBox[{
+                 SubscriptBox["w", "p"], " ", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    SubscriptBox["w", "p"]}], "+", 
+                   RowBox[{
+                    SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}]}], "+", 
+                RowBox[{
+                 SubscriptBox["h", "p"], " ", 
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"-", "1"}], "-", 
+                   FractionBox["\[Gamma]", "2"], "-", 
+                   RowBox[{
+                    SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}]}]}], 
+               SuperscriptBox[
+                RowBox[{"(", 
+                 RowBox[{
+                  SuperscriptBox[
+                   RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", 
+                    SubscriptBox["w", "p"]}], "+", 
+                    RowBox[{
+                    SubscriptBox["x", "2"], "[", "t", "]"}]}], ")"}], "2"], 
+                  "+", 
+                  SuperscriptBox[
+                   RowBox[{"(", 
+                    RowBox[{"1", "+", 
+                    FractionBox["\[Gamma]", "2"], "+", 
+                    RowBox[{
+                    SubscriptBox["y", "2"], "[", "t", "]"}]}], ")"}], "2"]}], 
+                 ")"}], 
+                RowBox[{"3", "/", "2"}]]]}], ")"}], " ", 
+            RowBox[{
+             SubscriptBox["\[Theta]", "p"], "[", "t", "]"}]}], "+", 
+           InterpretationBox[
+            SuperscriptBox[
+             RowBox[{"O", "[", 
+              RowBox[{
+               SubscriptBox["\[Theta]", "p"], "[", "t", "]"}], "]"}], "2"],
+            SeriesData[
+             Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t],
+              0, {}, 0, 2, 1],
+            Editable->False]}],
+          SeriesData[
+           Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+           0, {((-2) Subscript[$CellContext`w, $CellContext`p] + 
+             Subscript[$CellContext`x, 2][$CellContext`t]) (-1 + 
+             Rational[-1, 2] $CellContext`\[Gamma] - 
+             Subscript[$CellContext`y, 
+              2][$CellContext`t]) (((-2) 
+                 Subscript[$CellContext`w, $CellContext`p] + 
+                Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+                Rational[1, 2] $CellContext`\[Gamma] + 
+                Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+             Rational[-3, 2], 
+            Rational[-3, 2] ((-2) Subscript[$CellContext`w, $CellContext`p] + 
+              Subscript[$CellContext`x, 2][$CellContext`t]) (
+              2 Subscript[$CellContext`h, $CellContext`p] ((-2) 
+                 Subscript[$CellContext`w, $CellContext`p] + 
+                Subscript[$CellContext`x, 2][$CellContext`t]) + 
+              2 Subscript[$CellContext`w, $CellContext`p] (-1 + 
+                Rational[-1, 2] $CellContext`\[Gamma] - 
+                Subscript[$CellContext`y, 2][$CellContext`t])) (-1 + 
+              Rational[-1, 2] $CellContext`\[Gamma] - 
+              Subscript[$CellContext`y, 
+               2][$CellContext`t]) (((-2) 
+                  Subscript[$CellContext`w, $CellContext`p] + 
+                 Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+                 Rational[1, 2] $CellContext`\[Gamma] + 
+                 Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+              Rational[-5, 2] + (
+              Subscript[$CellContext`w, $CellContext`p] ((-2) 
+                 Subscript[$CellContext`w, $CellContext`p] + 
+                Subscript[$CellContext`x, 2][$CellContext`t]) + 
+              Subscript[$CellContext`h, $CellContext`p] (-1 + 
+                Rational[-1, 2] $CellContext`\[Gamma] - 
+                Subscript[$CellContext`y, 
+                 2][$CellContext`t])) (((-2) 
+                  Subscript[$CellContext`w, $CellContext`p] + 
+                 Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+                 Rational[1, 2] $CellContext`\[Gamma] + 
+                 Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+              Rational[-3, 2]}, 0, 2, 1],
+          Editable->False], ")"}], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           SubscriptBox["y", "p"], "[", "t", "]"}], "+", "1", "+", 
+          FractionBox["\[Gamma]", "2"], "+", 
+          SubscriptBox["h", "p"]}], ")"}]}], "+", 
+       InterpretationBox[
+        SuperscriptBox[
+         RowBox[{"O", "[", 
+          RowBox[{
+           RowBox[{
+            SubscriptBox["y", "p"], "[", "t", "]"}], "+", "1", "+", 
+           FractionBox["\[Gamma]", "2"], "+", 
+           SubscriptBox["h", "p"]}], "]"}], "2"],
+        SeriesData[
+         Subscript[$CellContext`y, $CellContext`p][$CellContext`t], -1 + 
+         Rational[-1, 2] $CellContext`\[Gamma] - 
+         Subscript[$CellContext`h, $CellContext`p], {}, 0, 2, 1],
+        Editable->False]}],
+      SeriesData[
+       Subscript[$CellContext`y, $CellContext`p][$CellContext`t], -1 + 
+       Rational[-1, 2] $CellContext`\[Gamma] - 
+       Subscript[$CellContext`h, $CellContext`p], {
+        SeriesData[
+         Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+         0, {(2 Subscript[$CellContext`w, $CellContext`p] - 
+           Subscript[$CellContext`x, 
+            2][$CellContext`t]) (((-2) 
+               Subscript[$CellContext`w, $CellContext`p] + 
+              Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+           Rational[-1, 2], 
+          Rational[-1, 2] (2 Subscript[$CellContext`w, $CellContext`p] - 
+            Subscript[$CellContext`x, 2][$CellContext`t]) (
+            2 Subscript[$CellContext`h, $CellContext`p] ((-2) 
+               Subscript[$CellContext`w, $CellContext`p] + 
+              Subscript[$CellContext`x, 2][$CellContext`t]) + 
+            2 Subscript[$CellContext`w, $CellContext`p] (-1 + 
+              Rational[-1, 2] $CellContext`\[Gamma] - 
+              Subscript[$CellContext`y, 
+               2][$CellContext`t])) (((-2) 
+                Subscript[$CellContext`w, $CellContext`p] + 
+               Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+            Rational[-3, 2] - 
+          Subscript[$CellContext`h, $CellContext`p] (((-2) 
+               Subscript[$CellContext`w, $CellContext`p] + 
+              Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+           Rational[-1, 2]}, 0, 2, 1], 
+        SeriesData[
+         Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+         0, {((-2) Subscript[$CellContext`w, $CellContext`p] + 
+           Subscript[$CellContext`x, 2][$CellContext`t]) (-1 + 
+           Rational[-1, 2] $CellContext`\[Gamma] - 
+           Subscript[$CellContext`y, 
+            2][$CellContext`t]) (((-2) 
+               Subscript[$CellContext`w, $CellContext`p] + 
+              Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+              Rational[1, 2] $CellContext`\[Gamma] + 
+              Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+           Rational[-3, 2], 
+          Rational[-3, 2] ((-2) Subscript[$CellContext`w, $CellContext`p] + 
+            Subscript[$CellContext`x, 2][$CellContext`t]) (
+            2 Subscript[$CellContext`h, $CellContext`p] ((-2) 
+               Subscript[$CellContext`w, $CellContext`p] + 
+              Subscript[$CellContext`x, 2][$CellContext`t]) + 
+            2 Subscript[$CellContext`w, $CellContext`p] (-1 + 
+              Rational[-1, 2] $CellContext`\[Gamma] - 
+              Subscript[$CellContext`y, 2][$CellContext`t])) (-1 + 
+            Rational[-1, 2] $CellContext`\[Gamma] - 
+            Subscript[$CellContext`y, 
+             2][$CellContext`t]) (((-2) 
+                Subscript[$CellContext`w, $CellContext`p] + 
+               Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+            Rational[-5, 2] + (
+            Subscript[$CellContext`w, $CellContext`p] ((-2) 
+               Subscript[$CellContext`w, $CellContext`p] + 
+              Subscript[$CellContext`x, 2][$CellContext`t]) + 
+            Subscript[$CellContext`h, $CellContext`p] (-1 + 
+              Rational[-1, 2] $CellContext`\[Gamma] - 
+              Subscript[$CellContext`y, 
+               2][$CellContext`t])) (((-2) 
+                Subscript[$CellContext`w, $CellContext`p] + 
+               Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+               Rational[1, 2] $CellContext`\[Gamma] + 
+               Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+            Rational[-3, 2]}, 0, 2, 1]}, 0, 2, 1],
+      Editable->False], ")"}], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["x", "p"], "[", "t", "]"}], "-", 
+      SubscriptBox["w", "p"]}], ")"}]}], "+", 
+   InterpretationBox[
+    SuperscriptBox[
+     RowBox[{"O", "[", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["x", "p"], "[", "t", "]"}], "-", 
+       SubscriptBox["w", "p"]}], "]"}], "2"],
+    SeriesData[
+     Subscript[$CellContext`x, $CellContext`p][$CellContext`t], 
+     Subscript[$CellContext`w, $CellContext`p], {}, 0, 2, 1],
+    Editable->False]}],
+  SeriesData[
+   Subscript[$CellContext`x, $CellContext`p][$CellContext`t], 
+   Subscript[$CellContext`w, $CellContext`p], {
+    SeriesData[
+     Subscript[$CellContext`y, $CellContext`p][$CellContext`t], -1 + 
+     Rational[-1, 2] $CellContext`\[Gamma] - 
+     Subscript[$CellContext`h, $CellContext`p], {
+      SeriesData[
+       Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+       0, {(((-2) Subscript[$CellContext`w, $CellContext`p] + 
+           Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+           Rational[1, 2] $CellContext`\[Gamma] + 
+           Subscript[$CellContext`y, 2][$CellContext`t])^2)^Rational[1, 2], 
+        Rational[1, 2] (
+         2 Subscript[$CellContext`h, $CellContext`p] ((-2) 
+            Subscript[$CellContext`w, $CellContext`p] + 
+           Subscript[$CellContext`x, 2][$CellContext`t]) + 
+         2 Subscript[$CellContext`w, $CellContext`p] (-1 + 
+           Rational[-1, 2] $CellContext`\[Gamma] - 
+           Subscript[$CellContext`y, 
+            2][$CellContext`t])) (((-2) 
+             Subscript[$CellContext`w, $CellContext`p] + 
+            Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 2][$CellContext`t])^2)^Rational[-1, 2]},
+        0, 2, 1], 
+      SeriesData[
+       Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+       0, {(-1 + Rational[-1, 2] $CellContext`\[Gamma] - 
+         Subscript[$CellContext`y, 
+          2][$CellContext`t]) (((-2) 
+             Subscript[$CellContext`w, $CellContext`p] + 
+            Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 2][$CellContext`t])^2)^Rational[-1, 2], 
+        Rational[-1, 2] (
+          2 Subscript[$CellContext`h, $CellContext`p] ((-2) 
+             Subscript[$CellContext`w, $CellContext`p] + 
+            Subscript[$CellContext`x, 2][$CellContext`t]) + 
+          2 Subscript[$CellContext`w, $CellContext`p] (-1 + 
+            Rational[-1, 2] $CellContext`\[Gamma] - 
+            Subscript[$CellContext`y, 2][$CellContext`t])) (-1 + 
+          Rational[-1, 2] $CellContext`\[Gamma] - 
+          Subscript[$CellContext`y, 
+           2][$CellContext`t]) (((-2) 
+              Subscript[$CellContext`w, $CellContext`p] + 
+             Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 2][$CellContext`t])^2)^Rational[-3, 2] + 
+        Subscript[$CellContext`w, $CellContext`p] (((-2) 
+              Subscript[$CellContext`w, $CellContext`p] + 
+             Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+          Rational[-1, 2]}, 0, 2, 1]}, 0, 2, 1], 
+    SeriesData[
+     Subscript[$CellContext`y, $CellContext`p][$CellContext`t], -1 + 
+     Rational[-1, 2] $CellContext`\[Gamma] - 
+     Subscript[$CellContext`h, $CellContext`p], {
+      SeriesData[
+       Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+       0, {(2 Subscript[$CellContext`w, $CellContext`p] - 
+         Subscript[$CellContext`x, 
+          2][$CellContext`t]) (((-2) 
+             Subscript[$CellContext`w, $CellContext`p] + 
+            Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 2][$CellContext`t])^2)^Rational[-1, 2], 
+        Rational[-1, 2] (2 Subscript[$CellContext`w, $CellContext`p] - 
+          Subscript[$CellContext`x, 2][$CellContext`t]) (
+          2 Subscript[$CellContext`h, $CellContext`p] ((-2) 
+             Subscript[$CellContext`w, $CellContext`p] + 
+            Subscript[$CellContext`x, 2][$CellContext`t]) + 
+          2 Subscript[$CellContext`w, $CellContext`p] (-1 + 
+            Rational[-1, 2] $CellContext`\[Gamma] - 
+            Subscript[$CellContext`y, 
+             2][$CellContext`t])) (((-2) 
+              Subscript[$CellContext`w, $CellContext`p] + 
+             Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 2][$CellContext`t])^2)^Rational[-3, 2] - 
+        Subscript[$CellContext`h, $CellContext`p] (((-2) 
+             Subscript[$CellContext`w, $CellContext`p] + 
+            Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 2][$CellContext`t])^2)^Rational[-1, 2]},
+        0, 2, 1], 
+      SeriesData[
+       Subscript[$CellContext`\[Theta], $CellContext`p][$CellContext`t], 
+       0, {((-2) Subscript[$CellContext`w, $CellContext`p] + 
+         Subscript[$CellContext`x, 2][$CellContext`t]) (-1 + 
+         Rational[-1, 2] $CellContext`\[Gamma] - 
+         Subscript[$CellContext`y, 
+          2][$CellContext`t]) (((-2) 
+             Subscript[$CellContext`w, $CellContext`p] + 
+            Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+            Rational[1, 2] $CellContext`\[Gamma] + 
+            Subscript[$CellContext`y, 2][$CellContext`t])^2)^Rational[-3, 2], 
+        Rational[-3, 2] ((-2) Subscript[$CellContext`w, $CellContext`p] + 
+          Subscript[$CellContext`x, 2][$CellContext`t]) (
+          2 Subscript[$CellContext`h, $CellContext`p] ((-2) 
+             Subscript[$CellContext`w, $CellContext`p] + 
+            Subscript[$CellContext`x, 2][$CellContext`t]) + 
+          2 Subscript[$CellContext`w, $CellContext`p] (-1 + 
+            Rational[-1, 2] $CellContext`\[Gamma] - 
+            Subscript[$CellContext`y, 2][$CellContext`t])) (-1 + 
+          Rational[-1, 2] $CellContext`\[Gamma] - 
+          Subscript[$CellContext`y, 
+           2][$CellContext`t]) (((-2) 
+              Subscript[$CellContext`w, $CellContext`p] + 
+             Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+          Rational[-5, 2] + (
+          Subscript[$CellContext`w, $CellContext`p] ((-2) 
+             Subscript[$CellContext`w, $CellContext`p] + 
+            Subscript[$CellContext`x, 2][$CellContext`t]) + 
+          Subscript[$CellContext`h, $CellContext`p] (-1 + 
+            Rational[-1, 2] $CellContext`\[Gamma] - 
+            Subscript[$CellContext`y, 
+             2][$CellContext`t])) (((-2) 
+              Subscript[$CellContext`w, $CellContext`p] + 
+             Subscript[$CellContext`x, 2][$CellContext`t])^2 + (1 + 
+             Rational[1, 2] $CellContext`\[Gamma] + 
+             Subscript[$CellContext`y, 2][$CellContext`t])^2)^
+          Rational[-3, 2]}, 0, 2, 1]}, 0, 2, 1]}, 0, 2, 1],
+  Editable->False]], "Output",
+ CellChangeTimes->{
+  3.714578827441905*^9, 3.714578861004831*^9, 3.714578959183298*^9, 
+   3.7145791406965656`*^9, 3.7145796878759966`*^9, {3.7145801760808563`*^9, 
+   3.71458020532631*^9}, 3.7145814511415234`*^9}]
+}, Open  ]]
+},
+WindowSize->{1350, 685},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"10.1 for Microsoft Windows (64-bit) (March 23, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1889, 63, 94, "Input"],
+Cell[2450, 85, 123, 2, 31, "Input"],
+Cell[CellGroupData[{
+Cell[2598, 91, 1611, 49, 156, "Input"],
+Cell[4212, 142, 555, 18, 45, "Output"],
+Cell[4770, 162, 796, 25, 33, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5603, 192, 232, 5, 31, "Input"],
+Cell[5838, 199, 1245, 39, 56, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7120, 243, 284, 6, 31, "Input"],
+Cell[7407, 251, 1196, 38, 56, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8640, 294, 447, 12, 31, "Input"],
+Cell[9090, 308, 380, 11, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9507, 324, 643, 17, 52, "Input"],
+Cell[10153, 343, 2748, 75, 98, "Output"],
+Cell[12904, 420, 2799, 77, 98, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15740, 502, 245, 6, 31, "Input"],
+Cell[15988, 510, 3386, 89, 98, "Output"]
+}, Open  ]],
+Cell[19389, 602, 2132, 67, 181, "Input"],
+Cell[CellGroupData[{
+Cell[21546, 673, 854, 26, 98, "Input"],
+Cell[22403, 701, 266, 4, 31, "Output"],
+Cell[22672, 707, 438, 13, 33, "Output"],
+Cell[23113, 722, 407, 11, 45, "Output"],
+Cell[23523, 735, 684, 21, 45, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24244, 761, 1068, 29, 33, "Input"],
+Cell[25315, 792, 30977, 692, 467, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[56329, 1489, 1068, 29, 33, "Input"],
+Cell[57400, 1520, 39646, 887, 569, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

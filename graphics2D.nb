@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     42210,       1087]
-NotebookOptionsPosition[     41111,       1048]
-NotebookOutlinePosition[     41605,       1068]
-CellTagsIndexPosition[     41562,       1065]
+NotebookDataLength[     42728,       1100]
+NotebookOptionsPosition[     41587,       1060]
+NotebookOutlinePosition[     42081,       1080]
+CellTagsIndexPosition[     42038,       1077]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -678,7 +678,7 @@ Cell[BoxData[
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{{
        Hold[$CellContext`\[Theta]$$], 0}, -90, 90}}, Typeset`size$$ = {
-    360., {168., 173.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    145., {2., 8.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
     Typeset`skipInitDone$$ = True, $CellContext`\[Theta]$537$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, "Variables" :> {$CellContext`\[Theta]$$ = 0}, 
@@ -692,7 +692,7 @@ Cell[BoxData[
         $CellContext`DrawSystem[$CellContext`\[Theta]$$], 3], 
       "Specifications" :> {{{$CellContext`\[Theta]$$, 0}, -90, 90}}, 
       "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{411., {227., 234.}},
+     ImageSizeCache->{258., {51., 58.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -707,7 +707,19 @@ Cell[BoxData[
   3.712283598215371*^9, {3.7122839994643188`*^9, 3.712284031658228*^9}, 
    3.7122840709537096`*^9, 3.712284369027264*^9, 3.7122845297073455`*^9, 
    3.7125351395053625`*^9, 3.712535198614602*^9, 3.7127918380904427`*^9, 
-   3.7134594100672264`*^9}]
+   3.7134594100672264`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Part", "::", "partw"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Part \[NoBreak]\\!\\(3\\)\[NoBreak] of \
+\[NoBreak]\\!\\(DrawSystem[27.`]\\)\[NoBreak] does not exist. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/partw\\\", \
+ButtonNote -> \\\"Part::partw\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.714570213404914*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -1078,16 +1090,17 @@ Cell[24260, 606, 69, 1, 31, "Input"],
 Cell[24332, 609, 1830, 43, 181, "Input"],
 Cell[CellGroupData[{
 Cell[26187, 656, 590, 14, 31, "Input"],
-Cell[26780, 672, 1884, 37, 478, "Output"]
+Cell[26780, 672, 1878, 37, 126, "Output"],
+Cell[28661, 711, 479, 10, 21, "Message"]
 }, Open  ]],
-Cell[28679, 712, 7618, 195, 445, "Input"],
-Cell[36300, 909, 1955, 56, 132, "Input"],
-Cell[38258, 967, 271, 9, 10, "Text"],
+Cell[29155, 724, 7618, 195, 445, "Input"],
+Cell[36776, 921, 1955, 56, 132, "Input"],
+Cell[38734, 979, 271, 9, 10, "Text"],
 Cell[CellGroupData[{
-Cell[38554, 980, 1115, 34, 105, "Input"],
-Cell[39672, 1016, 381, 6, 31, "Output"],
-Cell[40056, 1024, 379, 6, 31, "Output"],
-Cell[40438, 1032, 657, 13, 127, "Output"]
+Cell[39030, 992, 1115, 34, 105, "Input"],
+Cell[40148, 1028, 381, 6, 31, "Output"],
+Cell[40532, 1036, 379, 6, 31, "Output"],
+Cell[40914, 1044, 657, 13, 127, "Output"]
 }, Open  ]]
 }
 ]
