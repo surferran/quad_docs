@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    320505,       8422]
-NotebookOptionsPosition[    315156,       8252]
-NotebookOutlinePosition[    315649,       8272]
-CellTagsIndexPosition[    315606,       8269]
+NotebookDataLength[    321256,       8451]
+NotebookOptionsPosition[    315677,       8273]
+NotebookOutlinePosition[    316170,       8293]
+CellTagsIndexPosition[    316127,       8290]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -8248,7 +8248,28 @@ Cell[" ", "Text",
  CellElementSpacings->{"CellMinHeight"->1},
  CellFrameMargins->0,
  CellFrameColor->RGBColor[0, 0, 1],
- CellSize->{Inherited, 3}]
+ CellSize->{Inherited, 3}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"2", "/", "6."}]], "Input",
+ CellChangeTimes->{{3.7148747102251596`*^9, 3.714874711681192*^9}}],
+
+Cell[BoxData["0.3333333333333333`"], "Output",
+ CellChangeTimes->{3.7148747123572073`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"1", "/", "9"}], "//", "N"}]], "Input",
+ CellChangeTimes->{{3.7148577424883614`*^9, 3.7148577442643967`*^9}}],
+
+Cell[BoxData["0.1111111111111111`"], "Output",
+ CellChangeTimes->{3.7148577451604185`*^9}]
+}, Open  ]]
 },
 WindowSize->{1350, 685},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
@@ -8423,7 +8444,15 @@ Cell[307318, 8060, 2347, 68, 72, "Input"],
 Cell[309668, 8130, 5097, 105, 204, "Output"]
 }, Open  ]],
 Cell[314780, 8238, 96, 1, 31, "Input"],
-Cell[314879, 8241, 273, 9, 5, "Text"]
+Cell[314879, 8241, 273, 9, 5, "Text"],
+Cell[CellGroupData[{
+Cell[315177, 8254, 118, 2, 31, "Input"],
+Cell[315298, 8258, 90, 1, 31, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[315425, 8264, 143, 3, 31, "Input"],
+Cell[315571, 8269, 90, 1, 31, "Output"]
+}, Open  ]]
 }
 ]
 *)
