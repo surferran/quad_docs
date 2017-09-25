@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     53063,       1391]
-NotebookOptionsPosition[     51149,       1325]
-NotebookOutlinePosition[     51946,       1355]
-CellTagsIndexPosition[     51818,       1349]
+NotebookDataLength[     53547,       1408]
+NotebookOptionsPosition[     51523,       1338]
+NotebookOutlinePosition[     52320,       1368]
+CellTagsIndexPosition[     52192,       1362]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -556,13 +556,13 @@ Cell[BoxData[{
           RowBox[{
            SubscriptBox["L0", "1"], "/", "2"}]}], "]"}], "}"}]}]}], "]"}], 
     ";", "\[IndentingNewLine]", 
-    RowBox[{"a", "=", 
-     RowBox[{"Graphics", "[", 
-      RowBox[{"{", 
-       RowBox[{
-       "Iarrows", ",", "Labels", ",", "Cabels", ",", "spr1", ",", "spr2", ",",
-         "PayloadBox"}], "}"}], "]"}]}]}], " ", 
-   "}"}]}], "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{"a", "="}], "*)"}], 
+    RowBox[{"Graphics", "[", 
+     RowBox[{"{", 
+      RowBox[{
+      "Iarrows", ",", "Labels", ",", "Cabels", ",", "spr1", ",", "spr2", ",", 
+       "PayloadBox"}], "}"}], "]"}]}], " ", "}"}]}], "\[IndentingNewLine]", 
  RowBox[{"{", 
   RowBox[{
    SubscriptBox["x", "1"], ",", 
@@ -650,7 +650,8 @@ Cell[BoxData[{
    3.715263494350396*^9, 3.71526350482763*^9}, {3.7152635921612773`*^9, 
    3.715263636270144*^9}, 3.715263698254963*^9, {3.715263742308422*^9, 
    3.715263750121335*^9}, 3.7152638559133267`*^9, {3.715284834186326*^9, 
-   3.7152848618181887`*^9}, {3.71528498906365*^9, 3.7152850144128113`*^9}}],
+   3.7152848618181887`*^9}, {3.71528498906365*^9, 3.7152850144128113`*^9}, {
+   3.7153622096184063`*^9, 3.715362211203455*^9}}],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -663,7 +664,8 @@ Cell[BoxData[
    SubscriptBox["y", "p"], ",", 
    SubscriptBox["\[Theta]", "p"]}], "}"}]], "Output",
  CellChangeTimes->{3.7152637508973246`*^9, 3.7152637903186216`*^9, 
-  3.7152638669375668`*^9, 3.7152848631462193`*^9, 3.715285015445631*^9}],
+  3.7152638669375668`*^9, 3.7152848631462193`*^9, 3.715285015445631*^9, 
+  3.715362215864547*^9}],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -671,7 +673,8 @@ Cell[BoxData[
    SubscriptBox["w", "p"], ",", 
    SubscriptBox["h", "p"]}], "}"}]], "Output",
  CellChangeTimes->{3.7152637508973246`*^9, 3.7152637903186216`*^9, 
-  3.7152638669375668`*^9, 3.7152848631462193`*^9, 3.715285015445631*^9}]
+  3.7152638669375668`*^9, 3.7152848631462193`*^9, 3.715285015445631*^9, 
+  3.7153622158815556`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -792,7 +795,7 @@ Cell[BoxData[
   StyleBox[
    DynamicModuleBox[{$CellContext`\[Theta]p$$ = 0, $CellContext`$483$$ = 
     0, $CellContext`$484$$ = 2, $CellContext`$485$$ = 0, $CellContext`$486$$ =
-     0, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+     0.81, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
     Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
     1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
        Hold[$CellContext`$483$$], 0, 
@@ -857,7 +860,17 @@ $CellContext`\[Theta]p$$, 1], 1], {
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{3.7152850328980026`*^9}]
+ CellChangeTimes->{3.7152850328980026`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["0"], "Print",
+ CellChangeTimes->{3.715362215959609*^9}],
+
+Cell[BoxData["\<\"wp poistive indeed. depends on the function called method..\
+\"\>"], "Print",
+ CellChangeTimes->{3.7153622159756174`*^9}]
+}, Open  ]]
 }, Open  ]],
 
 Cell[BoxData[""], "Input",
@@ -1348,8 +1361,8 @@ CellTagsIndex->{
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"Info3715276874-7707548", 51606, 1340},
- {"Info3715277000-7707548", 51715, 1343}
+ {"Info3715276874-7707548", 51980, 1353},
+ {"Info3715277000-7707548", 52089, 1356}
  }
 *)
 (*NotebookFileOutline
@@ -1378,21 +1391,25 @@ Cell[5725, 179, 121, 2, 42, "Print",
 }, Open  ]],
 Cell[5861, 184, 67, 1, 31, "Input"],
 Cell[CellGroupData[{
-Cell[5953, 189, 19052, 463, 1040, "Input"],
-Cell[25008, 654, 432, 11, 33, "Output"],
-Cell[25443, 667, 260, 6, 33, "Output"]
+Cell[5953, 189, 19123, 464, 1040, "Input"],
+Cell[25079, 655, 457, 12, 33, "Output"],
+Cell[25539, 669, 287, 7, 33, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[25740, 678, 4570, 109, 216, "Input"],
-Cell[30313, 789, 3664, 70, 650, "Output"]
+Cell[25863, 681, 4570, 109, 216, "Input"],
+Cell[30436, 792, 3667, 70, 650, "Output"],
+Cell[CellGroupData[{
+Cell[34128, 866, 69, 1, 23, "Print"],
+Cell[34200, 869, 139, 2, 23, "Print"]
+}, Open  ]]
 }, Open  ]],
-Cell[33992, 862, 96, 1, 31, "Input"],
-Cell[34091, 865, 271, 9, 10, "Text"],
-Cell[34365, 876, 7699, 196, 445, "Input"],
-Cell[42067, 1074, 271, 9, 8, "Text"],
-Cell[42341, 1085, 1240, 34, 112, "Input"],
-Cell[43584, 1121, 271, 9, 8, "Text"],
-Cell[43858, 1132, 7287, 191, 445, "Input"]
+Cell[34366, 875, 96, 1, 31, "Input"],
+Cell[34465, 878, 271, 9, 10, "Text"],
+Cell[34739, 889, 7699, 196, 445, "Input"],
+Cell[42441, 1087, 271, 9, 8, "Text"],
+Cell[42715, 1098, 1240, 34, 112, "Input"],
+Cell[43958, 1134, 271, 9, 8, "Text"],
+Cell[44232, 1145, 7287, 191, 445, "Input"]
 }
 ]
 *)
