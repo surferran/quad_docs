@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     53547,       1408]
-NotebookOptionsPosition[     51523,       1338]
-NotebookOutlinePosition[     52320,       1368]
-CellTagsIndexPosition[     52192,       1362]
+NotebookDataLength[     46937,       1232]
+NotebookOptionsPosition[     44876,       1161]
+NotebookOutlinePosition[     45673,       1191]
+CellTagsIndexPosition[     45545,       1185]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -808,7 +808,7 @@ Cell[BoxData[
        "\!\(\*SubscriptBox[\(y\), \(2\)]\)"}, -2, 2}, {{
        Hold[$CellContext`\[Theta]p$$], 0, 
        "\!\(\*SubscriptBox[\(\[Theta]\), \(p\)]\)"}, (-90) Degree, 
-      1.5707963267948966`}}, Typeset`size$$ = {299., {214., 218.}}, 
+      1.5707963267948966`}}, Typeset`size$$ = {201., {1., 8.}}, 
     Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
     True, $CellContext`$483$287049$$ = 0, $CellContext`$484$287050$$ = 
     0, $CellContext`$485$287051$$ = 0, $CellContext`$486$287052$$ = 
@@ -849,7 +849,7 @@ $CellContext`\[Theta]p$$, 1], 1], {
          2}, {{$CellContext`\[Theta]p$$, 0, 
           "\!\(\*SubscriptBox[\(\[Theta]\), \(p\)]\)"}, (-90) Degree, 
          1.5707963267948966`}}, "Options" :> {}, "DefaultOptions" :> {}],
-     ImageSizeCache->{350., {313., 320.}},
+     ImageSizeCache->{264., {105., 112.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -870,7 +870,20 @@ Cell[BoxData["0"], "Print",
 Cell[BoxData["\<\"wp poistive indeed. depends on the function called method..\
 \"\>"], "Print",
  CellChangeTimes->{3.7153622159756174`*^9}]
-}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ReplaceAll", "::", "reps"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\({NumericParametersTest}\\)\[NoBreak] is \
+neither a list of replacement rules nor a valid dispatch table, and so cannot \
+be used for replacing. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/ReplaceAll/reps\\\", ButtonNote -> \
+\\\"ReplaceAll::reps\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.7167482187967253`*^9}]
 }, Open  ]],
 
 Cell[BoxData[""], "Input",
@@ -1143,198 +1156,8 @@ Cell[" ", "Text",
  CellFrameColor->RGBColor[0, 0, 1],
  CellSize->{Inherited, 4}],
 
-Cell[BoxData[
- GraphicsBox[{
-   StyleBox[
-    {Dashing[{Small, Small}], Arrowheads[Small], ArrowBox[{{0, 0}, {0, 1}}], 
-     ArrowBox[{{0, 0}, {1, 0}}]},
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[{InsetBox[
-      RowBox[{"\<\"Payload\"\>", " ", 
-       RowBox[{"(", 
-        RowBox[{
-         SubscriptBox["x", "p"], ",", 
-         SubscriptBox["y", "p"]}], 
-        ")"}]}], {3.1236496711538835`, 4.925933539650815}, \
-{-3.0476752108720837`, 3.609645478412079}], InsetBox[
-      RowBox[{"\<\"Quad1\"\>", " ", 
-       RowBox[{"(", 
-        RowBox[{
-         SubscriptBox["x", "1"], ",", 
-         SubscriptBox["y", "1"]}], 
-        ")"}]}], {0.5925316827935105, 9.629667698254057}, {-1, -1}], InsetBox[
-      RowBox[{"\<\"Quad2\"\>", " ", 
-       RowBox[{"(", 
-        RowBox[{
-         SubscriptBox["x", "2"], ",", 
-         SubscriptBox["y", "2"]}], 
-        ")"}]}], {6.790453384868484, 9.654356518370452}, {-1, -1}], InsetBox[
-      RowBox[{
-       SubscriptBox["L0", "1"], 
-       "\"\<, \!\(\*SubscriptBox[\(k\), \(1\)]\)\>\""}], \
-{2.253111798836038, 7.870332301745938}, {-2, 1}], InsetBox[
-      RowBox[{
-       SubscriptBox["l", "2"], ",", " ", 
-       SubscriptBox["k", 
-        "2"]}], {9.62323853001008, 7.7715770212803506`}, {2, 1}]},
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[
-    {Arrowheads[{-Small, Small}], 
-     ArrowBox[{{3.9523247891279163`, 4.609645478412078}, {0, 10}}], 
-     ArrowBox[{{5.316321509252913, 6.07235288165042}, {10, 10}}]},
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[
-    LineBox[{{0., 10.}, {0.5158362772408681, 9.860204544894225}, {
-     0.49404059864098954`, 9.32620568480151}, {0.472244920041111, 
-     8.792206824708796}, {0.9880811972819791, 8.65241136960302}, {
-     1.5039174745228472`, 8.512615914497244}, {1.4821217959229687`, 
-     7.97861705440453}, {1.46032611732309, 7.444618194311815}, {
-     1.9761623945639581`, 7.304822739206039}, {2.491998671804826, 
-     7.165027284100264}, {2.4702029932049476`, 6.631028424007549}, {
-     2.448407314605069, 6.097029563914834}, {2.9642435918459373`, 
-     5.957234108809059}, {3.480079869086805, 5.8174386537032845`}, {
-     3.4582841904869266`, 5.283439793610569}, {3.4364885118870485`, 
-     4.749440933517853}, {3.9523247891279163`, 4.609645478412078}}],
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[
-    LineBox[{{10., 10.}, {9.921454993600735, 9.499108782083187}, {
-     9.414540188656614, 9.509044110206302}, {8.907625383712494, 
-     9.518979438329419}, {8.829080377313229, 9.018088220412604}, {
-     8.750535370913962, 8.517197002495791}, {8.243620565969842, 
-     8.527132330618908}, {7.736705761025721, 8.537067658742023}, {
-     7.658160754626456, 8.03617644082521}, {7.579615748227191, 
-     7.535285222908396}, {7.0727009432830705`, 7.5452205510315125`}, {
-     6.56578613833895, 7.555155879154628}, {6.487241131939685, 
-     7.054264661237815}, {6.40869612554042, 6.553373443321001}, {
-     5.901781320596299, 6.563308771444117}, {5.394866515652178, 
-     6.573244099567233}, {5.316321509252913, 6.07235288165042}}],
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[
-    GeometricTransformationBox[
-     RectangleBox[NCache[{4, Rational[9, 2]}, {4, 4.5}], 
-      NCache[{6, Rational[11, 2]}, {6, 5.5}]], {{{
-      0.6819983600624985, -0.7313537016191705}, {0.7313537016191705, 
-      0.6819983600624985}}, Center}],
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[InsetBox[
-     StyleBox[Cell[TextData[Cell[BoxData[
-       FormBox[
-        SubscriptBox["l", "p"], TraditionalForm]],
-       FontWeight->"Bold"]],
-       GeneratedCell->False,
-       CellAutoOverwrite->False,
-       CellBaseline->Baseline,
-       TextAlignment->Left],
-      TextAlignment->Center,
-      Background->GrayLevel[1.]], {4.3010779546020625`, 5.514797376994048}, {
-     Left, Baseline},
-     Alignment->{Left, Top}],
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[InsetBox[
-     StyleBox[Cell[TextData[Cell[BoxData[
-       FormBox[
-        SubscriptBox["h", "p"], TraditionalForm]],
-       FontWeight->"Bold"]],
-       GeneratedCell->False,
-       CellAutoOverwrite->False,
-       CellBaseline->Baseline,
-       TextAlignment->Left],
-      TextAlignment->Center,
-      Background->GrayLevel[1.]], {3.756180375417567, 3.7940853520885582`}, {
-     Left, Baseline}, {0.5925316827935107, 0.6419093230263032}, {{1., 0.}, {
-     0., 1.}},
-     Alignment->{Left, Top}],
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[
-    LineBox[{{5.049649792552232, 4.921375196399939}, {5.347386751762672, 
-     4.8534635446212695`}}],
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[
-    {Dashing[{Small, Small}], 
-     LineBox[{{5.025696531342677, 4.949141420801594}, {8.185865506241402, 
-      4.924452600685198}}]},
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[
-    {Dashing[{Small, Small}], 
-     LineBox[{{4.976318891109885, 4.973830240917989}, {6.902046860188794, 
-      6.850180569764108}}]},
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[
-    {EdgeForm[{GrayLevel[0.], Opacity[1.], AbsoluteThickness[1]}], EdgeForm[
-     None], ArrowBox[{{7.272379161934738, 5.097274341499972}, {
-      6.383581637744474, 6.134204786388617}}]},
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[InsetBox[
-     StyleBox[Cell[TextData[Cell[BoxData[
-       FormBox[
-        SubscriptBox["\[Theta]", "p"], TraditionalForm]],
-       FontWeight->"Bold"]],
-       GeneratedCell->False,
-       CellAutoOverwrite->False,
-       CellBaseline->Baseline,
-       TextAlignment->Left],
-      TextAlignment->Center,
-      Background->GrayLevel[1.]], {6.1860710768133025`, 5.245407262198345}, {
-     Left, Baseline},
-     Alignment->{Left, Top}],
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[
-    {Dashing[{0, Small}], EdgeForm[{GrayLevel[0.], Opacity[1.], 
-     AbsoluteThickness[1]}], EdgeForm[None], 
-     ArrowBox[{{5.050385351459074, 5.023207881150782}, {5.025696531342677, 
-      2.8259028907915145`}}]},
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[InsetBox[
-     StyleBox[Cell[TextData[Cell[BoxData[
-       FormBox[
-        SubscriptBox["m", "p"], TraditionalForm]],
-       FontWeight->"Bold"]],
-       GeneratedCell->False,
-       CellAutoOverwrite->False,
-       CellBaseline->Baseline,
-       TextAlignment->Left],
-      TextAlignment->Center,
-      Background->GrayLevel[1.]], {5.27258473250664, 2.480259409161965}, {
-     Left, Baseline},
-     Alignment->{Left, Top}],
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[InsetBox[
-     StyleBox[Cell["I",
-       GeneratedCell->False,
-       CellAutoOverwrite->False,
-       CellBaseline->Baseline,
-       TextAlignment->Left],
-      TextAlignment->Center,
-      Background->GrayLevel[
-       1.]], {0.31013188911098877`, 0.33233205903548857`}, {Left, Baseline},
-     Alignment->{Left, Top}],
-    FontSize->18,
-    FontWeight->"Bold"], 
-   StyleBox[
-    InsetBox["", {0.6804641908569329, 0.5298426199666597}, {Left, Baseline},
-     Alignment->{Left, Top}],
-    FontSize->18,
-    FontWeight->"Bold"]},
-  ImagePadding->{{0., 64.081633}, {1., 7.318367}},
-  ImageSize->{486., Automatic},
-  PlotRange->{{-0.20833333333333337`, 10.208333333333334`}, {-0.2, 10.2}},
-  PlotRangePadding->Automatic]], "Input",
- CellChangeTimes->{3.715251688131113*^9}]
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{3.715251688131113*^9, 3.716748222607254*^9}]
 },
 WindowSize->{985, 669},
 WindowMargins->{{Automatic, 80}, {Automatic, 0}},
@@ -1361,8 +1184,8 @@ CellTagsIndex->{
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"Info3715276874-7707548", 51980, 1353},
- {"Info3715277000-7707548", 52089, 1356}
+ {"Info3715276874-7707548", 45333, 1176},
+ {"Info3715277000-7707548", 45442, 1179}
  }
 *)
 (*NotebookFileOutline
@@ -1397,19 +1220,20 @@ Cell[25539, 669, 287, 7, 33, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[25863, 681, 4570, 109, 216, "Input"],
-Cell[30436, 792, 3667, 70, 650, "Output"],
+Cell[30436, 792, 3663, 70, 234, "Output"],
 Cell[CellGroupData[{
-Cell[34128, 866, 69, 1, 23, "Print"],
-Cell[34200, 869, 139, 2, 23, "Print"]
-}, Open  ]]
+Cell[34124, 866, 69, 1, 23, "Print"],
+Cell[34196, 869, 139, 2, 23, "Print"]
 }, Open  ]],
-Cell[34366, 875, 96, 1, 31, "Input"],
-Cell[34465, 878, 271, 9, 10, "Text"],
-Cell[34739, 889, 7699, 196, 445, "Input"],
-Cell[42441, 1087, 271, 9, 8, "Text"],
-Cell[42715, 1098, 1240, 34, 112, "Input"],
-Cell[43958, 1134, 271, 9, 8, "Text"],
-Cell[44232, 1145, 7287, 191, 445, "Input"]
+Cell[34350, 874, 551, 11, 21, "Message"]
+}, Open  ]],
+Cell[34916, 888, 96, 1, 31, "Input"],
+Cell[35015, 891, 271, 9, 10, "Text"],
+Cell[35289, 902, 7699, 196, 445, "Input"],
+Cell[42991, 1100, 271, 9, 8, "Text"],
+Cell[43265, 1111, 1240, 34, 112, "Input"],
+Cell[44508, 1147, 271, 9, 8, "Text"],
+Cell[44782, 1158, 90, 1, 31, "Input"]
 }
 ]
 *)
